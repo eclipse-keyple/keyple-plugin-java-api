@@ -1,0 +1,60 @@
+/* **************************************************************************************
+ * Copyright (c) 2021 Calypso Networks Association https://www.calypsonet-asso.org/
+ *
+ * See the NOTICE file(s) distributed with this work for additional information
+ * regarding copyright ownership.
+ *
+ * This program and the accompanying materials are made available under the terms of the
+ * Eclipse Public License 2.0 which is available at http://www.eclipse.org/legal/epl-2.0
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ ************************************************************************************** */
+package org.eclipse.keyple.core.plugin.spi;
+
+import java.util.SortedSet;
+import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
+import org.eclipse.keyple.core.service.KeypleReaderNotFoundException;
+
+/**
+ * Interface to be implemented by a pool plugin provider to manage the pool plugin resources.
+ *
+ * @since 2.0
+ */
+public interface PoolPluginSpi {
+
+  /**
+   * Gets a list of group references that will be used as an argument to allocateReader.
+   *
+   * <p>A group reference can represent a family of Reader with all the same characteristics (e.g.
+   * SAM with identical key sets).
+   *
+   * @return a list of String
+   * @since 2.0
+   */
+  SortedSet<String> getReaderGroupReferences();
+
+  /**
+   * Obtains an available Reader resource and makes it exclusive to the caller until the
+   * releaseReader method is called.
+   *
+   * <p>The allocated reader belongs to the group targeted with provided reference.
+   *
+   * @param readerGroupReference the reference of the group to which the reader belongs (may be null
+   *     depending on the implementation made)
+   * @return A not null {@link ReaderSpi} reference
+   * @throws KeypleReaderNotFoundException if the allocation failed
+   * @since 2.0
+   */
+  ReaderSpi allocateReader(String readerGroupReference);
+
+  /**
+   * Releases a Reader previously allocated with allocateReader.
+   *
+   * <p>This method must be called as soon as the reader is no longer needed by the caller of
+   * allocateReader in order to free the resource.
+   *
+   * @param reader the Reader to be released.
+   * @since 2.0
+   */
+  void releaseReader(ReaderSpi reader);
+}
