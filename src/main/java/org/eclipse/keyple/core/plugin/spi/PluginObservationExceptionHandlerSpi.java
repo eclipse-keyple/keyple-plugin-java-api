@@ -27,9 +27,10 @@ public interface PluginObservationExceptionHandlerSpi {
   /**
    * This method is invoked when a runtime exception occurs in the observed plugin.
    *
-   * @param pluginName A not empty String containing the name of the plugin in which the exception
-   *     was raised.
-   * @param e A reference to the {@link RuntimeException}
+   * <p>The plugin name and the originating exception are provided.
+   *
+   * @param pluginName A not empty String
+   * @param e A not null reference
    * @since 2.0
    */
   void onPluginObservationError(String pluginName, Throwable e);

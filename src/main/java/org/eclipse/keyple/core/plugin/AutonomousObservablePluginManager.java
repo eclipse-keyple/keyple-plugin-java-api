@@ -26,7 +26,7 @@ public interface AutonomousObservablePluginManager {
    *
    * <p>Newly connected readers are provided as a collection of {@link ReaderSpi}.
    *
-   * @param readers A not empty {@link Set} of {@link ReaderSpi}
+   * @param readers A not empty Set
    * @since 2.0
    */
   void onReaderConnected(Set<ReaderSpi> readers);
@@ -36,7 +36,7 @@ public interface AutonomousObservablePluginManager {
    *
    * <p>Newly disconnected readers names are provided as a collection of String.
    *
-   * @param readersNames A not empty {@link Set} of String
+   * @param readersNames A not empty Set
    * @since 2.0
    */
   void onReaderDisconnected(Set<String> readersNames);

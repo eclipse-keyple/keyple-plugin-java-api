@@ -34,7 +34,7 @@ public interface WaitForCardRemovalBlockingSpi {
    *
    * <p>Returns true if the card has disappeared.
    *
-   * @return presence status
+   * @return true if a card is detected, false if not.
    * @throws ReaderIOException if the communication with the reader
    * @since 2.0
    */

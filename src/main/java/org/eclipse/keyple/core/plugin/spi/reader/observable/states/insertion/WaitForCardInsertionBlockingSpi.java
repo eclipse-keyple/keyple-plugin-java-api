@@ -24,14 +24,13 @@ import org.eclipse.keyple.core.plugin.ReaderIOException;
  */
 public interface WaitForCardInsertionBlockingSpi {
   /**
-   * Waits for a card. Returns true if a card is detected, false it was interrupted or if the reader
-   * is no longer able to detect a card.
+   * TODO Check the explanations below. Do we need to return a boolean or use an exception when the
+   * process ends with no card?
    *
-   * <p>TODO Add explanations
+   * <p>Waits for a card. Returns true if a card is detected, false it was interrupted or if the
+   * reader is no longer able to detect a card.
    *
-   * <p>Returns false if no card is detected.
-   *
-   * @return presence status
+   * @return true if a card is detected, false if not.
    * @throws ReaderIOException if the communication with the reader or the card has failed
    *     (disconnection)
    * @since 2.0

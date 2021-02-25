@@ -36,7 +36,7 @@ public interface ObservablePluginSpi extends PluginSpi {
   /**
    * Enumerates currently available readers and returns their names as a collection of String.
    *
-   * @return A not null {@link Set}
+   * @return A not null Set
    * @since 2.0
    */
   Set<String> searchAvailableReadersNames();
@@ -46,7 +46,7 @@ public interface ObservablePluginSpi extends PluginSpi {
    * raises an exception if not.
    *
    * @param readerName A not empty String
-   * @return A not null {@link ReaderSpi} reference
+   * @return A not null reference
    * @throws KeypleReaderNotFoundException if the reader is not found
    * @since 2.0
    */
@@ -56,8 +56,8 @@ public interface ObservablePluginSpi extends PluginSpi {
    * Gets the exception handler to be used for notifying execution failures during plugin
    * monitoring.
    *
-   * @return A not null {@link PluginObservationExceptionHandlerSpi} reference.
+   * @return A not null reference.
    * @since 2.0
    */
-  PluginObservationExceptionHandlerSpi getObservationExceptionHandler();
+  PluginObservationExceptionHandlerSpi getPluginObservationExceptionHandler();
 }

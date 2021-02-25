@@ -24,7 +24,7 @@ public interface PluginSpi {
   /**
    * Enumerates currently available readers and returns them as a collection of {@link ReaderSpi}.
    *
-   * @return A not null {@link Set}
+   * @return A not null Set
    * @since 2.0
    */
   Set<ReaderSpi> searchAvailableReaders();

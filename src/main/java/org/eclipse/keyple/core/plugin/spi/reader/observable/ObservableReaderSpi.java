@@ -36,8 +36,8 @@ public interface ObservableReaderSpi {
    * Gets the exception handler to be used for notifying execution failures during reader
    * monitoring.
    *
-   * @return A not null {@link ReaderObservationExceptionHandlerSpi} reference.
+   * @return A not null reference.
    * @since 2.0
    */
-  ReaderObservationExceptionHandlerSpi getObservationExceptionHandler();
+  ReaderObservationExceptionHandlerSpi getReaderObservationExceptionHandler();
 }

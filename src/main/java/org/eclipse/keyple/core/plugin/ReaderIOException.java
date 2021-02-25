@@ -16,7 +16,7 @@ package org.eclipse.keyple.core.plugin;
  *
  * @since 2.0
  */
-public class ReaderIOException extends RuntimeException {
+public class ReaderIOException extends Exception {
 
   /**
    * @param message the message to identify the exception context

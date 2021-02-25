@@ -33,7 +33,7 @@ public interface ReaderSpi {
   /**
    * Indicates if the provided reader protocol is supported by the reader.
    *
-   * @param readerProtocol A not empty String containing the reader protocol name
+   * @param readerProtocol A not empty String
    * @return true if the protocol is supported, false if not
    * @since 2.0
    */
@@ -99,7 +99,7 @@ public interface ReaderSpi {
   /**
    * Tells if the physical channel is open or not.
    *
-   * @return True is the physical channel is open, false if not. ReaderIOException
+   * @return true is the physical channel is open, false if not.
    */
   boolean isPhysicalChannelOpen();
 
@@ -120,7 +120,7 @@ public interface ReaderSpi {
    * <p>In contactless mode, as the ATR is not provided by the secured element, it can vary from one
    * plugin to another
    *
-   * @return A byte array (must be not null).
+   * @return A not null reference
    * @since 2.0
    */
   byte[] getATR();
@@ -131,8 +131,8 @@ public interface ReaderSpi {
    * <p><b>Caution: the implementation must handle the case where the card response is 61xy and
    * execute the appropriate get response command.</b>
    *
-   * @param apduIn byte buffer containing the ingoing data (should be not null).
-   * @return apduResponse byte buffer containing the outgoing data.
+   * @param apduIn A not empty byte buffer.
+   * @return apduResponse A not empty byte buffer.
    * @throws ReaderIOException if the communication with the reader has failed
    * @throws CardIOException if the communication with the card has failed
    * @since 2.0

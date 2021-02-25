@@ -24,7 +24,7 @@ public interface AutonomousObservablePluginSpi extends PluginSpi {
   /**
    * Sets the plugin event manager dedicated to autonomous observable readers
    *
-   * @param manager A not null reference of {@link AutonomousObservablePluginManager}
+   * @param manager A not null reference
    * @since 2.0
    */
   void setManager(AutonomousObservablePluginManager manager);

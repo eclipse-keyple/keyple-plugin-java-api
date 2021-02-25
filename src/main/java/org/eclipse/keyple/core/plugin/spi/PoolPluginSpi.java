@@ -28,7 +28,7 @@ public interface PoolPluginSpi {
    * <p>A group reference can represent a family of Reader with all the same characteristics (e.g.
    * SAM with identical key sets).
    *
-   * @return a list of String
+   * @return A not null reference
    * @since 2.0
    */
   SortedSet<String> getReaderGroupReferences();
@@ -37,24 +37,25 @@ public interface PoolPluginSpi {
    * Obtains an available Reader resource and makes it exclusive to the caller until the
    * releaseReader method is called.
    *
-   * <p>The allocated reader belongs to the group targeted with provided reference.
+   * <p>The allocated reader belongs to the group targeted with the provided group reference.
    *
-   * @param readerGroupReference the reference of the group to which the reader belongs (may be null
-   *     depending on the implementation made)
-   * @return A not null {@link ReaderSpi} reference
+   * <p>Depending on the implementation made, this reference may be null.
+   *
+   * @param readerGroupReference A nullable String
+   * @return A not null reference
    * @throws KeypleReaderNotFoundException if the allocation failed
    * @since 2.0
    */
   ReaderSpi allocateReader(String readerGroupReference);
 
   /**
-   * Releases a Reader previously allocated with allocateReader.
+   * Releases the reader previously allocated with allocateReader and whose reference is provided.
    *
    * <p>This method must be called as soon as the reader is no longer needed by the caller of
    * allocateReader in order to free the resource.
    *
-   * @param reader the Reader to be released.
+   * @param readerSpi A not null reference
    * @since 2.0
    */
-  void releaseReader(ReaderSpi reader);
+  void releaseReader(ReaderSpi readerSpi);
 }

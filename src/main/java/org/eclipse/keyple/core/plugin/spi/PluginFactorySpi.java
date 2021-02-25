@@ -40,7 +40,7 @@ public interface PluginFactorySpi {
    * Retrieve the name of the plugin that will be instantiated by this factory (can be static or
    * dynamic)
    *
-   * @return pluginName
+   * @return A not empty String
    * @since 2.0
    */
   String getPluginName();
@@ -48,7 +48,7 @@ public interface PluginFactorySpi {
   /**
    * Retrieve an instance of a plugin SPI (can be a singleton or not)
    *
-   * @return instance of a {@link PluginSpi}
+   * @return A not null reference
    * @throws KeyplePluginInstantiationException if instantiation failed, mostly when the third party
    *     library which manages the card Reader interface is not ready
    * @since 2.0
