@@ -12,7 +12,7 @@
 package org.eclipse.keyple.core.plugin.spi;
 
 /**
- * Interface to be implemented by a plugin provider to provide the plugin SPI.
+ * Must be implemented by a specific plugin (non pool)
  *
  * @since 2.0
  */

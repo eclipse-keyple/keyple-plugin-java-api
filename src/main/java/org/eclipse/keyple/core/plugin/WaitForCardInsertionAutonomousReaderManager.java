@@ -12,14 +12,15 @@
 package org.eclipse.keyple.core.plugin;
 
 /**
- * Interfaces to be implemented by the Keyple Service adapter
+ * Manager associated to a {@link
+ * org.eclipse.keyple.core.plugin.spi.reader.observable.states.insertion.WaitForCardInsertionAutonomousSpi}
  *
  * @since 2.0
  */
 public interface WaitForCardInsertionAutonomousReaderManager {
 
   /**
-   * This method is called when a card is inserted.
+   * Must be called when a card is inserted.
    *
    * @since 2.0
    */

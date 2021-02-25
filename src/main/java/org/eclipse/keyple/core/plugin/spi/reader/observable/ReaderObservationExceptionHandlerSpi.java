@@ -11,6 +11,23 @@
  ************************************************************************************** */
 package org.eclipse.keyple.core.plugin.spi.reader.observable;
 
+/**
+ * Handler to be notified of runtime exceptions that may occur during operations carried out by the
+ * readers monitoring processes.
+ *
+ * @since 2.0
+ */
 public interface ReaderObservationExceptionHandlerSpi {
+
+  /**
+   * Called when a runtime exception occurs in the observed reader.
+   *
+   * <p>The plugin and reader names and the original exception are provided.
+   *
+   * @param pluginName the plugin name
+   * @param readerName the reader name
+   * @param e the original exception
+   * @since 2.0
+   */
   void onReaderObservationError(String pluginName, String readerName, Throwable e);
 }

@@ -15,11 +15,19 @@ import java.util.SortedSet;
 import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
 
 /**
- * Interface to be implemented by a pool plugin provider to manage the pool plugin resources.
+ * Must be implemented by a specific pool plugin.
  *
  * @since 2.0
  */
 public interface PoolPluginSpi {
+
+  /**
+   * Gets the name of the pool plugin.
+   *
+   * @return A not empty string.
+   * @since 2.0
+   */
+  String getName();
 
   /**
    * Gets a list of group references that will be used as an argument to allocateReader.

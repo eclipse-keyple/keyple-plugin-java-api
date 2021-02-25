@@ -15,7 +15,7 @@ import org.eclipse.keyple.core.plugin.CardIOException;
 import org.eclipse.keyple.core.plugin.ReaderIOException;
 
 /**
- * Interface to be implemented by a plugin provider to manage the reader's operations.
+ * Must be implemented by a specific reader (pool and non pool plugins).
  *
  * @since 2.0
  */
@@ -34,6 +34,7 @@ public interface ReaderSpi {
    *
    * @param readerProtocol A not empty String
    * @return true if the protocol is supported, false if not
+   * @throws IllegalArgumentException if the argument is not correct
    * @since 2.0
    */
   boolean isProtocolSupported(String readerProtocol);
@@ -44,6 +45,7 @@ public interface ReaderSpi {
    * <p>The argument is a reader specific String identifying the protocol.
    *
    * @param readerProtocol A not empty String.
+   * @throws IllegalArgumentException if the argument is not correct
    * @since 2.0
    */
   void activateProtocol(String readerProtocol);
@@ -54,6 +56,7 @@ public interface ReaderSpi {
    * <p>The argument is a reader specific String identifying the protocol.
    *
    * @param readerProtocol A not empty String.
+   * @throws IllegalArgumentException if the argument is not correct
    * @since 2.0
    */
   void deactivateProtocol(String readerProtocol);
@@ -68,6 +71,7 @@ public interface ReaderSpi {
    *
    * @param readerProtocol A not empty string.
    * @return true if the current protocol corresponds to the one provided, false if not.
+   * @throws IllegalArgumentException if the argument is not correct
    * @since 2.0
    */
   boolean isCurrentProtocol(String readerProtocol);
@@ -123,13 +127,14 @@ public interface ReaderSpi {
   byte[] getATR();
 
   /**
-   * Transmits a single APDU and receives its response.
+   * Transmits an APDU defined as a byte buffer and receives its response.
    *
    * <p><b>Caution: the implementation must handle the case where the card response is 61xy and
    * execute the appropriate get response command.</b>
    *
-   * @param apduIn A not empty byte buffer.
+   * @param apduIn the outgoing data to be sent.
    * @return apduResponse A not empty byte buffer.
+   * @throws IllegalArgumentException if the provided buffer is null or empty
    * @throws ReaderIOException if the communication with the reader has failed
    * @throws CardIOException if the communication with the card has failed
    * @since 2.0

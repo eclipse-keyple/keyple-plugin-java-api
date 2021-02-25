@@ -15,28 +15,26 @@ import java.util.Set;
 import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
 
 /**
- * Interfaces to be implemented by the Keyple Service adapter
+ * Manager associated to a {@link org.eclipse.keyple.core.plugin.spi.AutonomousObservablePluginSpi}
  *
  * @since 2.0
  */
 public interface AutonomousObservablePluginManager {
 
   /**
-   * This method is called when one or more readers are connected to the system.
+   * Must be called when one or more readers are connected to the system.
    *
-   * <p>Newly connected readers are provided as a collection of {@link ReaderSpi}.
-   *
-   * @param readers A not empty Set
+   * @param readers the readers connected
+   * @throws IllegalArgumentException if the Set provided as argument is null or empty
    * @since 2.0
    */
   void onReaderConnected(Set<ReaderSpi> readers);
 
   /**
-   * This method is called when one or more readers are disconnected from the system.
+   * Must be called when one or more readers are disconnected from the system.
    *
-   * <p>Newly disconnected readers names are provided as a collection of String.
-   *
-   * @param readersNames A not empty Set
+   * @param readersNames the readers names disconnected
+   * @throws IllegalArgumentException if the Set provided as argument is null or empty
    * @since 2.0
    */
   void onReaderDisconnected(Set<String> readersNames);

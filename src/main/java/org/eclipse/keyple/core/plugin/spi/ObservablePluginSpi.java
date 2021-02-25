@@ -15,17 +15,17 @@ import java.util.Set;
 import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
 
 /**
- * Interface to be implemented by a provider of an observable plugin managed by Keyple Service.
+ * Must be implemented by a specific plugin (non pool) with reader enumeration capabilities.
  *
- * <p>The production of plugin events (connection/disconnection of readers) is handled by an
- * execution thread managed by Keyple Service.
+ * <p>The production of plugin events (connection/disconnection of readers) is handled by the Keyple
+ * Service adapter.
  *
  * @since 2.0
  */
 public interface ObservablePluginSpi extends PluginSpi {
 
   /**
-   * Gets the specified time cycle in milliseconds for checking the list of current readers.
+   * Gets the recommended time cycle in milliseconds to check the list of current readers.
    *
    * @return An int
    * @since 2.0
@@ -41,11 +41,11 @@ public interface ObservablePluginSpi extends PluginSpi {
   Set<String> searchAvailableReadersNames();
 
   /**
-   * Searches for the reader whose name is provided and returns its {@link ReaderSpi} if found,
-   * raises an exception if not.
+   * Searches for the reader whose name is provided and returns its {@link ReaderSpi} if found, null
+   * if not.
    *
    * @param readerName A not empty String
-   * @return A not null reference
+   * @return A nullable reference
    * @since 2.0
    */
   ReaderSpi searchReader(String readerName);

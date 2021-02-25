@@ -15,11 +15,16 @@ import org.eclipse.keyple.core.plugin.ReaderIOException;
 import org.eclipse.keyple.core.plugin.TaskCanceledException;
 
 /**
- * Interface to be implemented by the readers able to handle natively the card removal process.
+ * Must be implemented by readers that are autonomous in the management of waiting for the removal
+ * of a card and that provide a method to wait for it indefinitely.
+ *
+ * <p>A typical example of readers conforming to this mode of operation are PC/SC type readers
+ * capable of performing RF polling without waiting for a command from the application.
  *
  * @since 2.0
  */
 public interface WaitForCardRemovalBlockingSpi {
+
   /**
    * Waits indefinitely for a card to be inserted.
    *

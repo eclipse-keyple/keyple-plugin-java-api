@@ -15,11 +15,19 @@ import java.util.Set;
 import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
 
 /**
- * Interface to be implemented by a plugin provider to manage the plugin resources.
+ * Must be implemented by a specific plugin
  *
  * @since 2.0
  */
 public interface PluginSpi {
+
+  /**
+   * Gets the name of the plugin.
+   *
+   * @return A not empty string.
+   * @since 2.0
+   */
+  String getName();
 
   /**
    * Enumerates currently available readers and returns them as a collection of {@link ReaderSpi}.

@@ -12,21 +12,25 @@
 package org.eclipse.keyple.core.plugin.spi.reader.observable;
 
 /**
- * Interface to be implemented by a plugin provider for an observable reader.
+ * Must be implemented by a specific reader with card detection capabilities.
+ *
+ * <p>The implementation of this interface also requires the choice of a single interface in each of
+ * the 'insertion', 'processing' and 'removal' {@link
+ * org.eclipse.keyple.core.plugin.spi.reader.observable.states} sub-packages.
  *
  * @since 2.0
  */
 public interface ObservableReaderSpi {
 
   /**
-   * This method is invoked when the reader started the card detection
+   * Called when the reader started the card detection
    *
    * @since 2.0
    */
   void onStartDetection();
 
   /**
-   * This method is invoked when the reader stopped the card detection
+   * Called when the reader stopped the card detection
    *
    * @since 2.0
    */

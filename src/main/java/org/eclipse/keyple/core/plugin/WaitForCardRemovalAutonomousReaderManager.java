@@ -12,14 +12,15 @@
 package org.eclipse.keyple.core.plugin;
 
 /**
- * Interfaces to be implemented by the Keyple Service adapter
+ * Manager associated to a {@link
+ * org.eclipse.keyple.core.plugin.spi.reader.observable.states.removal.WaitForCardRemovalAutonomousSpi}
  *
  * @since 2.0
  */
 public interface WaitForCardRemovalAutonomousReaderManager {
 
   /**
-   * This method is called when a card is removed.
+   * Must be called when a card is removed.
    *
    * @since 2.0
    */

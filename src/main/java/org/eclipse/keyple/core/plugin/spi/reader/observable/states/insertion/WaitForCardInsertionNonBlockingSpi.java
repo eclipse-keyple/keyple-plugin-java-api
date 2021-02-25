@@ -12,8 +12,10 @@
 package org.eclipse.keyple.core.plugin.spi.reader.observable.states.insertion;
 
 /**
- * Interface to be implemented by readers that require an active process to detect the card
- * insertion. They provide a method sa
+ * Must be implemented by readers that require external active stimulation to detect card insertion.
+ *
+ * <p>The detection of the card removal will be done by trying to communicate with the card
+ * indefinitely until a communication failure occurs.
  *
  * <p>A typical example of readers conforming to this mode of operation are terminals embedding a
  * slave RF communication module.

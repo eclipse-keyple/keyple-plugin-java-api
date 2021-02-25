@@ -12,8 +12,8 @@
 package org.eclipse.keyple.core.plugin.spi.reader.observable.states.removal;
 
 /**
- * Interface to be implemented by readers that have a fully integrated management of card
- * communications for card removal detection.
+ * Must be implemented by readers that have a fully integrated management of card communications for
+ * card removal detection.
  *
  * <p>A typical example of readers conforming to this mode of operation are Android-based NFC
  * readers.

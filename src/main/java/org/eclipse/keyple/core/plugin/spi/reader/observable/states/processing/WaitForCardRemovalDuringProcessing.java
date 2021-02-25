@@ -12,8 +12,8 @@
 package org.eclipse.keyple.core.plugin.spi.reader.observable.states.processing;
 
 /**
- * Interface to be implemented by readers able to detect a card removal during processing, between
- * two APDU commands.
+ * Must be implemented by readers able to detect a card removal during processing, between two APDU
+ * commands.
  *
  * <p>A typical example of readers conforming to this mode of operation are PC/SC type readers.
  *

@@ -15,8 +15,8 @@ import org.eclipse.keyple.core.plugin.ReaderIOException;
 import org.eclipse.keyple.core.plugin.TaskCanceledException;
 
 /**
- * Interface to be implemented by readers that are autonomous in the management of waiting for the
- * insertion of a card and that provide a method to wait for it indefinitely.
+ * Must be implemented by readers that are autonomous in the management of waiting for the insertion
+ * of a card and that provide a method to wait for it indefinitely.
  *
  * <p>A typical example of readers conforming to this mode of operation are PC/SC type readers
  * capable of performing RF polling without waiting for a command from the application.

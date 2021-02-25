@@ -12,7 +12,9 @@
 package org.eclipse.keyple.core.plugin.spi.reader.observable.states.removal;
 
 /**
- * Interface to be implemented by readers that require an active process to detect the card removal.
+ * Must be implemented by readers that require external active stimulation to detect card removal.
+ *
+ * <p>The card presence management API will be used by the service to produce the reader events.
  *
  * <p>A typical example of readers conforming to this mode of operation are terminals embedding a
  * slave RF communication module.
