@@ -12,6 +12,7 @@
 package org.eclipse.keyple.core.plugin.spi.reader.observable.states.insertion;
 
 import org.eclipse.keyple.core.plugin.ReaderIOException;
+import org.eclipse.keyple.core.plugin.TaskCanceledException;
 
 /**
  * Interface to be implemented by readers that are autonomous in the management of waiting for the
@@ -24,18 +25,16 @@ import org.eclipse.keyple.core.plugin.ReaderIOException;
  */
 public interface WaitForCardInsertionBlockingSpi {
   /**
-   * TODO Check the explanations below. Do we need to return a boolean or use an exception when the
-   * process ends with no card?
+   * Waits indefinitely for a card to be inserted.
    *
-   * <p>Waits for a card. Returns true if a card is detected, false it was interrupted or if the
-   * reader is no longer able to detect a card.
+   * <p>This wait can be cancelled for an internal (e.g. timeout) or external reason (e.g. call to
+   * {@link #stopWaitForCard()}), in this case an exception is raised.
    *
-   * @return true if a card is detected, false if not.
-   * @throws ReaderIOException if the communication with the reader or the card has failed
-   *     (disconnection)
+   * @throws ReaderIOException if the communication with the reader has failed (disconnection)
+   * @throws TaskCanceledException if the task has been canceled and is no longer active
    * @since 2.0
    */
-  boolean waitForCardPresent();
+  void waitForCardPresent() throws ReaderIOException, TaskCanceledException;
 
   /**
    * Interrupts the waiting of a card

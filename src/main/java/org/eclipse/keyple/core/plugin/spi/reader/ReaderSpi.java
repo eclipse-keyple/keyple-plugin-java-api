@@ -13,7 +13,6 @@ package org.eclipse.keyple.core.plugin.spi.reader;
 
 import org.eclipse.keyple.core.plugin.CardIOException;
 import org.eclipse.keyple.core.plugin.ReaderIOException;
-import org.eclipse.keyple.core.service.KeypleReaderProtocolNotSupportedException;
 
 /**
  * Interface to be implemented by a plugin provider to manage the reader's operations.
@@ -45,7 +44,6 @@ public interface ReaderSpi {
    * <p>The argument is a reader specific String identifying the protocol.
    *
    * @param readerProtocol A not empty String.
-   * @throws KeypleReaderProtocolNotSupportedException if the protocol is not supported.
    * @since 2.0
    */
   void activateProtocol(String readerProtocol);
@@ -56,7 +54,6 @@ public interface ReaderSpi {
    * <p>The argument is a reader specific String identifying the protocol.
    *
    * @param readerProtocol A not empty String.
-   * @throws KeypleReaderProtocolNotSupportedException if the protocol is not supported.
    * @since 2.0
    */
   void deactivateProtocol(String readerProtocol);
@@ -86,7 +83,7 @@ public interface ReaderSpi {
    *     could not be open.
    * @since 2.0
    */
-  void openPhysicalChannel();
+  void openPhysicalChannel() throws ReaderIOException, CardIOException;
 
   /**
    * Attempts to close the current physical channel.
@@ -94,7 +91,7 @@ public interface ReaderSpi {
    * @throws ReaderIOException if the communication with the reader has failed.
    * @since 2.0
    */
-  void closePhysicalChannel();
+  void closePhysicalChannel() throws ReaderIOException;
 
   /**
    * Tells if the physical channel is open or not.
@@ -110,7 +107,7 @@ public interface ReaderSpi {
    * @throws ReaderIOException if the communication with the reader has failed
    * @since 2.0
    */
-  boolean checkCardPresence();
+  boolean checkCardPresence() throws ReaderIOException;
 
   /**
    * Get the ATR data
@@ -137,7 +134,7 @@ public interface ReaderSpi {
    * @throws CardIOException if the communication with the card has failed
    * @since 2.0
    */
-  byte[] transmitApdu(byte[] apduIn);
+  byte[] transmitApdu(byte[] apduIn) throws ReaderIOException, CardIOException;
 
   /**
    * Tells if the reader is a contactless type.

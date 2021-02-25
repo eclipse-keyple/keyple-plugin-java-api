@@ -13,7 +13,6 @@ package org.eclipse.keyple.core.plugin.spi;
 
 import java.util.SortedSet;
 import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
-import org.eclipse.keyple.core.service.KeypleReaderNotFoundException;
 
 /**
  * Interface to be implemented by a pool plugin provider to manage the pool plugin resources.
@@ -43,7 +42,6 @@ public interface PoolPluginSpi {
    *
    * @param readerGroupReference A nullable String
    * @return A not null reference
-   * @throws KeypleReaderNotFoundException if the allocation failed
    * @since 2.0
    */
   ReaderSpi allocateReader(String readerGroupReference);

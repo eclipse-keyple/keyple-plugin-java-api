@@ -12,6 +12,7 @@
 package org.eclipse.keyple.core.plugin.spi.reader.observable.states.removal;
 
 import org.eclipse.keyple.core.plugin.ReaderIOException;
+import org.eclipse.keyple.core.plugin.TaskCanceledException;
 
 /**
  * Interface to be implemented by the readers able to handle natively the card removal process.
@@ -20,25 +21,16 @@ import org.eclipse.keyple.core.plugin.ReaderIOException;
  */
 public interface WaitForCardRemovalBlockingSpi {
   /**
-   * Wait until the card disappears.
+   * Waits indefinitely for a card to be inserted.
    *
-   * <p>TODO check these explanations
+   * <p>This wait can be cancelled for an internal (e.g. timeout) or external reason (e.g. call to
+   * {@link #stopWaitForCardRemoval()}), in this case an exception is raised.
    *
-   * <p>This method must be implemented by the plugin's reader class when it must manage the card
-   * removal process itself. (for example by using the analogous waitForCardAbsent method in the
-   * case of a plugin based on smartcard.io [PC/SC]).
-   *
-   * <p>In the case where the reader plugin is not able to handle the card removal process itself
-   * (not implementing the {@link WaitForCardRemovalBlockingSpi} interface, then it is managed by
-   * the isCardPresentPing method defined in this class.
-   *
-   * <p>Returns true if the card has disappeared.
-   *
-   * @return true if a card is detected, false if not.
    * @throws ReaderIOException if the communication with the reader
+   * @throws TaskCanceledException if the task has been canceled and is no longer active
    * @since 2.0
    */
-  boolean waitForCardAbsentNative();
+  void waitForCardAbsentNative() throws ReaderIOException, TaskCanceledException;
 
   /**
    * Interrupts the waiting of the removal of the card

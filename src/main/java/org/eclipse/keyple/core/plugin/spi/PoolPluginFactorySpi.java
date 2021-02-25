@@ -11,8 +11,6 @@
  ************************************************************************************** */
 package org.eclipse.keyple.core.plugin.spi;
 
-import org.eclipse.keyple.core.service.KeyplePluginInstantiationException;
-
 /**
  * Interface to be implemented by a pool plugin provider to provide the plugin SPI.
  *
@@ -49,8 +47,6 @@ public interface PoolPluginFactorySpi {
    * Retrieve an instance of a pool plugin SPI (can be a singleton or not)
    *
    * @return A not null reference
-   * @throws KeyplePluginInstantiationException if instantiation failed, mostly when the third party
-   *     library which manages the card Reader interface is not ready
    * @since 2.0
    */
   PoolPluginSpi getPoolPlugin();

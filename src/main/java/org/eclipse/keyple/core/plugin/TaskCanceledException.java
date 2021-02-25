@@ -9,6 +9,21 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  ************************************************************************************** */
-package org.eclipse.keyple.core.plugin.spi.reader.observable;
+package org.eclipse.keyple.core.plugin;
 
-public interface AutonomousObservableReaderSpi extends ObservableReaderSpi {}
+/**
+ * Indicates that a task (for example, waiting for a card to be inserted) has been cancelled and is
+ * no longer active.
+ *
+ * @since 2.0
+ */
+public class TaskCanceledException extends Exception {
+
+  /**
+   * @param message the message to identify the exception context
+   * @since 2.0
+   */
+  public TaskCanceledException(String message) {
+    super(message);
+  }
+}

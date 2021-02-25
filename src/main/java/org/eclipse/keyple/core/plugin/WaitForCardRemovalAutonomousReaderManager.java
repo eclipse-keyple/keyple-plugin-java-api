@@ -16,14 +16,7 @@ package org.eclipse.keyple.core.plugin;
  *
  * @since 2.0
  */
-public interface AutonomousObservableReaderManager {
-
-  /**
-   * This method is called when a card is inserted.
-   *
-   * @since 2.0
-   */
-  void onCardInserted();
+public interface WaitForCardRemovalAutonomousReaderManager {
 
   /**
    * This method is called when a card is removed.

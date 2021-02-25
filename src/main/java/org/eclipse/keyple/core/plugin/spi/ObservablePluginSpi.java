@@ -13,7 +13,6 @@ package org.eclipse.keyple.core.plugin.spi;
 
 import java.util.Set;
 import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
-import org.eclipse.keyple.core.service.KeypleReaderNotFoundException;
 
 /**
  * Interface to be implemented by a provider of an observable plugin managed by Keyple Service.
@@ -47,7 +46,6 @@ public interface ObservablePluginSpi extends PluginSpi {
    *
    * @param readerName A not empty String
    * @return A not null reference
-   * @throws KeypleReaderNotFoundException if the reader is not found
    * @since 2.0
    */
   ReaderSpi searchReader(String readerName);
