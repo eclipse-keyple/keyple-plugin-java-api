@@ -1,5 +1,5 @@
 #!groovy
-def artifactId = "keyple-java-service"
+def artifactId = "keyple-java-plugin-api"
 def keypleVersion
 pipeline {
     agent {
