@@ -15,7 +15,7 @@ import org.eclipse.keyple.core.plugin.CardIOException;
 import org.eclipse.keyple.core.plugin.ReaderIOException;
 
 /**
- * Must be implemented by a specific reader that selects the cards itself (e.g. OMAPI readers).
+ * Reader having an autonomous mechanism to select the cards (for example OMAPI readers).
  *
  * @since 2.0
  */
@@ -24,19 +24,24 @@ public interface AutonomousSelectionReaderSpi {
   /**
    * Opens a logical channel for the provided AID
    *
-   * <p>The <b>dfName</b> is provided as a byte array. It can be set to null to activate the basic
-   * channel opening defined by the OMAPI. <br>
+   * <p>The <b>aid</b> is provided as a byte array. It can be set to null to activate the basic
+   * channel opening defined by the OMAPI.<br>
    * The bit mask indicates the ISO defined condition to retrieve the selection data.
    *
-   * @param dfName A byte array or null TODO Shouldn't we rename this "AID"?
-   * @param isoControlMask bit mask from the ISO 7816-4 standard
-   * @return A byte array containing the card answer to selection
-   * @throws IllegalArgumentException if the dfName is null or empty
+   * @param aid The AID (optional)
+   * @param isoControlMask The bit mask from the ISO 7816-4 standard
+   * @return A not empty byte array containing the card answer to selection
    * @throws ReaderIOException if the communication with the reader has failed
    * @throws CardIOException if the communication with the card has failed
+   * @since 2.0
    */
-  byte[] openChannelForAid(byte[] dfName, byte isoControlMask)
+  byte[] openChannelForAid(byte[] aid, byte isoControlMask)
       throws ReaderIOException, CardIOException;
 
+  /**
+   * Closes the logical channel explicitly.
+   *
+   * @since 2.0
+   */
   void closeLogicalChannel();
 }

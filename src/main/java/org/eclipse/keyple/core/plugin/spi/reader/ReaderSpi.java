@@ -15,7 +15,7 @@ import org.eclipse.keyple.core.plugin.CardIOException;
 import org.eclipse.keyple.core.plugin.ReaderIOException;
 
 /**
- * Must be implemented by a specific reader (pool and non pool plugins).
+ * Reader able to manage communications with smart cards in a static way.
  *
  * @since 2.0
  */
@@ -83,8 +83,7 @@ public interface ReaderSpi {
    * be raised if not.
    *
    * @throws ReaderIOException if the communication with the reader has failed.
-   * @throws CardIOException if the communication with the card has failed and the physical channel
-   *     could not be open.
+   * @throws CardIOException if the communication with the card has failed
    * @since 2.0
    */
   void openPhysicalChannel() throws ReaderIOException, CardIOException;
@@ -119,7 +118,10 @@ public interface ReaderSpi {
    * <p>In contact mode, ATR data is the data returned by the card.
    *
    * <p>In contactless mode, as the ATR is not provided by the secured element, it can vary from one
-   * plugin to another
+   * reader to another. In this case, the ATR represents more generally a block of data coming from
+   * the anti-collision step forming an identifier allowing the distinction between cards of
+   * different families. The developer of this method is free to choose the structure of this block
+   * of data as long as it is meaningful with the elements allowing the identification of protocols.
    *
    * @return A not null reference
    * @since 2.0

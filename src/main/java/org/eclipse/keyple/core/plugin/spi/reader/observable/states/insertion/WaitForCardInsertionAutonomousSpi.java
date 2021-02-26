@@ -11,6 +11,8 @@
  ************************************************************************************** */
 package org.eclipse.keyple.core.plugin.spi.reader.observable.states.insertion;
 
+import org.eclipse.keyple.core.plugin.WaitForCardInsertionAutonomousReaderManager;
+
 /**
  * Must be implemented by readers that have a fully integrated management of card communications for
  * card insertion detection.
@@ -20,4 +22,13 @@ package org.eclipse.keyple.core.plugin.spi.reader.observable.states.insertion;
  *
  * @since 2.0
  */
-public interface WaitForCardInsertionAutonomousSpi {}
+public interface WaitForCardInsertionAutonomousSpi {
+
+  /**
+   * Binds the associated Keyple Core manager
+   *
+   * @param manager the manager
+   * @since 2.0
+   */
+  void setManager(WaitForCardInsertionAutonomousReaderManager manager);
+}

@@ -12,7 +12,7 @@
 package org.eclipse.keyple.core.plugin.spi.reader.observable;
 
 /**
- * Must be implemented by a specific reader with card detection capabilities.
+ * Reader able to detect cards autonomously.
  *
  * <p>The implementation of this interface also requires the choice of a single interface in each of
  * the 'insertion', 'processing' and 'removal' {@link

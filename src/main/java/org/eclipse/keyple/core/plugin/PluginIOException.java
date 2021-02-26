@@ -9,33 +9,29 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  ************************************************************************************** */
-package org.eclipse.keyple.core.plugin.spi;
-
-import java.util.Set;
-import org.eclipse.keyple.core.plugin.PluginIOException;
-import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
+package org.eclipse.keyple.core.plugin;
 
 /**
- * Plugin (non pool) able to manage a static list of readers.
+ * Indicates that an error occurred while managing the readers.
  *
  * @since 2.0
  */
-public interface PluginSpi {
+public class PluginIOException extends Exception {
 
   /**
-   * Gets the name of the plugin.
-   *
-   * @return A not empty string.
+   * @param message the message to identify the exception context
    * @since 2.0
    */
-  String getName();
+  public PluginIOException(String message) {
+    super(message);
+  }
 
   /**
-   * Enumerates currently available readers
-   *
-   * @return A empty Set if no reader is available
-   * @throws PluginIOException if an error occurs
+   * @param message the message to identify the exception context
+   * @param cause the cause
    * @since 2.0
    */
-  Set<ReaderSpi> searchAvailableReaders() throws PluginIOException;
+  public PluginIOException(String message, Throwable cause) {
+    super(message, cause);
+  }
 }

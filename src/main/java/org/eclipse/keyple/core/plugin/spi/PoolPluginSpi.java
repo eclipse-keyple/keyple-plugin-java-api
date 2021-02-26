@@ -12,10 +12,12 @@
 package org.eclipse.keyple.core.plugin.spi;
 
 import java.util.SortedSet;
+import org.eclipse.keyple.core.plugin.PluginIOException;
 import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
 
 /**
- * Must be implemented by a specific pool plugin.
+ * Plugin able to manage a dynamic list of readers based on a allocation/deallocation mechanism (for
+ * example HSM).
  *
  * @since 2.0
  */
@@ -30,38 +32,41 @@ public interface PoolPluginSpi {
   String getName();
 
   /**
-   * Gets a list of group references that will be used as an argument to allocateReader.
+   * Gets a list of group references that will be used as an argument to {@link
+   * #allocateReader(String)}.
    *
-   * <p>A group reference can represent a family of Reader with all the same characteristics (e.g.
-   * SAM with identical key sets).
+   * <p>A group reference can represent a family of Reader with all the same characteristics (for
+   * example SAM with identical key sets).
    *
-   * @return A not null reference
+   * @return An empty Set if there is no group reference
+   * @throws PluginIOException if an error occurs
    * @since 2.0
    */
-  SortedSet<String> getReaderGroupReferences();
+  SortedSet<String> getReaderGroupReferences() throws PluginIOException;
 
   /**
-   * Obtains an available Reader resource and makes it exclusive to the caller until the
+   * Obtains an available reader resource and makes it exclusive to the caller until the
    * releaseReader method is called.
    *
    * <p>The allocated reader belongs to the group targeted with the provided group reference.
    *
-   * <p>Depending on the implementation made, this reference may be null.
-   *
-   * @param readerGroupReference A nullable String
+   * @param readerGroupReference The reader group reference (optional)
    * @return A not null reference
+   * @throws PluginIOException if an error occurs
    * @since 2.0
    */
-  ReaderSpi allocateReader(String readerGroupReference);
+  ReaderSpi allocateReader(String readerGroupReference) throws PluginIOException;
 
   /**
-   * Releases the reader previously allocated with allocateReader and whose reference is provided.
+   * Releases the reader previously allocated with {@link #allocateReader(String)} and whose
+   * reference is provided.
    *
-   * <p>This method must be called as soon as the reader is no longer needed by the caller of
-   * allocateReader in order to free the resource.
+   * <p>This method must be called as soon as the reader is no longer needed by the caller of {@link
+   * #allocateReader(String)} in order to free the resource.
    *
-   * @param readerSpi A not null reference
+   * @param readerSpi The reader to deallocate
+   * @throws PluginIOException if an error occurs
    * @since 2.0
    */
-  void releaseReader(ReaderSpi readerSpi);
+  void releaseReader(ReaderSpi readerSpi) throws PluginIOException;
 }

@@ -14,7 +14,8 @@ package org.eclipse.keyple.core.plugin.spi;
 import org.eclipse.keyple.core.plugin.AutonomousObservablePluginManager;
 
 /**
- * Must be implemented by a specific plugin (non pool) with reader observation capabilities.
+ * Plugin (non pool) having autonomous capabilities to observe reader connections and
+ * disconnections.
  *
  * <p>Plugin events are produced by the plugin itself.
  *
@@ -23,7 +24,7 @@ import org.eclipse.keyple.core.plugin.AutonomousObservablePluginManager;
 public interface AutonomousObservablePluginSpi extends PluginSpi {
 
   /**
-   * Sets the plugin event manager dedicated to autonomous observable plugins
+   * Binds the associated Keyple Core manager
    *
    * @param manager the manager
    * @since 2.0

@@ -12,7 +12,7 @@
 package org.eclipse.keyple.core.plugin.spi;
 
 /**
- * Must be implemented by a specific pool plugin.
+ * Factory of {@link PoolPluginSpi}
  *
  * @since 2.0
  */
@@ -35,7 +35,7 @@ public interface PoolPluginFactorySpi {
   String getCommonsApiVersion();
 
   /**
-   * Retrieve the name of the pool plugin that will be instantiated by this factory (can be static
+   * Retrieves the name of the pool plugin that will be instantiated by this factory (can be static
    * or dynamic)
    *
    * @return A not empty String
@@ -44,7 +44,7 @@ public interface PoolPluginFactorySpi {
   String getPoolPluginName();
 
   /**
-   * Retrieve an instance of a pool plugin SPI (can be a singleton or not)
+   * Retrieves an instance of a pool plugin SPI (can be a singleton or not)
    *
    * @return A not null reference
    * @since 2.0

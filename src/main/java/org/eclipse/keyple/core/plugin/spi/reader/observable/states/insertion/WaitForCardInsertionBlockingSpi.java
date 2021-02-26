@@ -27,8 +27,8 @@ public interface WaitForCardInsertionBlockingSpi {
   /**
    * Waits indefinitely for a card to be inserted.
    *
-   * <p>This wait can be cancelled for an internal (e.g. timeout) or external reason (e.g. call to
-   * {@link #stopWaitForCard()}), in this case an exception is raised.
+   * <p>This wait can be cancelled for an internal (for example timeout) or external reason (for
+   * example call to {@link #stopWaitForCard()}), in this case an exception is raised.
    *
    * @throws ReaderIOException if the communication with the reader has failed (disconnection)
    * @throws TaskCanceledException if the task has been canceled and is no longer active

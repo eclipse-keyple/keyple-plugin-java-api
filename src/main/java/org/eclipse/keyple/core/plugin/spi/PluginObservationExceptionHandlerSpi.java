@@ -12,12 +12,11 @@
 package org.eclipse.keyple.core.plugin.spi;
 
 /**
- * Handler to be notified of runtime exceptions that may occur during operations carried out by the
- * monitoring processes.
+ * Plugin observation error handler to be notified of exceptions that may occur during operations
+ * carried out by the monitoring processes.
  *
  * <p>These exceptions can be thrown either in the internal monitoring layers of the readers or in
- * the application itself (within the onPluginEvent methods when notifying plugin observers for
- * example).
+ * the application itself.
  *
  * @since 2.0
  */
@@ -26,10 +25,8 @@ public interface PluginObservationExceptionHandlerSpi {
   /**
    * Called when a runtime exception occurs in the observed plugin.
    *
-   * <p>The plugin name and the original exception are provided.
-   *
-   * @param pluginName A not empty String
-   * @param e A not null reference
+   * @param pluginName The plugin name
+   * @param e The original exception
    * @since 2.0
    */
   void onPluginObservationError(String pluginName, Throwable e);

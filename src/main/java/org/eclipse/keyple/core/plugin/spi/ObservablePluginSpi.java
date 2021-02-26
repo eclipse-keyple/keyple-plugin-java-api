@@ -12,13 +12,15 @@
 package org.eclipse.keyple.core.plugin.spi;
 
 import java.util.Set;
+import org.eclipse.keyple.core.plugin.ReaderIOException;
 import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
 
 /**
- * Must be implemented by a specific plugin (non pool) with reader enumeration capabilities.
+ * Plugin (non pool) able to manage a dynamic list of readers and provide the content on request
+ * (for example PC/SC).
  *
  * <p>The production of plugin events (connection/disconnection of readers) is handled by the Keyple
- * Service adapter.
+ * Core adapter.
  *
  * @since 2.0
  */
@@ -27,7 +29,7 @@ public interface ObservablePluginSpi extends PluginSpi {
   /**
    * Gets the recommended time cycle in milliseconds to check the list of current readers.
    *
-   * @return An int
+   * @return A positive int
    * @since 2.0
    */
   int getMonitoringCycleDuration();
@@ -35,20 +37,22 @@ public interface ObservablePluginSpi extends PluginSpi {
   /**
    * Enumerates currently available readers and returns their names as a collection of String.
    *
-   * @return A not null Set
+   * @return An empty Set if no reader is available
+   * @throws ReaderIOException if a reader communication error occurs
    * @since 2.0
    */
-  Set<String> searchAvailableReadersNames();
+  Set<String> searchAvailableReadersNames() throws ReaderIOException;
 
   /**
    * Searches for the reader whose name is provided and returns its {@link ReaderSpi} if found, null
    * if not.
    *
-   * @param readerName A not empty String
-   * @return A nullable reference
+   * @param readerName The name of reader
+   * @return null if the reader is not found
+   * @throws ReaderIOException if a reader communication error occurs
    * @since 2.0
    */
-  ReaderSpi searchReader(String readerName);
+  ReaderSpi searchReader(String readerName) throws ReaderIOException;
 
   /**
    * Gets the exception handler to be used for notifying execution failures during plugin
