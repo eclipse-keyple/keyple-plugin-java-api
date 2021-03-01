@@ -13,14 +13,14 @@ package org.eclipse.keyple.core.plugin;
 
 /**
  * Manager associated to a {@link
- * org.eclipse.keyple.core.plugin.spi.reader.observable.states.removal.WaitForCardRemovalAutonomousSpi}
+ * org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.WaitForCardRemovalAutonomousSpi}
  *
  * @since 2.0
  */
 public interface WaitForCardRemovalAutonomousReaderManager {
 
   /**
-   * Must be called when a card is removed.
+   * Must be invoked when a card is removed.
    *
    * @since 2.0
    */

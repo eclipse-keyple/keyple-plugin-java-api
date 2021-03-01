@@ -22,7 +22,7 @@ import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
 public interface AutonomousObservablePluginManager {
 
   /**
-   * Must be called when one or more readers are connected to the system.
+   * Must be invoked when one or more readers are connected to the system.
    *
    * @param readers the readers connected
    * @throws IllegalArgumentException if the Set provided as argument is null or empty
@@ -31,7 +31,7 @@ public interface AutonomousObservablePluginManager {
   void onReaderConnected(Set<ReaderSpi> readers);
 
   /**
-   * Must be called when one or more readers are disconnected from the system.
+   * Must be invoked when one or more readers are disconnected from the system.
    *
    * @param readersNames the readers names disconnected
    * @throws IllegalArgumentException if the Set provided as argument is null or empty

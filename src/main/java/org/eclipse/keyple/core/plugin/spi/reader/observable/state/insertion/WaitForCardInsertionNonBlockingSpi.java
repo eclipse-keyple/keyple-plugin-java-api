@@ -9,26 +9,15 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  ************************************************************************************** */
-package org.eclipse.keyple.core.plugin.spi.reader.observable.states.removal;
-
-import org.eclipse.keyple.core.plugin.WaitForCardRemovalAutonomousReaderManager;
+package org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion;
 
 /**
- * Must be implemented by readers that have a fully integrated management of card communications for
- * card removal detection.
+ * Reader that require an external active stimulation to detect card insertion without implementing
+ * a waiting mechanism.
  *
- * <p>A typical example of readers conforming to this mode of operation are Android-based NFC
- * readers.
+ * <p>A typical example of readers conforming to this mode of operation are terminals embedding a
+ * slave RF communication module.
  *
  * @since 2.0
  */
-public interface WaitForCardRemovalAutonomousSpi {
-
-  /**
-   * Binds the associated Keyple Core manager
-   *
-   * @param manager the manager
-   * @since 2.0
-   */
-  void setManager(WaitForCardRemovalAutonomousReaderManager manager);
-}
+public interface WaitForCardInsertionNonBlockingSpi {}

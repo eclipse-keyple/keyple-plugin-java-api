@@ -9,16 +9,14 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  ************************************************************************************** */
-package org.eclipse.keyple.core.plugin.spi.reader.observable.states.removal;
+package org.eclipse.keyple.core.plugin.spi.reader.observable.state.processing;
 
 /**
- * Must be implemented by readers that require external active stimulation to detect card removal.
+ * Reader <b>not</b> able to detect a card removal during processing, between two APDU commands.
  *
- * <p>The card presence management API will be used by the service to produce the reader events.
- *
- * <p>A typical example of readers conforming to this mode of operation are terminals embedding a
- * slave RF communication module.
+ * <p>A typical example of readers conforming to this mode of operation are are terminals embedding
+ * a slave RF communication module.
  *
  * @since 2.0
  */
-public interface WaitForCardRemovalNonBlockingSpi {}
+public interface DontWaitForCardRemovalDuringProcessing {}

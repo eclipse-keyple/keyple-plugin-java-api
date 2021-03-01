@@ -23,7 +23,7 @@ package org.eclipse.keyple.core.plugin.spi;
 public interface PluginObservationExceptionHandlerSpi {
 
   /**
-   * Called when a runtime exception occurs in the observed plugin.
+   * Invoked when a runtime exception occurs in the observed plugin.
    *
    * @param pluginName The plugin name
    * @param e The original exception

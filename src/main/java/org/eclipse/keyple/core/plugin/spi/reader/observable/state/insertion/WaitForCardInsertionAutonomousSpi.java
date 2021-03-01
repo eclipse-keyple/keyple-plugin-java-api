@@ -9,13 +9,13 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  ************************************************************************************** */
-package org.eclipse.keyple.core.plugin.spi.reader.observable.states.insertion;
+package org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion;
 
 import org.eclipse.keyple.core.plugin.WaitForCardInsertionAutonomousReaderManager;
 
 /**
- * Must be implemented by readers that have a fully integrated management of card communications for
- * card insertion detection.
+ * Reader that have a fully integrated management of card communications for card insertion
+ * detection.
  *
  * <p>A typical example of readers conforming to this mode of operation are Android-based NFC
  * readers.

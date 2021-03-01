@@ -9,15 +9,13 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  ************************************************************************************** */
-package org.eclipse.keyple.core.plugin.spi.reader.observable.states.processing;
+package org.eclipse.keyple.core.plugin.spi.reader.observable.state.processing;
 
 /**
- * Must be implemented by readers <b>not</b> able to detect a card removal during processing,
- * between two APDU commands.
+ * Reader able to detect a card removal during processing, between two APDU commands.
  *
- * <p>A typical example of readers conforming to this mode of operation are are terminals embedding
- * a slave RF communication module.
+ * <p>A typical example of readers conforming to this mode of operation are PC/SC type readers.
  *
  * @since 2.0
  */
-public interface DontWaitForCardRemovalDuringProcessing {}
+public interface WaitForCardRemovalDuringProcessing {}

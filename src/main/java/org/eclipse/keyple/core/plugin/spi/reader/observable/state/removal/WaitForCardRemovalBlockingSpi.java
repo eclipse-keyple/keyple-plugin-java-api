@@ -9,37 +9,38 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  ************************************************************************************** */
-package org.eclipse.keyple.core.plugin.spi.reader.observable.states.insertion;
+package org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal;
 
 import org.eclipse.keyple.core.plugin.ReaderIOException;
 import org.eclipse.keyple.core.plugin.TaskCanceledException;
 
 /**
- * Must be implemented by readers that are autonomous in the management of waiting for the insertion
- * of a card and that provide a method to wait for it indefinitely.
+ * Reader able to wait autonomously and indefinitely for the removal of a card by implementing a
+ * waiting mechanism.
  *
  * <p>A typical example of readers conforming to this mode of operation are PC/SC type readers
  * capable of performing RF polling without waiting for a command from the application.
  *
  * @since 2.0
  */
-public interface WaitForCardInsertionBlockingSpi {
+public interface WaitForCardRemovalBlockingSpi {
+
   /**
    * Waits indefinitely for a card to be inserted.
    *
    * <p>This wait can be cancelled for an internal (for example timeout) or external reason (for
-   * example call to {@link #stopWaitForCard()}), in this case an exception is raised.
+   * example invocation of {@link #stopWaitForCardRemoval()}), in this case an exception is raised.
    *
-   * @throws ReaderIOException if the communication with the reader has failed (disconnection)
+   * @throws ReaderIOException if the communication with the reader
    * @throws TaskCanceledException if the task has been canceled and is no longer active
    * @since 2.0
    */
-  void waitForCardPresent() throws ReaderIOException, TaskCanceledException;
+  void waitForCardAbsentNative() throws ReaderIOException, TaskCanceledException;
 
   /**
-   * Interrupts the waiting of a card
+   * Interrupts the waiting of the removal of the card
    *
    * @since 2.0
    */
-  void stopWaitForCard();
+  void stopWaitForCardRemoval();
 }

@@ -1,5 +1,5 @@
 /* **************************************************************************************
- * Copyright (c) 2019 Calypso Networks Association https://www.calypsonet-asso.org/
+ * Copyright (c) 2021 Calypso Networks Association https://www.calypsonet-asso.org/
  *
  * See the NOTICE file(s) distributed with this work for additional information
  * regarding copyright ownership.
@@ -9,14 +9,16 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  ************************************************************************************** */
-package org.eclipse.keyple.core.plugin.spi.reader.observable.states.processing;
+package org.eclipse.keyple.core.plugin;
 
-/**
- * Must be implemented by readers able to detect a card removal during processing, between two APDU
- * commands.
- *
- * <p>A typical example of readers conforming to this mode of operation are PC/SC type readers.
- *
- * @since 2.0
- */
-public interface WaitForCardRemovalDuringProcessing {}
+import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.Test;
+
+public class PluginApiPropertiesTest {
+
+  @Test
+  public void versionIsCorrectlyWritten() {
+    assertThat(PluginApiProperties.VERSION).matches("\\d+(\\.\\d+)+");
+  }
+}

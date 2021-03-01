@@ -12,17 +12,17 @@
 package org.eclipse.keyple.core.plugin.spi.reader.observable;
 
 /**
- * Reader observation error handler to be notified of runtime exceptions that may occur during
- * operations carried out by the card monitoring process.
+ * Reader observation error handler to be notified of errors that may occur during operations
+ * carried out by the card monitoring process.
  *
  * @since 2.0
  */
 public interface ReaderObservationExceptionHandlerSpi {
 
   /**
-   * Called when a runtime exception occurs in the observed reader.
+   * Invoked when an error occurs in the observed reader.
    *
-   * <p>The plugin and reader names and the original exception are provided.
+   * <p>When an error occurs, the observation process is stopped.
    *
    * @param pluginName the plugin name
    * @param readerName the reader name

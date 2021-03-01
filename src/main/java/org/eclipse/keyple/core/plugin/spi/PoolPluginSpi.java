@@ -46,7 +46,7 @@ public interface PoolPluginSpi {
 
   /**
    * Obtains an available reader resource and makes it exclusive to the caller until the
-   * releaseReader method is called.
+   * releaseReader method is invoked.
    *
    * <p>The allocated reader belongs to the group targeted with the provided group reference.
    *
@@ -61,8 +61,8 @@ public interface PoolPluginSpi {
    * Releases the reader previously allocated with {@link #allocateReader(String)} and whose
    * reference is provided.
    *
-   * <p>This method must be called as soon as the reader is no longer needed by the caller of {@link
-   * #allocateReader(String)} in order to free the resource.
+   * <p>This method must be invoked as soon as the reader is no longer needed by the caller of
+   * {@link #allocateReader(String)} in order to free the resource.
    *
    * @param readerSpi The reader to deallocate
    * @throws PluginIOException if an error occurs
