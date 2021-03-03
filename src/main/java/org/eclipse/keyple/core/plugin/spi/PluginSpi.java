@@ -31,11 +31,18 @@ public interface PluginSpi {
   String getName();
 
   /**
-   * Enumerates currently available readers
+   * Enumerates currently available readers.
    *
-   * @return A empty Set if no reader is available
-   * @throws PluginIOException if an error occurs
+   * @return A empty Set if no reader is available.
+   * @throws PluginIOException if an error occurs.
    * @since 2.0
    */
   Set<ReaderSpi> searchAvailableReaders() throws PluginIOException;
+
+  /**
+   * Invoked when unregistering the plugin.
+   *
+   * @since 2.0
+   */
+  void unregister();
 }

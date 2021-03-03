@@ -145,4 +145,11 @@ public interface ReaderSpi {
    * @since 2.0
    */
   boolean isContactless();
+
+  /**
+   * Invoked when unregistering the associated plugin.
+   *
+   * @since 2.0
+   */
+  void unregister();
 }

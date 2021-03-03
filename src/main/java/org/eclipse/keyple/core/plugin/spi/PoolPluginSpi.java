@@ -69,4 +69,11 @@ public interface PoolPluginSpi {
    * @since 2.0
    */
   void releaseReader(ReaderSpi readerSpi) throws PluginIOException;
+
+  /**
+   * Invoked when unregistering the plugin.
+   *
+   * @since 2.0
+   */
+  void unregister();
 }
