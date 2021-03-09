@@ -66,13 +66,4 @@ public interface ObservableReaderSpi {
    * @since 2.0
    */
   void onStopDetection();
-
-  /**
-   * Gets the exception handler to be used for notifying errors that occur during the card
-   * monitoring.
-   *
-   * @return A not null reference.
-   * @since 2.0
-   */
-  ReaderObservationExceptionHandlerSpi getReaderObservationExceptionHandler();
 }

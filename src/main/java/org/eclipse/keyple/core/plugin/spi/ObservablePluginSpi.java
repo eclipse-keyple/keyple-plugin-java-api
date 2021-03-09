@@ -53,13 +53,4 @@ public interface ObservablePluginSpi extends PluginSpi {
    * @since 2.0
    */
   ReaderSpi searchReader(String readerName) throws ReaderIOException;
-
-  /**
-   * Gets the exception handler to be used for notifying execution failures during plugin
-   * monitoring.
-   *
-   * @return A not null reference.
-   * @since 2.0
-   */
-  PluginObservationExceptionHandlerSpi getPluginObservationExceptionHandler();
 }
