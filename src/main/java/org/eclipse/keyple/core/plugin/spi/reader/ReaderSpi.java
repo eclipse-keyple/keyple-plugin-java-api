@@ -75,8 +75,8 @@ public interface ReaderSpi {
   /**
    * Attempts to open the physical channel (to established a communication with the card).
    *
-   * @throws ReaderIOException if the communication with the reader has failed
-   * @throws CardIOException if the communication with the card has failed
+   * @throws ReaderIOException if the communication with the reader has failed.
+   * @throws CardIOException if the communication with the card has failed.
    * @since 2.0
    */
   void openPhysicalChannel() throws ReaderIOException, CardIOException;
@@ -102,7 +102,7 @@ public interface ReaderSpi {
    * Verifies the presence of a card.
    *
    * @return true if a card is present
-   * @throws ReaderIOException if the communication with the reader has failed
+   * @throws ReaderIOException if the communication with the reader has failed.
    * @since 2.0
    */
   boolean checkCardPresence() throws ReaderIOException;
@@ -132,8 +132,8 @@ public interface ReaderSpi {
    * @param apduIn The data to be sent to the card.
    * @return A buffer of at least 2 bytes.
    * @throws IllegalArgumentException if the provided buffer is null or empty
-   * @throws ReaderIOException if the communication with the reader has failed
-   * @throws CardIOException if the communication with the card has failed
+   * @throws ReaderIOException if the communication with the reader has failed.
+   * @throws CardIOException if the communication with the card has failed.
    * @since 2.0
    */
   byte[] transmitApdu(byte[] apduIn) throws ReaderIOException, CardIOException;

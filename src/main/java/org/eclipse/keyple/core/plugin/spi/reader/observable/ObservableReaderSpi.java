@@ -14,8 +14,8 @@ package org.eclipse.keyple.core.plugin.spi.reader.observable;
 import org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion.WaitForCardInsertionAutonomousSpi;
 import org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion.WaitForCardInsertionBlockingSpi;
 import org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion.WaitForCardInsertionNonBlockingSpi;
-import org.eclipse.keyple.core.plugin.spi.reader.observable.state.processing.DontWaitForCardRemovalDuringProcessing;
-import org.eclipse.keyple.core.plugin.spi.reader.observable.state.processing.WaitForCardRemovalDuringProcessing;
+import org.eclipse.keyple.core.plugin.spi.reader.observable.state.processing.DontWaitForCardRemovalDuringProcessingSpi;
+import org.eclipse.keyple.core.plugin.spi.reader.observable.state.processing.WaitForCardRemovalDuringProcessingSpi;
 import org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.WaitForCardRemovalAutonomousSpi;
 import org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.WaitForCardRemovalBlockingSpi;
 import org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.WaitForCardRemovalNonBlockingSpi;
@@ -37,8 +37,8 @@ import org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.WaitFo
  * <p>For the card processing state, it must implement one of the following interfaces:
  *
  * <ul>
- *   <li>{@link WaitForCardRemovalDuringProcessing}
- *   <li>{@link DontWaitForCardRemovalDuringProcessing}
+ *   <li>{@link WaitForCardRemovalDuringProcessingSpi}
+ *   <li>{@link DontWaitForCardRemovalDuringProcessingSpi}
  * </ul>
  *
  * <p>For the card removal state, it must implement one of the following interfaces:

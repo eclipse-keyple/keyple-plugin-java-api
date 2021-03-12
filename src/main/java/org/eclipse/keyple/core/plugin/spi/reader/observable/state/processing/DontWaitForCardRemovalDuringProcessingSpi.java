@@ -19,4 +19,4 @@ package org.eclipse.keyple.core.plugin.spi.reader.observable.state.processing;
  *
  * @since 2.0
  */
-public interface DontWaitForCardRemovalDuringProcessing {}
+public interface DontWaitForCardRemovalDuringProcessingSpi {}
