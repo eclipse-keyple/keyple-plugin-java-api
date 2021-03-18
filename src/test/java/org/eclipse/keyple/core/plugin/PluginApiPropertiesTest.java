@@ -13,12 +13,24 @@ package org.eclipse.keyple.core.plugin;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Properties;
 import org.junit.Test;
 
 public class PluginApiPropertiesTest {
 
+  private static final Properties properties = new Properties();
+
   @Test
-  public void versionIsCorrectlyWritten() {
-    assertThat(PluginApiProperties.VERSION).matches("\\d+(\\.\\d+)+");
+  public void versionIsCorrectlyWritten() throws Exception {
+    InputStream inputStream = new FileInputStream("gradle.properties");
+    try {
+      properties.load(inputStream);
+    } finally {
+      inputStream.close();
+    }
+    String libVersion = properties.getProperty("version");
+    assertThat(libVersion).matches("\\d+\\.\\d+").isEqualTo(PluginApiProperties.VERSION);
   }
 }

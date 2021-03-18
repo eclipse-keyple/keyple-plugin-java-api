@@ -38,7 +38,7 @@ public interface ReaderSpi {
    *
    * @param readerProtocol The reader protocol.
    * @return true if the protocol is supported, false if not.
-   * @throws IllegalArgumentException if the protocol is null or empty
+   * @throws IllegalArgumentException If the protocol is null or empty
    * @since 2.0
    */
   boolean isProtocolSupported(String readerProtocol);
@@ -48,7 +48,7 @@ public interface ReaderSpi {
    * using this protocol.
    *
    * @param readerProtocol The reader specific protocol to activate.
-   * @throws IllegalArgumentException if the protocol is null, empty or not supported
+   * @throws IllegalArgumentException If the protocol is null, empty or not supported
    * @since 2.0
    */
   void activateProtocol(String readerProtocol);
@@ -57,7 +57,7 @@ public interface ReaderSpi {
    * Deactivates a specific protocol so that the reader ignores cards using this protocol.
    *
    * @param readerProtocol The reader specific protocol to deactivate.
-   * @throws IllegalArgumentException if the protocol is null, empty or not supported
+   * @throws IllegalArgumentException If the protocol is null, empty or not supported
    * @since 2.0
    */
   void deactivateProtocol(String readerProtocol);
@@ -67,7 +67,7 @@ public interface ReaderSpi {
    *
    * @param readerProtocol The reader protocol to check.
    * @return true if the current protocol corresponds to the one provided, false if not.
-   * @throws IllegalArgumentException if the protocol is null or empty
+   * @throws IllegalArgumentException If the protocol is null or empty
    * @since 2.0
    */
   boolean isCurrentProtocol(String readerProtocol);
@@ -75,8 +75,8 @@ public interface ReaderSpi {
   /**
    * Attempts to open the physical channel (to established a communication with the card).
    *
-   * @throws ReaderIOException if the communication with the reader has failed.
-   * @throws CardIOException if the communication with the card has failed.
+   * @throws ReaderIOException If the communication with the reader has failed.
+   * @throws CardIOException If the communication with the card has failed.
    * @since 2.0
    */
   void openPhysicalChannel() throws ReaderIOException, CardIOException;
@@ -86,7 +86,7 @@ public interface ReaderSpi {
    *
    * <p>The physical channel may have been implicitly closed previously by a card withdrawal.
    *
-   * @throws ReaderIOException if the communication with the reader has failed.
+   * @throws ReaderIOException If the communication with the reader has failed.
    * @since 2.0
    */
   void closePhysicalChannel() throws ReaderIOException;
@@ -102,7 +102,7 @@ public interface ReaderSpi {
    * Verifies the presence of a card.
    *
    * @return true if a card is present
-   * @throws ReaderIOException if the communication with the reader has failed.
+   * @throws ReaderIOException If the communication with the reader has failed.
    * @since 2.0
    */
   boolean checkCardPresence() throws ReaderIOException;
@@ -131,9 +131,9 @@ public interface ReaderSpi {
    *
    * @param apduIn The data to be sent to the card.
    * @return A buffer of at least 2 bytes.
-   * @throws IllegalArgumentException if the provided buffer is null or empty
-   * @throws ReaderIOException if the communication with the reader has failed.
-   * @throws CardIOException if the communication with the card has failed.
+   * @throws IllegalArgumentException If the provided buffer is null or empty
+   * @throws ReaderIOException If the communication with the reader has failed.
+   * @throws CardIOException If the communication with the card has failed.
    * @since 2.0
    */
   byte[] transmitApdu(byte[] apduIn) throws ReaderIOException, CardIOException;

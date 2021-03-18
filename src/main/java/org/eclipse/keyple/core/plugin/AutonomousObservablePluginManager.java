@@ -25,7 +25,7 @@ public interface AutonomousObservablePluginManager {
    * Must be invoked when one or more readers are connected to the system.
    *
    * @param readers the readers connected
-   * @throws IllegalArgumentException if the Set provided as argument is null or empty
+   * @throws IllegalArgumentException If the Set provided as argument is null or empty
    * @since 2.0
    */
   void onReaderConnected(Set<ReaderSpi> readers);
@@ -34,7 +34,7 @@ public interface AutonomousObservablePluginManager {
    * Must be invoked when one or more readers are disconnected from the system.
    *
    * @param readersNames the readers names disconnected
-   * @throws IllegalArgumentException if the Set provided as argument is null or empty
+   * @throws IllegalArgumentException If the Set provided as argument is null or empty
    * @since 2.0
    */
   void onReaderDisconnected(Set<String> readersNames);

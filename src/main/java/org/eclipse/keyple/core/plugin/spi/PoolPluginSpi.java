@@ -39,7 +39,7 @@ public interface PoolPluginSpi {
    * example SAM with identical key sets).
    *
    * @return An empty Set if there is no group reference
-   * @throws PluginIOException if an error occurs
+   * @throws PluginIOException If an error occurs
    * @since 2.0
    */
   SortedSet<String> getReaderGroupReferences() throws PluginIOException;
@@ -52,7 +52,7 @@ public interface PoolPluginSpi {
    *
    * @param readerGroupReference The reader group reference (optional)
    * @return A not null reference
-   * @throws PluginIOException if an error occurs
+   * @throws PluginIOException If an error occurs
    * @since 2.0
    */
   ReaderSpi allocateReader(String readerGroupReference) throws PluginIOException;
@@ -65,7 +65,7 @@ public interface PoolPluginSpi {
    * {@link #allocateReader(String)} in order to free the resource.
    *
    * @param readerSpi The reader to deallocate
-   * @throws PluginIOException if an error occurs
+   * @throws PluginIOException If an error occurs
    * @since 2.0
    */
   void releaseReader(ReaderSpi readerSpi) throws PluginIOException;
