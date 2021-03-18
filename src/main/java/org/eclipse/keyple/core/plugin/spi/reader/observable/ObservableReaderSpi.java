@@ -11,6 +11,7 @@
  ************************************************************************************** */
 package org.eclipse.keyple.core.plugin.spi.reader.observable;
 
+import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
 import org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion.WaitForCardInsertionAutonomousSpi;
 import org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion.WaitForCardInsertionBlockingSpi;
 import org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion.WaitForCardInsertionNonBlockingSpi;
@@ -51,7 +52,7 @@ import org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.WaitFo
  *
  * @since 2.0
  */
-public interface ObservableReaderSpi {
+public interface ObservableReaderSpi extends ReaderSpi {
 
   /**
    * Invoked when the card observation process is started

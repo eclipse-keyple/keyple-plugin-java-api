@@ -34,7 +34,7 @@ public interface PluginSpi {
    * Enumerates currently available readers.
    *
    * @return A empty Set if no reader is available.
-   * @throws PluginIOException if an error occurs.
+   * @throws PluginIOException If an error occurs while searching readers.
    * @since 2.0
    */
   Set<ReaderSpi> searchAvailableReaders() throws PluginIOException;

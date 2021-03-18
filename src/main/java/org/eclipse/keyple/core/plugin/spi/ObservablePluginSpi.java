@@ -12,7 +12,7 @@
 package org.eclipse.keyple.core.plugin.spi;
 
 import java.util.Set;
-import org.eclipse.keyple.core.plugin.ReaderIOException;
+import org.eclipse.keyple.core.plugin.PluginIOException;
 import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
 
 /**
@@ -38,10 +38,10 @@ public interface ObservablePluginSpi extends PluginSpi {
    * Enumerates currently available readers and returns their names as a collection of String.
    *
    * @return An empty Set if no reader is available
-   * @throws ReaderIOException if a reader communication error occurs
+   * @throws PluginIOException If an error occurs while searching readers.
    * @since 2.0
    */
-  Set<String> searchAvailableReadersNames() throws ReaderIOException;
+  Set<String> searchAvailableReadersNames() throws PluginIOException;
 
   /**
    * Searches for the reader whose name is provided and returns its {@link ReaderSpi} if found, null
@@ -49,8 +49,8 @@ public interface ObservablePluginSpi extends PluginSpi {
    *
    * @param readerName The name of reader
    * @return null if the reader is not found
-   * @throws ReaderIOException if a reader communication error occurs
+   * @throws PluginIOException If an error occurs while searching the reader.
    * @since 2.0
    */
-  ReaderSpi searchReader(String readerName) throws ReaderIOException;
+  ReaderSpi searchReader(String readerName) throws PluginIOException;
 }

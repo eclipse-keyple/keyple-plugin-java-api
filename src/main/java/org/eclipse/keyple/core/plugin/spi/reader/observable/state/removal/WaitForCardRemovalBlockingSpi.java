@@ -31,11 +31,11 @@ public interface WaitForCardRemovalBlockingSpi {
    * <p>This wait can be cancelled for an internal (for example timeout) or external reason (for
    * example invocation of {@link #stopWaitForCardRemoval()}), in this case an exception is raised.
    *
-   * @throws ReaderIOException if the communication with the reader
-   * @throws TaskCanceledException if the task has been canceled and is no longer active
+   * @throws ReaderIOException If the communication with the reader
+   * @throws TaskCanceledException If the task has been canceled and is no longer active
    * @since 2.0
    */
-  void waitForCardAbsentNative() throws ReaderIOException, TaskCanceledException;
+  void waitForCardRemoval() throws ReaderIOException, TaskCanceledException;
 
   /**
    * Interrupts the waiting of the removal of the card

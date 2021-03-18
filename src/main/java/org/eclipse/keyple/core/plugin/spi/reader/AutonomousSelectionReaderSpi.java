@@ -31,8 +31,8 @@ public interface AutonomousSelectionReaderSpi {
    * @param aid The AID (optional)
    * @param isoControlMask The bit mask from the ISO 7816-4 standard
    * @return A not empty byte array containing the card answer to selection
-   * @throws ReaderIOException if the communication with the reader has failed.
-   * @throws CardIOException if the communication with the card has failed.
+   * @throws ReaderIOException If the communication with the reader has failed.
+   * @throws CardIOException If the communication with the card has failed.
    * @since 2.0
    */
   byte[] openChannelForAid(byte[] aid, byte isoControlMask)
