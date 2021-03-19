@@ -16,21 +16,28 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class PluginApiPropertiesTest {
 
-  private static final Properties properties = new Properties();
+  private static String libVersion;
 
-  @Test
-  public void versionIsCorrectlyWritten() throws Exception {
+  @BeforeClass
+  public static void beforeClass() throws Exception {
     InputStream inputStream = new FileInputStream("gradle.properties");
     try {
+      Properties properties = new Properties();
       properties.load(inputStream);
+      libVersion = properties.getProperty("version");
     } finally {
       inputStream.close();
     }
-    String libVersion = properties.getProperty("version");
-    assertThat(libVersion).matches("\\d+\\.\\d+").isEqualTo(PluginApiProperties.VERSION);
+  }
+
+  @Test
+  public void versionIsCorrectlyWritten() {
+    String apiVersion = PluginApiProperties.VERSION;
+    assertThat(apiVersion).isEqualTo(libVersion).matches("\\d+\\.\\d+");
   }
 }
