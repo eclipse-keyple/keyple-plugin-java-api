@@ -12,17 +12,17 @@
 package org.eclipse.keyple.core.plugin;
 
 /**
- * Manager associated to a {@link
- * org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion.WaitForCardInsertionAutonomousSpi}
+ * API associated to a {@link
+ * org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.WaitForCardRemovalAutonomousSpi}
  *
  * @since 2.0
  */
-public interface WaitForCardInsertionAutonomousReaderManager {
+public interface WaitForCardRemovalAutonomousReaderApi {
 
   /**
-   * Must be invoked when a card is inserted.
+   * Must be invoked when a card is removed.
    *
    * @since 2.0
    */
-  void onCardInserted();
+  void onCardRemoved();
 }

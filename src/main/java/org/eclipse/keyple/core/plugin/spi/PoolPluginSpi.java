@@ -50,7 +50,7 @@ public interface PoolPluginSpi {
    *
    * <p>The allocated reader belongs to the group targeted with the provided group reference.
    *
-   * @param keyGroupReference The reader group reference (optional)
+   * @param keyGroupReference The key group reference (optional)
    * @return A not null reference
    * @throws PluginIOException If an error occurs
    * @since 2.0

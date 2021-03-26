@@ -11,7 +11,7 @@
  ************************************************************************************** */
 package org.eclipse.keyple.core.plugin.spi;
 
-import org.eclipse.keyple.core.plugin.AutonomousObservablePluginManager;
+import org.eclipse.keyple.core.plugin.AutonomousObservablePluginApi;
 
 /**
  * Plugin (non pool) having autonomous capabilities to observe reader connections and
@@ -24,10 +24,10 @@ import org.eclipse.keyple.core.plugin.AutonomousObservablePluginManager;
 public interface AutonomousObservablePluginSpi extends PluginSpi {
 
   /**
-   * Binds the associated Keyple Core manager
+   * Connects the associated Keyple Core {@link AutonomousObservablePluginApi} API.
    *
-   * @param manager the manager
+   * @param autonomousObservablePluginApi The API to connect.
    * @since 2.0
    */
-  void setManager(AutonomousObservablePluginManager manager);
+  void connect(AutonomousObservablePluginApi autonomousObservablePluginApi);
 }

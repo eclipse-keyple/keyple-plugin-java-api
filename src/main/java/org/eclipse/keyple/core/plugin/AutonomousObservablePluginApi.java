@@ -15,11 +15,11 @@ import java.util.Set;
 import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
 
 /**
- * Manager associated to a {@link org.eclipse.keyple.core.plugin.spi.AutonomousObservablePluginSpi}
+ * API associated to a {@link org.eclipse.keyple.core.plugin.spi.AutonomousObservablePluginSpi}
  *
  * @since 2.0
  */
-public interface AutonomousObservablePluginManager {
+public interface AutonomousObservablePluginApi {
 
   /**
    * Must be invoked when one or more readers are connected to the system.

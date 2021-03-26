@@ -11,7 +11,7 @@
  ************************************************************************************** */
 package org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal;
 
-import org.eclipse.keyple.core.plugin.WaitForCardRemovalAutonomousReaderManager;
+import org.eclipse.keyple.core.plugin.WaitForCardRemovalAutonomousReaderApi;
 
 /**
  * Reader that have a fully integrated management of card communications for card removal detection.
@@ -24,10 +24,10 @@ import org.eclipse.keyple.core.plugin.WaitForCardRemovalAutonomousReaderManager;
 public interface WaitForCardRemovalAutonomousSpi {
 
   /**
-   * Binds the associated Keyple Core manager
+   * Connects the associated Keyple Core {@link WaitForCardRemovalAutonomousReaderApi} API.
    *
-   * @param manager the manager
+   * @param waitForCardRemovalAutonomousReaderApi The API to connect.
    * @since 2.0
    */
-  void setManager(WaitForCardRemovalAutonomousReaderManager manager);
+  void connect(WaitForCardRemovalAutonomousReaderApi waitForCardRemovalAutonomousReaderApi);
 }
