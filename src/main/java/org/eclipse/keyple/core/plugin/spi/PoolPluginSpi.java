@@ -42,7 +42,7 @@ public interface PoolPluginSpi {
    * @throws PluginIOException If an error occurs
    * @since 2.0
    */
-  SortedSet<String> getKeyGroupReferences() throws PluginIOException;
+  SortedSet<String> getReaderGroupReferences() throws PluginIOException;
 
   /**
    * Obtains an available reader resource and makes it exclusive to the caller until the
@@ -50,12 +50,12 @@ public interface PoolPluginSpi {
    *
    * <p>The allocated reader belongs to the group targeted with the provided group reference.
    *
-   * @param keyGroupReference The key group reference (optional)
+   * @param readerGroupReference The reader group reference (optional)
    * @return A not null reference
    * @throws PluginIOException If an error occurs
    * @since 2.0
    */
-  ReaderSpi allocateReader(String keyGroupReference) throws PluginIOException;
+  ReaderSpi allocateReader(String readerGroupReference) throws PluginIOException;
 
   /**
    * Releases the reader previously allocated with {@link #allocateReader(String)} and whose
