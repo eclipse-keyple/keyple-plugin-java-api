@@ -38,7 +38,6 @@ public interface ReaderSpi {
    *
    * @param readerProtocol The reader protocol.
    * @return true if the protocol is supported, false if not.
-   * @throws IllegalArgumentException If the protocol is null or empty
    * @since 2.0
    */
   boolean isProtocolSupported(String readerProtocol);
@@ -48,7 +47,6 @@ public interface ReaderSpi {
    * using this protocol.
    *
    * @param readerProtocol The reader specific protocol to activate.
-   * @throws IllegalArgumentException If the protocol is null, empty or not supported
    * @since 2.0
    */
   void activateProtocol(String readerProtocol);
@@ -57,7 +55,6 @@ public interface ReaderSpi {
    * Deactivates a specific protocol so that the reader ignores cards using this protocol.
    *
    * @param readerProtocol The reader specific protocol to deactivate.
-   * @throws IllegalArgumentException If the protocol is null, empty or not supported
    * @since 2.0
    */
   void deactivateProtocol(String readerProtocol);
@@ -67,7 +64,6 @@ public interface ReaderSpi {
    *
    * @param readerProtocol The reader protocol to check.
    * @return true if the current protocol corresponds to the one provided, false if not.
-   * @throws IllegalArgumentException If the protocol is null or empty
    * @since 2.0
    */
   boolean isCurrentProtocol(String readerProtocol);
@@ -131,7 +127,6 @@ public interface ReaderSpi {
    *
    * @param apduIn The data to be sent to the card.
    * @return A buffer of at least 2 bytes.
-   * @throws IllegalArgumentException If the provided buffer is null or empty
    * @throws ReaderIOException If the communication with the reader has failed.
    * @throws CardIOException If the communication with the card has failed.
    * @since 2.0
