@@ -117,7 +117,7 @@ public interface ReaderSpi {
    * @return A not empty array
    * @since 2.0
    */
-  byte[] getATR();
+  byte[] getAtr();
 
   /**
    * Transmits an APDU and returns its response.
