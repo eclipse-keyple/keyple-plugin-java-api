@@ -37,7 +37,7 @@ public interface ReaderSpi {
    * protocol is supported.
    *
    * @param readerProtocol The reader protocol.
-   * @return true if the protocol is supported, false if not.
+   * @return True if the protocol is supported, false if not.
    * @since 2.0
    */
   boolean isProtocolSupported(String readerProtocol);
@@ -63,7 +63,7 @@ public interface ReaderSpi {
    * Tells if the current card communicates with the provided protocol.
    *
    * @param readerProtocol The reader protocol to check.
-   * @return true if the current protocol corresponds to the one provided, false if not.
+   * @return True if the current protocol corresponds to the one provided, false if not.
    * @since 2.0
    */
   boolean isCurrentProtocol(String readerProtocol);
@@ -90,34 +90,36 @@ public interface ReaderSpi {
   /**
    * Tells if the physical channel is open or not.
    *
-   * @return true is the physical channel is open, false if not.
+   * @return True is the physical channel is open, false if not.
    */
   boolean isPhysicalChannelOpen();
 
   /**
    * Verifies the presence of a card.
    *
-   * @return true if a card is present
+   * @return True if a card is present
    * @throws ReaderIOException If the communication with the reader has failed.
    * @since 2.0
    */
   boolean checkCardPresence() throws ReaderIOException;
 
   /**
-   * Get the ATR data
+   * Gets the power-on data.
    *
-   * <p>In contact mode, ATR data is the data returned by the card.
+   * <p>The power-on data is defined as the data retrieved by the reader when the card is
+   * inserted.
    *
-   * <p>In contactless mode, as the ATR is not provided by the card, it can vary from one reader to
-   * another. In this case, the ATR represents more generally a block of data coming from the
-   * anti-collision step forming an identifier allowing the distinction between cards of different
-   * families. The developer of this method is free to choose the structure of this block of data as
-   * long as it is meaningful with the elements allowing the identification of protocols.
+   * <p>In the case of a contact reader, this is the Answer To Reset data (ATR) defined by ISO7816.
+   *
+   * <p>In the case of a contactless reader, the reader decides what this data is. Contactless
+   * readers provide a virtual ATR (partially standardized by the PC/SC standard), but other devices
+   * can have their own definition, including for example elements from the anti-collision stage of
+   * the ISO14443 protocol (ATQA, ATQB, ATS, SAK, etc).
    *
    * @return A not empty array
    * @since 2.0
    */
-  byte[] getAtr();
+  byte[] getPowerOnData();
 
   /**
    * Transmits an APDU and returns its response.
@@ -136,7 +138,7 @@ public interface ReaderSpi {
   /**
    * Tells if the reader is a contactless type.
    *
-   * @return true if the reader a contactless type, false if not
+   * @return True if the reader a contactless type, false if not
    * @since 2.0
    */
   boolean isContactless();

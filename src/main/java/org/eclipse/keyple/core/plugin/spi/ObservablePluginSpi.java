@@ -41,14 +41,14 @@ public interface ObservablePluginSpi extends PluginSpi {
    * @throws PluginIOException If an error occurs while searching readers.
    * @since 2.0
    */
-  Set<String> searchAvailableReadersNames() throws PluginIOException;
+  Set<String> searchAvailableReaderNames() throws PluginIOException;
 
   /**
    * Searches for the reader whose name is provided and returns its {@link ReaderSpi} if found, null
    * if not.
    *
    * @param readerName The name of reader
-   * @return null if the reader is not found
+   * @return Null if the reader is not found
    * @throws PluginIOException If an error occurs while searching the reader.
    * @since 2.0
    */

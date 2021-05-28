@@ -33,9 +33,9 @@ public interface AutonomousObservablePluginApi {
   /**
    * Must be invoked when one or more readers are disconnected from the system.
    *
-   * @param readersNames the readers names disconnected
+   * @param readerNames the readers names disconnected
    * @throws IllegalArgumentException If the Set provided as argument is null or empty
    * @since 2.0
    */
-  void onReaderDisconnected(Set<String> readersNames);
+  void onReaderDisconnected(Set<String> readerNames);
 }
