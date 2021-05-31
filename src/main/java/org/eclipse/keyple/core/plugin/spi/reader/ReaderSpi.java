@@ -106,8 +106,7 @@ public interface ReaderSpi {
   /**
    * Gets the power-on data.
    *
-   * <p>The power-on data is defined as the data retrieved by the reader when the card is
-   * inserted.
+   * <p>The power-on data is defined as the data retrieved by the reader when the card is inserted.
    *
    * <p>In the case of a contact reader, this is the Answer To Reset data (ATR) defined by ISO7816.
    *
