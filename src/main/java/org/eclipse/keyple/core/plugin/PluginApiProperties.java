@@ -12,7 +12,7 @@
 package org.eclipse.keyple.core.plugin;
 
 /**
- * API properties
+ * API properties.
  *
  * @since 2.0
  */
