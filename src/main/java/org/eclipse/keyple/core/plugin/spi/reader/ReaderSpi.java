@@ -118,7 +118,7 @@ public interface ReaderSpi {
    * @return A not empty array
    * @since 2.0
    */
-  byte[] getPowerOnData();
+  byte[] getPowerOnDataBytes();
 
   /**
    * Transmits an APDU and returns its response.
