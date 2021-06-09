@@ -1,5 +1,5 @@
 /* **************************************************************************************
- * Copyright (c) 2021 Calypso Networks Association https://www.calypsonet-asso.org/
+ * Copyright (c) 2021 Calypso Networks Association https://calypsonet.org/
  *
  * See the NOTICE file(s) distributed with this work for additional information
  * regarding copyright ownership.
@@ -115,10 +115,13 @@ public interface ReaderSpi {
    * can have their own definition, including for example elements from the anti-collision stage of
    * the ISO14443 protocol (ATQA, ATQB, ATS, SAK, etc).
    *
-   * @return A not empty array
+   * <p>These data being variable from one reader to another, they are defined here in string format
+   * which can be either a hexadecimal string or any other relevant information.
+   *
+   * @return A not empty String.
    * @since 2.0
    */
-  byte[] getPowerOnDataBytes();
+  String getPowerOnData();
 
   /**
    * Transmits an APDU and returns its response.
