@@ -150,5 +150,5 @@ public interface ReaderSpi {
    *
    * @since 2.0
    */
-  void unregister();
+  void onUnregister();
 }

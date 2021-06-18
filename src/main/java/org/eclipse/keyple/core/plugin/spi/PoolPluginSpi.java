@@ -75,5 +75,5 @@ public interface PoolPluginSpi {
    *
    * @since 2.0
    */
-  void unregister();
+  void onUnregister();
 }
