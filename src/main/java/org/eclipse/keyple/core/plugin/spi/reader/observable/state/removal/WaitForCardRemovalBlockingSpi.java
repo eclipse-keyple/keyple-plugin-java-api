@@ -26,7 +26,7 @@ import org.eclipse.keyple.core.plugin.TaskCanceledException;
 public interface WaitForCardRemovalBlockingSpi {
 
   /**
-   * Waits indefinitely for a card to be inserted.
+   * Waits indefinitely for a card to be removed.
    *
    * <p>This wait can be cancelled for an internal (for example timeout) or external reason (for
    * example invocation of {@link #stopWaitForCardRemoval()}), in this case an exception is raised.
