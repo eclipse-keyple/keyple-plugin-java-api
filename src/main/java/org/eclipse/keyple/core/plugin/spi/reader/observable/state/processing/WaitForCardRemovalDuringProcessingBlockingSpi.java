@@ -21,7 +21,7 @@ import org.eclipse.keyple.core.plugin.TaskCanceledException;
  *
  * @since 2.0
  */
-public interface WaitForCardRemovalBlockingDuringProcessingSpi {
+public interface WaitForCardRemovalDuringProcessingBlockingSpi {
 
   /**
    * Waits indefinitely for a card to be removed.
