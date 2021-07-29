@@ -19,7 +19,7 @@ import org.eclipse.keyple.core.plugin.ReaderIOException;
  *
  * @since 2.0
  */
-public interface AutonomousSelectionReaderSpi {
+public interface AutonomousSelectionReaderSpi extends ReaderSpi {
 
   /**
    * Opens a logical channel for the provided AID
