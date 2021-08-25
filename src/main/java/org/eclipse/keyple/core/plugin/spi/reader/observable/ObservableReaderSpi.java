@@ -50,21 +50,21 @@ import org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.WaitFo
  *   <li>{@link WaitForCardRemovalAutonomousSpi}
  * </ul>
  *
- * @since 2.0
+ * @since 2.0.0
  */
 public interface ObservableReaderSpi extends ReaderSpi {
 
   /**
    * Invoked when the card observation process is started
    *
-   * @since 2.0
+   * @since 2.0.0
    */
   void onStartDetection();
 
   /**
    * Invoked when the card observation process is stopped
    *
-   * @since 2.0
+   * @since 2.0.0
    */
   void onStopDetection();
 }

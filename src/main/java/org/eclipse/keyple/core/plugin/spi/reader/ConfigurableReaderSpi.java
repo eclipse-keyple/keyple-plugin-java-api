@@ -15,7 +15,7 @@ package org.eclipse.keyple.core.plugin.spi.reader;
  * Reader able to manage multiple protocols and which allows the configuration of the protocol to
  * use.
  *
- * @since 2.0
+ * @since 2.0.0
  */
 public interface ConfigurableReaderSpi extends ReaderSpi {
 
@@ -27,7 +27,7 @@ public interface ConfigurableReaderSpi extends ReaderSpi {
    *
    * @param readerProtocol The reader protocol.
    * @return True if the protocol is supported, false if not.
-   * @since 2.0
+   * @since 2.0.0
    */
   boolean isProtocolSupported(String readerProtocol);
 
@@ -36,7 +36,7 @@ public interface ConfigurableReaderSpi extends ReaderSpi {
    * using this protocol.
    *
    * @param readerProtocol The reader specific protocol to activate.
-   * @since 2.0
+   * @since 2.0.0
    */
   void activateProtocol(String readerProtocol);
 
@@ -44,7 +44,7 @@ public interface ConfigurableReaderSpi extends ReaderSpi {
    * Deactivates a specific protocol so that the reader ignores cards using this protocol.
    *
    * @param readerProtocol The reader specific protocol to deactivate.
-   * @since 2.0
+   * @since 2.0.0
    */
   void deactivateProtocol(String readerProtocol);
 
@@ -53,7 +53,7 @@ public interface ConfigurableReaderSpi extends ReaderSpi {
    *
    * @param readerProtocol The reader protocol to check.
    * @return True if the current protocol corresponds to the one provided, false if not.
-   * @since 2.0
+   * @since 2.0.0
    */
   boolean isCurrentProtocol(String readerProtocol);
 }

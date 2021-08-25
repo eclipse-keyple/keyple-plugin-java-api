@@ -22,7 +22,7 @@ import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
  * <p>The production of plugin events (connection/disconnection of readers) is handled by the Keyple
  * Core adapter.
  *
- * @since 2.0
+ * @since 2.0.0
  */
 public interface ObservablePluginSpi extends PluginSpi {
 
@@ -30,7 +30,7 @@ public interface ObservablePluginSpi extends PluginSpi {
    * Gets the recommended time cycle in milliseconds to check the list of current readers.
    *
    * @return A positive int
-   * @since 2.0
+   * @since 2.0.0
    */
   int getMonitoringCycleDuration();
 
@@ -39,7 +39,7 @@ public interface ObservablePluginSpi extends PluginSpi {
    *
    * @return An empty Set if no reader is available
    * @throws PluginIOException If an error occurs while searching readers.
-   * @since 2.0
+   * @since 2.0.0
    */
   Set<String> searchAvailableReaderNames() throws PluginIOException;
 
@@ -50,7 +50,7 @@ public interface ObservablePluginSpi extends PluginSpi {
    * @param readerName The name of reader
    * @return Null if the reader is not found
    * @throws PluginIOException If an error occurs while searching the reader.
-   * @since 2.0
+   * @since 2.0.0
    */
   ReaderSpi searchReader(String readerName) throws PluginIOException;
 }

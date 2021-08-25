@@ -21,7 +21,7 @@ import org.eclipse.keyple.core.plugin.TaskCanceledException;
  * <p>A typical example of readers conforming to this mode of operation are PC/SC type readers
  * capable of performing RF polling without waiting for a command from the application.
  *
- * @since 2.0
+ * @since 2.0.0
  */
 public interface WaitForCardInsertionBlockingSpi {
 
@@ -34,14 +34,14 @@ public interface WaitForCardInsertionBlockingSpi {
    *
    * @throws ReaderIOException If the communication with the reader has failed.
    * @throws TaskCanceledException If the task has been canceled and is no longer active
-   * @since 2.0
+   * @since 2.0.0
    */
   void waitForCardInsertion() throws ReaderIOException, TaskCanceledException;
 
   /**
    * Interrupts the waiting of a card insertion.
    *
-   * @since 2.0
+   * @since 2.0.0
    */
   void stopWaitForCardInsertion();
 }

@@ -19,7 +19,7 @@ import org.eclipse.keyple.core.plugin.AutonomousObservablePluginApi;
  *
  * <p>Plugin events are produced by the plugin itself.
  *
- * @since 2.0
+ * @since 2.0.0
  */
 public interface AutonomousObservablePluginSpi extends PluginSpi {
 
@@ -27,7 +27,7 @@ public interface AutonomousObservablePluginSpi extends PluginSpi {
    * Connects the associated Keyple Core {@link AutonomousObservablePluginApi} API.
    *
    * @param autonomousObservablePluginApi The API to connect.
-   * @since 2.0
+   * @since 2.0.0
    */
   void connect(AutonomousObservablePluginApi autonomousObservablePluginApi);
 }

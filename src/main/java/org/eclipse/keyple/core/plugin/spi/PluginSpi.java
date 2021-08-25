@@ -18,7 +18,7 @@ import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
 /**
  * Plugin (non pool) able to manage a static list of readers.
  *
- * @since 2.0
+ * @since 2.0.0
  */
 public interface PluginSpi {
 
@@ -26,7 +26,7 @@ public interface PluginSpi {
    * Gets the name of the plugin.
    *
    * @return A not empty string.
-   * @since 2.0
+   * @since 2.0.0
    */
   String getName();
 
@@ -35,14 +35,14 @@ public interface PluginSpi {
    *
    * @return A empty Set if no reader is available.
    * @throws PluginIOException If an error occurs while searching readers.
-   * @since 2.0
+   * @since 2.0.0
    */
   Set<ReaderSpi> searchAvailableReaders() throws PluginIOException;
 
   /**
    * Invoked when unregistering the plugin.
    *
-   * @since 2.0
+   * @since 2.0.0
    */
   void onUnregister();
 }

@@ -19,7 +19,7 @@ import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
  * Plugin able to manage a dynamic list of readers based on a allocation/deallocation mechanism (for
  * example HSM).
  *
- * @since 2.0
+ * @since 2.0.0
  */
 public interface PoolPluginSpi {
 
@@ -27,7 +27,7 @@ public interface PoolPluginSpi {
    * Gets the name of the pool plugin.
    *
    * @return A not empty string.
-   * @since 2.0
+   * @since 2.0.0
    */
   String getName();
 
@@ -40,7 +40,7 @@ public interface PoolPluginSpi {
    *
    * @return An empty Set if there is no group reference
    * @throws PluginIOException If an error occurs
-   * @since 2.0
+   * @since 2.0.0
    */
   SortedSet<String> getReaderGroupReferences() throws PluginIOException;
 
@@ -53,7 +53,7 @@ public interface PoolPluginSpi {
    * @param readerGroupReference The reader group reference (optional)
    * @return A not null reference
    * @throws PluginIOException If an error occurs
-   * @since 2.0
+   * @since 2.0.0
    */
   ReaderSpi allocateReader(String readerGroupReference) throws PluginIOException;
 
@@ -66,14 +66,14 @@ public interface PoolPluginSpi {
    *
    * @param readerSpi The reader to deallocate
    * @throws PluginIOException If an error occurs
-   * @since 2.0
+   * @since 2.0.0
    */
   void releaseReader(ReaderSpi readerSpi) throws PluginIOException;
 
   /**
    * Invoked when unregistering the plugin.
    *
-   * @since 2.0
+   * @since 2.0.0
    */
   void onUnregister();
 }

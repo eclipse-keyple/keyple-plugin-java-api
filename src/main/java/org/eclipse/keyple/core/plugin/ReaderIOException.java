@@ -14,13 +14,13 @@ package org.eclipse.keyple.core.plugin;
 /**
  * Indicates that an error occurred while communicating with a reader.
  *
- * @since 2.0
+ * @since 2.0.0
  */
 public class ReaderIOException extends Exception {
 
   /**
    * @param message the message to identify the exception context
-   * @since 2.0
+   * @since 2.0.0
    */
   public ReaderIOException(String message) {
     super(message);
@@ -29,7 +29,7 @@ public class ReaderIOException extends Exception {
   /**
    * @param message the message to identify the exception context
    * @param cause the cause
-   * @since 2.0
+   * @since 2.0.0
    */
   public ReaderIOException(String message, Throwable cause) {
     super(message, cause);

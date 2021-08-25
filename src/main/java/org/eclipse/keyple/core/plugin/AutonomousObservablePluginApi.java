@@ -17,7 +17,7 @@ import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
 /**
  * API associated to a {@link org.eclipse.keyple.core.plugin.spi.AutonomousObservablePluginSpi}
  *
- * @since 2.0
+ * @since 2.0.0
  */
 public interface AutonomousObservablePluginApi {
 
@@ -26,7 +26,7 @@ public interface AutonomousObservablePluginApi {
    *
    * @param readers the readers connected
    * @throws IllegalArgumentException If the Set provided as argument is null or empty
-   * @since 2.0
+   * @since 2.0.0
    */
   void onReaderConnected(Set<ReaderSpi> readers);
 
@@ -35,7 +35,7 @@ public interface AutonomousObservablePluginApi {
    *
    * @param readerNames the readers names disconnected
    * @throws IllegalArgumentException If the Set provided as argument is null or empty
-   * @since 2.0
+   * @since 2.0.0
    */
   void onReaderDisconnected(Set<String> readerNames);
 }

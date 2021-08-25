@@ -14,7 +14,7 @@ package org.eclipse.keyple.core.plugin.spi;
 /**
  * Factory of {@link PluginSpi}
  *
- * @since 2.0
+ * @since 2.0.0
  */
 public interface PluginFactorySpi {
 
@@ -22,7 +22,7 @@ public interface PluginFactorySpi {
    * Gets the plugin's API version used at compile time
    *
    * @return A not empty String
-   * @since 2.0
+   * @since 2.0.0
    */
   String getPluginApiVersion();
 
@@ -30,7 +30,7 @@ public interface PluginFactorySpi {
    * Gets the common's API version used at compile time
    *
    * @return A not empty String
-   * @since 2.0
+   * @since 2.0.0
    */
   String getCommonApiVersion();
 
@@ -39,7 +39,7 @@ public interface PluginFactorySpi {
    * dynamic)
    *
    * @return A not empty String
-   * @since 2.0
+   * @since 2.0.0
    */
   String getPluginName();
 
@@ -47,7 +47,7 @@ public interface PluginFactorySpi {
    * Retrieves an instance of a plugin SPI (can be a singleton or not)
    *
    * @return A not null reference
-   * @since 2.0
+   * @since 2.0.0
    */
   PluginSpi getPlugin();
 }

@@ -15,14 +15,14 @@ package org.eclipse.keyple.core.plugin;
  * API associated to a {@link
  * org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion.WaitForCardInsertionAutonomousSpi}
  *
- * @since 2.0
+ * @since 2.0.0
  */
 public interface WaitForCardInsertionAutonomousReaderApi {
 
   /**
    * Must be invoked when a card is inserted.
    *
-   * @since 2.0
+   * @since 2.0.0
    */
   void onCardInserted();
 }

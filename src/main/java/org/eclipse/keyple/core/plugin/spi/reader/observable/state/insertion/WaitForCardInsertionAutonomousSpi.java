@@ -20,7 +20,7 @@ import org.eclipse.keyple.core.plugin.WaitForCardInsertionAutonomousReaderApi;
  * <p>A typical example of readers conforming to this mode of operation are Android-based NFC
  * readers.
  *
- * @since 2.0
+ * @since 2.0.0
  */
 public interface WaitForCardInsertionAutonomousSpi {
 
@@ -28,7 +28,7 @@ public interface WaitForCardInsertionAutonomousSpi {
    * Connects the associated Keyple Core {@link WaitForCardInsertionAutonomousReaderApi} API.
    *
    * @param waitForCardInsertionAutonomousReaderApi The API to connect.
-   * @since 2.0
+   * @since 2.0.0
    */
   void connect(WaitForCardInsertionAutonomousReaderApi waitForCardInsertionAutonomousReaderApi);
 }

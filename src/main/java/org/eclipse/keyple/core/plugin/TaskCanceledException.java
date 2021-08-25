@@ -15,13 +15,13 @@ package org.eclipse.keyple.core.plugin;
  * Indicates that a task (for example, waiting for a card to be inserted) has been cancelled and is
  * no longer active.
  *
- * @since 2.0
+ * @since 2.0.0
  */
 public class TaskCanceledException extends Exception {
 
   /**
    * @param message the message to identify the exception context
-   * @since 2.0
+   * @since 2.0.0
    */
   public TaskCanceledException(String message) {
     super(message);

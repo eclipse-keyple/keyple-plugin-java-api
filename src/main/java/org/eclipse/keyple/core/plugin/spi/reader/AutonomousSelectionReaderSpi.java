@@ -17,7 +17,7 @@ import org.eclipse.keyple.core.plugin.ReaderIOException;
 /**
  * Reader having an autonomous mechanism to select the cards (for example OMAPI readers).
  *
- * @since 2.0
+ * @since 2.0.0
  */
 public interface AutonomousSelectionReaderSpi extends ReaderSpi {
 
@@ -33,7 +33,7 @@ public interface AutonomousSelectionReaderSpi extends ReaderSpi {
    * @return A not empty byte array containing the card answer to selection
    * @throws ReaderIOException If the communication with the reader has failed.
    * @throws CardIOException If the communication with the card has failed.
-   * @since 2.0
+   * @since 2.0.0
    */
   byte[] openChannelForAid(byte[] aid, byte isoControlMask)
       throws ReaderIOException, CardIOException;
@@ -41,7 +41,7 @@ public interface AutonomousSelectionReaderSpi extends ReaderSpi {
   /**
    * Closes the logical channel explicitly.
    *
-   * @since 2.0
+   * @since 2.0.0
    */
   void closeLogicalChannel();
 }

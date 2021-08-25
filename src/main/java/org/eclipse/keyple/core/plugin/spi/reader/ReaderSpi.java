@@ -18,7 +18,7 @@ import org.eclipse.keyple.core.plugin.ReaderIOException;
  * Reader able to communicate with smart cards whose purpose is to remain present in the reader (for
  * example a SAM reader).
  *
- * @since 2.0
+ * @since 2.0.0
  */
 public interface ReaderSpi {
 
@@ -26,7 +26,7 @@ public interface ReaderSpi {
    * Gets the name of the reader.
    *
    * @return A not empty string.
-   * @since 2.0
+   * @since 2.0.0
    */
   String getName();
 
@@ -35,7 +35,7 @@ public interface ReaderSpi {
    *
    * @throws ReaderIOException If the communication with the reader has failed.
    * @throws CardIOException If the communication with the card has failed.
-   * @since 2.0
+   * @since 2.0.0
    */
   void openPhysicalChannel() throws ReaderIOException, CardIOException;
 
@@ -45,7 +45,7 @@ public interface ReaderSpi {
    * <p>The physical channel may have been implicitly closed previously by a card withdrawal.
    *
    * @throws ReaderIOException If the communication with the reader has failed.
-   * @since 2.0
+   * @since 2.0.0
    */
   void closePhysicalChannel() throws ReaderIOException;
 
@@ -61,7 +61,7 @@ public interface ReaderSpi {
    *
    * @return True if a card is present
    * @throws ReaderIOException If the communication with the reader has failed.
-   * @since 2.0
+   * @since 2.0.0
    */
   boolean checkCardPresence() throws ReaderIOException;
 
@@ -81,7 +81,7 @@ public interface ReaderSpi {
    * which can be either a hexadecimal string or any other relevant information.
    *
    * @return A not empty String.
-   * @since 2.0
+   * @since 2.0.0
    */
   String getPowerOnData();
 
@@ -95,7 +95,7 @@ public interface ReaderSpi {
    * @return A buffer of at least 2 bytes.
    * @throws ReaderIOException If the communication with the reader has failed.
    * @throws CardIOException If the communication with the card has failed.
-   * @since 2.0
+   * @since 2.0.0
    */
   byte[] transmitApdu(byte[] apduIn) throws ReaderIOException, CardIOException;
 
@@ -103,14 +103,14 @@ public interface ReaderSpi {
    * Tells if the reader is a contactless type.
    *
    * @return True if the reader a contactless type, false if not
-   * @since 2.0
+   * @since 2.0.0
    */
   boolean isContactless();
 
   /**
    * Invoked when unregistering the associated plugin.
    *
-   * @since 2.0
+   * @since 2.0.0
    */
   void onUnregister();
 }
