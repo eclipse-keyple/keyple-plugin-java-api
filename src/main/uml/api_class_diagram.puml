@@ -1,0 +1,235 @@
+@startuml
+title
+    Keyple 2.0 - keyple-plugin-java-api - 2.0 (30/07/2021)
+end title
+
+' == THEME ==
+
+'Couleurs issues de : https://htmlcolorcodes.com/fr/tableau-de-couleur/tableau-de-couleur-design-plat/
+!define C_GREY1 F8F9F9
+!define C_GREY2 F2F3F4
+!define C_GREY3 E5E7E9
+!define C_GREY4 D7DBDD
+!define C_GREY5 CACFD2
+!define C_GREY6 BDC3C7
+!define C_LINK 3498DB
+!define C_USE 27AE60
+
+skinparam Shadowing false
+skinparam ClassFontStyle italic
+skinparam ClassBorderColor #D4AC0D
+skinparam stereotypeABorderColor #A9DCDF
+skinparam stereotypeIBorderColor #B4A7E5
+skinparam stereotypeCBorderColor #ADD1B2
+skinparam stereotypeEBorderColor #EB93DF
+' Red
+skinparam ClassBackgroundColor<<red>> #FDEDEC
+skinparam ClassBorderColor<<red>> #E74C3C
+hide <<red>> stereotype
+' Purple
+skinparam ClassBackgroundColor<<purple>> #F4ECF7
+skinparam ClassBorderColor<<purple>> #8E44AD
+hide <<purple>> stereotype
+' blue
+skinparam ClassBackgroundColor<<blue>> #EBF5FB
+skinparam ClassBorderColor<<blue>> #3498DB
+hide <<blue>> stereotype
+' Green
+skinparam ClassBackgroundColor<<green>> #E9F7EF
+skinparam ClassBorderColor<<green>> #27AE60
+hide <<green>> stereotype
+' Grey
+skinparam ClassBackgroundColor<<grey>> #EAECEE
+skinparam ClassBorderColor<<grey>> #2C3E50
+hide <<grey>> stereotype
+
+' == CONTENT ==
+
+package "org.eclipse.keyple.core.plugin" as api {
+    +class "**final** PluginApiProperties" as ApiProperties {
+        +{static} **final** String VERSION
+    }
+    +interface AutonomousObservablePluginApi {
+        +void onReaderConnected (Set<ReaderSpi> readers)
+        +void onReaderDisconnected (Set<String> readerNames)
+    }
+    +interface WaitForCardInsertionAutonomousReaderApi {
+        +void onCardInserted ()
+    }
+    +interface WaitForCardRemovalAutonomousReaderApi {
+        +void onCardRemoved ()
+    }
+    +class "<<Exception>>\n**final** PluginIOException" as PluginIOException {
+        +PluginIOException (String message)
+        +PluginIOException (String message,
+            \tThrowable cause)
+    }
+    +class "<<Exception>>\n**final** ReaderIOException" as ReaderIOException {
+        +ReaderIOException (String message)
+        +ReaderIOException (String message,
+            \tThrowable cause)
+    }
+    +class "<<Exception>>\n**final** CardIOException" as CardIOException {
+        +CardIOException (String message)
+        +CardIOException (String message,
+            \tThrowable cause)
+    }
+    +class "<<Exception>>\n**final** TaskCanceledException" as TaskCanceledException {
+        +TaskCanceledException (String message)
+    }
+    package spi {
+        together {
+            +interface PoolPluginFactorySpi {
+                +String getPluginApiVersion ()
+                +String getCommonApiVersion ()
+                +String getPoolPluginName ()
+                +PoolPluginSpi getPoolPlugin ()
+            }
+            +interface PluginFactorySpi {
+                +String getPluginApiVersion ()
+                +String getCommonApiVersion ()
+                +String getPluginName ()
+                +PluginSpi getPlugin ()
+            }
+            +interface PoolPluginSpi {
+                +String getName ()
+                +SortedSet<String> getReaderGroupReferences ()
+                +ReaderSpi allocateReader (String readerGroupReference)
+                +void releaseReader (ReaderSpi readerSpi)
+                +void onUnregister ()
+            }
+            +interface PluginSpi {
+                +String getName ()
+                +Set<ReaderSpi> searchAvailableReaders ()
+                +void onUnregister ()
+            }
+        }
+        +interface ObservablePluginSpi extends PluginSpi {
+            +int getMonitoringCycleDuration ()
+            +Set<String> searchAvailableReaderNames ()
+            +ReaderSpi searchReader (String readerName)
+        }
+        +interface AutonomousObservablePluginSpi extends PluginSpi {
+            --
+            +void connect (
+                \tAutonomousObservablePluginApi
+                \t\tautonomousObservablePluginApi)
+        }
+        package reader {
+            +interface ReaderSpi {
+                +String getName ()
+
+                +void openPhysicalChannel ()
+                +void closePhysicalChannel ()
+                +boolean isPhysicalChannelOpen ()
+
+                +boolean checkCardPresence ()
+                +String getPowerOnData ()
+                +byte[] transmitApdu (byte[] apduIn)
+                +boolean isContactless ()
+                +void onUnregister ()
+            }
+            +interface ConfigurableReaderSpi extends ReaderSpi {
+                +boolean isProtocolSupported (String readerProtocol)
+                +void activateProtocol (String readerProtocol)
+                +void deactivateProtocol (String readerProtocol)
+                +boolean isCurrentProtocol (String readerProtocol)
+            }
+            +interface AutonomousSelectionReaderSpi extends ReaderSpi {
+                +byte[] openChannelForAid (byte[] dfName, byte isoControlMask)
+                +void closeLogicalChannel ()
+            }
+            package observable {
+                +interface ObservableReaderSpi extends ReaderSpi {
+                    +void onStartDetection ()
+                    +void onStopDetection ()
+                }
+                package state {
+                    package processing {
+                        +interface WaitForCardRemovalBlockingDuringProcessingSpi {
+                            +void waitForCardRemovalDuringProcessing ()
+                            +void stopWaitForCardRemovalDuringProcessing ()
+                        }
+                        +interface DontWaitForCardRemovalDuringProcessingSpi {
+                        }
+                    }
+                    package insertion {
+                        +interface WaitForCardInsertionAutonomousSpi {
+                            --
+                            +void connect (
+                                \tWaitForCardInsertionAutonomousReaderApi
+                                \t\twaitForCardInsertionAutonomousReaderApi)
+                        }
+                        +interface WaitForCardInsertionBlockingSpi {
+                            +void waitForCardInsertion ()
+                            +void stopWaitForCardInsertion ()
+                        }
+                        +interface WaitForCardInsertionNonBlockingSpi {
+                        }
+                    }
+                    package removal {
+                        +interface WaitForCardRemovalAutonomousSpi {
+                            --
+                            +void connect (
+                                \tWaitForCardRemovalAutonomousReaderApi
+                                \t\twaitForCardRemovalAutonomousReaderApi)
+                        }
+                        +interface WaitForCardRemovalBlockingSpi {
+                            +void waitForCardRemoval ()
+                            +void stopWaitForCardRemoval ()
+                        }
+                        +interface WaitForCardRemovalNonBlockingSpi {
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+' Associations
+
+PluginFactorySpi .up.> ApiProperties #C_LINK : provide\nAPI version <
+PluginFactorySpi ..> PluginSpi #C_LINK : provide >
+
+PluginSpi ..> ReaderSpi #C_LINK : provide >
+
+PoolPluginFactorySpi .up.> ApiProperties #C_LINK : provide\nAPI version <
+PoolPluginFactorySpi ..> PoolPluginSpi #C_LINK : provide >
+
+PoolPluginSpi ..> ReaderSpi #C_LINK : provide >
+
+AutonomousObservablePluginSpi .up.> AutonomousObservablePluginApi #C_USE : use >
+
+WaitForCardInsertionAutonomousSpi ..> WaitForCardInsertionAutonomousReaderApi #C_USE : use >
+
+WaitForCardRemovalAutonomousSpi ..> WaitForCardRemovalAutonomousReaderApi #C_USE : use >
+
+' == LAYOUT ==
+
+ObservablePluginSpi -[hidden]- reader
+
+AutonomousSelectionReaderSpi -[hidden]- ObservableReaderSpi
+
+ObservableReaderSpi -[hidden]- state
+
+WaitForCardInsertionBlockingSpi -[hidden]- WaitForCardInsertionNonBlockingSpi
+WaitForCardInsertionNonBlockingSpi -[hidden]- WaitForCardInsertionAutonomousSpi
+
+WaitForCardRemovalBlockingDuringProcessingSpi -[hidden]- DontWaitForCardRemovalDuringProcessingSpi
+
+WaitForCardRemovalBlockingSpi -[hidden]- WaitForCardRemovalNonBlockingSpi
+WaitForCardRemovalNonBlockingSpi -[hidden]- WaitForCardRemovalAutonomousSpi
+
+' == STYLE ==
+
+package api #C_GREY1 {}
+package spi #C_GREY2 {}
+package reader #C_GREY3 {}
+package observable #C_GREY4 {}
+package state #C_GREY5 {}
+package insertion #C_GREY6 {}
+package processing #C_GREY6 {}
+package removal #C_GREY6 {}
+
+@enduml

@@ -8,9 +8,9 @@ The **Keyple Plugin Java API** is dedicated to the development of specific Keypl
 
 The full documentation, including the **user guide**, **download information** and **contribution guide**, is available on the Keyple website [keyple.org](https://keyple.org).
 
-## Javadoc
+## API documentation
 
-The javadoc is available online: [eclipse.github.io/keyple-plugin-java-api/](https://eclipse.github.io/keyple-plugin-java-api/)
+API documentation & class diagram is available online: [eclipse.github.io/keyple-plugin-java-api](https://eclipse.github.io/keyple-plugin-java-api)
 
 ## About the source code
 
