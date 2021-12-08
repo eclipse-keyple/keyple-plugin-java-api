@@ -18,6 +18,15 @@ import org.eclipse.keyple.core.plugin.ReaderIOException;
  * Reader able to communicate with smart cards whose purpose is to remain present in the reader (for
  * example a SAM reader).
  *
+ * <p>The target devices must comply with the following Calypsonet Terminal requirements:
+ *
+ * <ul>
+ *   <li>RL-CL-TS16794 (for contactless communication)
+ *   <li>RL-DET-PCIBLOCK.1 (for contactless communication)
+ *   <li>RL-CT-T0 (for contact communication)
+ *   <li>RL-PERF-TIME.1
+ * </ul>
+ *
  * @since 2.0.0
  */
 public interface ReaderSpi {
@@ -89,7 +98,8 @@ public interface ReaderSpi {
    * Transmits an APDU and returns its response.
    *
    * <p><b>Caution: the implementation must handle the case where the card response is 61xy and
-   * execute the appropriate get response command.</b>
+   * execute the appropriate get response command (Calypsonet Terminal requirement
+   * "RL-SW-61XX.1").</b>
    *
    * @param apduIn The data to be sent to the card.
    * @return A buffer of at least 2 bytes.
