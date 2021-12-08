@@ -130,7 +130,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public interface <span class="typeNameLabel">ReaderSpi</span></pre>
 <div class="block">Reader able to communicate with smart cards whose purpose is to remain present in the reader (for
- example a SAM reader).</div>
+ example a SAM reader).
+
+ <p>The target devices must comply with the following Calypsonet Terminal requirements:
+
+ <ul>
+   <li>RL-CL-TS16794 (for contactless communication)
+   <li>RL-DET-PCIBLOCK.1 (for contactless communication)
+   <li>RL-CT-T0 (for contact communication)
+   <li>RL-PERF-TIME.1
+ </ul></div>
 <dl>
 <dt><span class="simpleTagLabel">Since:</span></dt>
 <dd>2.0.0</dd>
@@ -362,7 +371,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Transmits an APDU and returns its response.
 
  <p><b>Caution: the implementation must handle the case where the card response is 61xy and
- execute the appropriate get response command.</b></div>
+ execute the appropriate get response command (Calypsonet Terminal requirement
+ "RL-SW-61XX.1").</b></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>apduIn</code> - The data to be sent to the card.</dd>
