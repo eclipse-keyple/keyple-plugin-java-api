@@ -9,21 +9,20 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  ************************************************************************************** */
-package org.eclipse.keyple.core.plugin;
+package org.eclipse.keyple.core.plugin.spi.reader;
 
 /**
- * API properties.
+ * Reader extension for pool readers having the capability to provide a selected smart card.
  *
- * @since 2.0.0
+ * @since 2.1.0
  */
-public final class PluginApiProperties {
-  /**
-   * API version: {@value}
-   *
-   * @since 2.0.0
-   */
-  public static final String VERSION = "2.1";
+public interface PoolReaderSpi extends ReaderSpi {
 
-  /** Private constructor */
-  private PluginApiProperties() {}
+  /**
+   * Returns the selected smart card when it has been provided by the reader allocation process.
+   *
+   * @return null if no smart card is selected by default, the selected smart card otherwise.
+   * @since 2.1.0
+   */
+  Object getSelectedSmartCard();
 }
