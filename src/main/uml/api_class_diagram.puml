@@ -1,6 +1,6 @@
 @startuml
 title
-    Keyple - keyple-plugin-java-api - 2.0.+ (30/07/2021)
+    Keyple - keyple-plugin-java-api - 2.1.+ (2023-04-12)
 end title
 
 ' == THEME ==
@@ -15,13 +15,19 @@ end title
 !define C_LINK 3498DB
 !define C_USE 27AE60
 
-skinparam Shadowing false
-skinparam ClassFontStyle italic
-skinparam ClassBorderColor #D4AC0D
+' -- Styles that don't work with new version of plantuml --
 skinparam stereotypeABorderColor #A9DCDF
 skinparam stereotypeIBorderColor #B4A7E5
 skinparam stereotypeCBorderColor #ADD1B2
 skinparam stereotypeEBorderColor #EB93DF
+' -- END --
+
+skinparam ClassBorderThickness 2
+skinparam ArrowThickness 2
+
+' Yellow
+skinparam ClassBackgroundColor #FEFECE
+skinparam ClassBorderColor #D4AC0D
 ' Red
 skinparam ClassBackgroundColor<<red>> #FDEDEC
 skinparam ClassBorderColor<<red>> #E74C3C
@@ -94,7 +100,7 @@ package "org.eclipse.keyple.core.plugin" as api {
             +interface PoolPluginSpi {
                 +String getName ()
                 +SortedSet<String> getReaderGroupReferences ()
-                +ReaderSpi allocateReader (String readerGroupReference)
+                +<color:blue>PoolReaderSpi</color> allocateReader (String readerGroupReference)
                 +void releaseReader (ReaderSpi readerSpi)
                 +void onUnregister ()
             }
@@ -129,6 +135,9 @@ package "org.eclipse.keyple.core.plugin" as api {
                 +boolean isContactless ()
                 +void onUnregister ()
             }
+            +interface "<color:blue>PoolReaderSpi" as PoolReaderSpi extends ReaderSpi {
+                +<color:blue>Object getSelectedSmartCard ()
+            }
             +interface ConfigurableReaderSpi extends ReaderSpi {
                 +boolean isProtocolSupported (String readerProtocol)
                 +void activateProtocol (String readerProtocol)
@@ -140,7 +149,7 @@ package "org.eclipse.keyple.core.plugin" as api {
                 +void closeLogicalChannel ()
             }
             package observable {
-                +interface ObservableReaderSpi extends ReaderSpi {
+                +interface ObservableReaderSpi extends api.spi.reader.ReaderSpi {
                     +void onStartDetection ()
                     +void onStopDetection ()
                 }
@@ -197,7 +206,7 @@ PluginSpi ..> ReaderSpi #C_LINK : provide >
 PoolPluginFactorySpi .up.> ApiProperties #C_LINK : provide\nAPI version <
 PoolPluginFactorySpi ..> PoolPluginSpi #C_LINK : provide >
 
-PoolPluginSpi ..> ReaderSpi #C_LINK : provide >
+PoolPluginSpi ..> PoolReaderSpi #C_LINK : provide >
 
 AutonomousObservablePluginSpi .up.> AutonomousObservablePluginApi #C_USE : use >
 
@@ -224,12 +233,12 @@ WaitForCardRemovalNonBlockingSpi -[hidden]- WaitForCardRemovalAutonomousSpi
 ' == STYLE ==
 
 package api #C_GREY1 {}
-package spi #C_GREY2 {}
-package reader #C_GREY3 {}
-package observable #C_GREY4 {}
-package state #C_GREY5 {}
-package insertion #C_GREY6 {}
-package processing #C_GREY6 {}
-package removal #C_GREY6 {}
+package api.spi #C_GREY2 {}
+package api.spi.reader #C_GREY3 {}
+package api.spi.reader.observable #C_GREY4 {}
+package api.spi.reader.observable.state #C_GREY5 {}
+package api.spi.reader.observable.state.insertion #C_GREY6 {}
+package api.spi.reader.observable.state.processing #C_GREY6 {}
+package api.spi.reader.observable.state.removal #C_GREY6 {}
 
 @enduml
