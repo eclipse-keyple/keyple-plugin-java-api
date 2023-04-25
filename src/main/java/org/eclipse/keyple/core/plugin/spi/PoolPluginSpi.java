@@ -17,8 +17,8 @@ import org.eclipse.keyple.core.plugin.spi.reader.PoolReaderSpi;
 import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
 
 /**
- * Plugin able to manage a dynamic list of readers based on an allocation/de-allocation mechanism (for
- * example HSM).
+ * Plugin able to manage a dynamic list of readers based on an allocation/de-allocation mechanism
+ * (for example HSM).
  *
  * @since 2.0.0
  */
