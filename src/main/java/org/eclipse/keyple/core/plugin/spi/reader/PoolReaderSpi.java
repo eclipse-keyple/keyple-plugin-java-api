@@ -1,5 +1,5 @@
 /* **************************************************************************************
- * Copyright (c) 2021 Calypso Networks Association https://calypsonet.org/
+ * Copyright (c) 2023 Calypso Networks Association https://calypsonet.org/
  *
  * See the NOTICE file(s) distributed with this work for additional information
  * regarding copyright ownership.
@@ -12,7 +12,7 @@
 package org.eclipse.keyple.core.plugin.spi.reader;
 
 /**
- * Reader extension for pool readers having the capability to provide a selected smart card.
+ * Reader extension for pool readers.
  *
  * @since 2.1.0
  */
@@ -21,7 +21,7 @@ public interface PoolReaderSpi extends ReaderSpi {
   /**
    * Returns the selected smart card when it has been provided by the reader allocation process.
    *
-   * @return null if no smart card is selected by default, the selected smart card otherwise.
+   * @return Null if no smart card is selected by default, the selected smart card otherwise.
    * @since 2.1.0
    */
   Object getSelectedSmartCard();

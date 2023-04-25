@@ -30,7 +30,7 @@ repositories {
 }
 dependencies {
     testImplementation("junit:junit:4.13.2")
-    testImplementation("org.assertj:assertj-core:3.15.0")
+    testImplementation("org.assertj:assertj-core:3.23.1")
 }
 
 val javaSourceLevel: String by project
