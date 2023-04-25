@@ -6,8 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- "CHANGELOG.md" file (issue [eclipse/keyple#6]).
+- `CHANGELOG.md` file (issue [eclipse/keyple#6]).
 - CI: Forbid the publication of a version already released (issue [#7]).
+- The method `PoolPluginSpi.allocateReader` now returns the new interface `PoolReaderSpi`, which extends `ReaderSpi`, in
+  order to retrieve the smart card that may be automatically selected.
 
 ## [2.0.0] - 2021-10-06
 This is the initial release.
