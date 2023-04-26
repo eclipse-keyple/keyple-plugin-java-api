@@ -1,0 +1,7 @@
+org.eclipse.keyple.core.plugin
+org.eclipse.keyple.core.plugin.spi
+org.eclipse.keyple.core.plugin.spi.reader
+org.eclipse.keyple.core.plugin.spi.reader.observable
+org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion
+org.eclipse.keyple.core.plugin.spi.reader.observable.state.processing
+org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal
