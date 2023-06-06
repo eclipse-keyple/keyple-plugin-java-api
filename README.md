@@ -1,3 +1,10 @@
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=eclipse_keyple-plugin-java-api&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=eclipse_keyple-plugin-java-api)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=eclipse_keyple-plugin-java-api&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=eclipse_keyple-plugin-java-api)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=eclipse_keyple-plugin-java-api&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=eclipse_keyple-plugin-java-api)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=eclipse_keyple-plugin-java-api&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=eclipse_keyple-plugin-java-api)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=eclipse_keyple-plugin-java-api&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=eclipse_keyple-plugin-java-api)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=eclipse_keyple-plugin-java-api&metric=coverage)](https://sonarcloud.io/summary/new_code?id=eclipse_keyple-plugin-java-api)
+
 # Keyple Plugin Java API
 
 ## Overview
