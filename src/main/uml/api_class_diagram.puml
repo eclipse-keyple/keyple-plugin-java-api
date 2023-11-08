@@ -182,7 +182,7 @@ package "org.eclipse.keyple.core.plugin" as api {
                         +interface "<color:red><s>WaitForCardInsertionNonBlockingSpi" as WaitForCardInsertionNonBlockingSpi <<red>> {
                         }
                         +interface "<color:blue>CardInsertionWaiterNonBlockingSpi" as CardInsertionWaiterNonBlockingSpi <<red>> {
-                            +<color:blue>int getCardInsertionMonitoringCycleDuration ()
+                            +<color:blue>int getCardInsertionMonitoringSleepDuration ()
                         }
                         +interface "<color:red><s>WaitForCardInsertionAutonomousSpi" as WaitForCardInsertionAutonomousSpi <<red>> {
                             --
@@ -208,7 +208,7 @@ package "org.eclipse.keyple.core.plugin" as api {
                         +interface "<color:red><s>WaitForCardRemovalNonBlockingSpi" as WaitForCardRemovalNonBlockingSpi <<red>> {
                         }
                         +interface "<color:blue>CardRemovalWaiterNonBlockingSpi" as CardRemovalWaiterNonBlockingSpi <<red>> {
-                            +<color:blue>int getCardRemovalMonitoringCycleDuration ()
+                            +<color:blue>int getCardRemovalMonitoringSleepDuration ()
                         }
                         +interface "<color:red><s>WaitForCardRemovalAutonomousSpi" as WaitForCardRemovalAutonomousSpi <<red>> {
                             --
