@@ -21,7 +21,7 @@ package org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion;
  * periodically by the service when a card insertion is expected.
  *
  * <p>The value returned by the {@link #getCardInsertionMonitoringSleepDuration()} will be used as
- * an argument to {@link Thread#sleep(long)} between two calls to {@link *
+ * an argument to {@link Thread#sleep(long)} between two calls to {@link
  * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#checkCardPresence}.
  *
  * <p>A typical example of readers conforming to this mode of operation are terminals embedding a
@@ -33,7 +33,7 @@ public interface CardInsertionWaiterNonBlockingSpi {
 
   /**
    * Provides the value of the sleep duration (in milliseconds) inserted between two calls to {@link
-   * * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#checkCardPresence}.
+   * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#checkCardPresence}.
    *
    * @return A positive value (0 is allowed).
    * @since 2.2.0

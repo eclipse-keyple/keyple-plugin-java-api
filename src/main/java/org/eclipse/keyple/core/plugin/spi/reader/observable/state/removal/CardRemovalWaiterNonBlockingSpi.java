@@ -21,7 +21,7 @@ package org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal;
  * the transmission fails.
  *
  * <p>The value returned by the {@link #getCardInsertionMonitoringSleepDuration()} will be used as
- * an argument to {@link Thread#sleep(long)} between two calls to {@link *
+ * an argument to {@link Thread#sleep(long)} between two calls to {@link
  * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#transmitApdu}.
  *
  * <p>A typical example of readers conforming to this mode of operation are terminals embedding a
@@ -33,7 +33,7 @@ public interface CardRemovalWaiterNonBlockingSpi {
 
   /**
    * Provides the value of the sleep duration (in milliseconds) inserted between two calls to {@link
-   * * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#transmitApdu}.
+   * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#transmitApdu}.
    *
    * @return A positive value (0 is allowed).
    * @since 2.2.0
