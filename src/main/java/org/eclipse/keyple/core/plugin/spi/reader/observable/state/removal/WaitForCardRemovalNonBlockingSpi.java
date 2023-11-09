@@ -19,5 +19,8 @@ package org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal;
  * slave RF communication module.
  *
  * @since 2.0.0
+ * @deprecated Implement {@link CardRemovalWaiterNonBlockingSpi} instead (will be removed in a future
+ *     version of this API).
  */
+@Deprecated
 public interface WaitForCardRemovalNonBlockingSpi {}

@@ -9,43 +9,38 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  ************************************************************************************** */
-package org.eclipse.keyple.core.plugin.spi.reader.observable.state.processing;
+package org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal;
 
 import org.eclipse.keyple.core.plugin.ReaderIOException;
 import org.eclipse.keyple.core.plugin.TaskCanceledException;
 
 /**
- * Reader able to detect a card removal during processing, between two APDU commands.
+ * Reader able to wait autonomously and indefinitely for the removal of a card by implementing a
+ * waiting mechanism.
  *
- * <p>A typical example of readers conforming to this mode of operation are PC/SC type readers.
+ * <p>A typical example of readers conforming to this mode of operation are PC/SC type readers
+ * capable of performing RF polling without waiting for a command from the application.
  *
- * @since 2.0.0
- * @deprecated Useless SPI, don't implement it. Will be removed in a future version of this API.
+ * @since 2.2.0
  */
-@Deprecated
-public interface WaitForCardRemovalDuringProcessingBlockingSpi {
+public interface CardRemovalWaiterBlockingSpi {
 
   /**
    * Waits indefinitely for a card to be removed.
    *
    * <p>This wait can be cancelled for an internal (for example timeout) or external reason (for
-   * example invocation of {@link #stopWaitForCardRemovalDuringProcessing()}), in this case an
-   * exception is raised.
+   * example invocation of {@link #stopWaitForCardRemoval()}), in this case an exception is raised.
    *
    * @throws ReaderIOException If the communication with the reader
    * @throws TaskCanceledException If the task has been canceled and is no longer active
-   * @since 2.0.0
-   * @deprecated
+   * @since 2.2.0
    */
-  @Deprecated
-  void waitForCardRemovalDuringProcessing() throws ReaderIOException, TaskCanceledException;
+  void waitForCardRemoval() throws ReaderIOException, TaskCanceledException;
 
   /**
    * Interrupts the waiting of the removal of the card
    *
-   * @since 2.0.0
-   * @deprecated
+   * @since 2.2.0
    */
-  @Deprecated
-  void stopWaitForCardRemovalDuringProcessing();
+  void stopWaitForCardRemoval();
 }

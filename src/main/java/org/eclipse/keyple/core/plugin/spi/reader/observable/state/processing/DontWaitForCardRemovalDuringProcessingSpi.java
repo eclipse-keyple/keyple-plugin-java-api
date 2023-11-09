@@ -18,5 +18,7 @@ package org.eclipse.keyple.core.plugin.spi.reader.observable.state.processing;
  * a slave RF communication module.
  *
  * @since 2.0.0
+ * @deprecated Useless SPI, don't implement it. Will be removed in a future version of this API.
  */
+@Deprecated
 public interface DontWaitForCardRemovalDuringProcessingSpi {}

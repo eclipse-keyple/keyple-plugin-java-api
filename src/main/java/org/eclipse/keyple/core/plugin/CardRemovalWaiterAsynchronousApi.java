@@ -16,16 +16,13 @@ package org.eclipse.keyple.core.plugin;
  * org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.WaitForCardRemovalAutonomousSpi}
  *
  * @since 2.0.0
- * @deprecated Use {@link CardRemovalWaiterAsynchronousApi} instead (will be removed in a future
- *     version of this API).
  */
-public interface WaitForCardRemovalAutonomousReaderApi {
+public interface CardRemovalWaiterAsynchronousApi {
 
   /**
    * Must be invoked when a card is removed.
    *
    * @since 2.0.0
-   * @deprecated Use {@link CardRemovalWaiterAsynchronousApi#onCardRemoved()} instead.
    */
   void onCardRemoved();
 }

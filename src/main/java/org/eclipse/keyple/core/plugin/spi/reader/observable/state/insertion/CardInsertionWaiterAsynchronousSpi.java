@@ -15,26 +15,20 @@ import org.eclipse.keyple.core.plugin.CardInsertionWaiterAsynchronousApi;
 import org.eclipse.keyple.core.plugin.WaitForCardInsertionAutonomousReaderApi;
 
 /**
- * Reader that have a fully integrated management of card communications for card insertion
- * detection.
+ * This SPI is specifically designed for plugins that handle card insertion asynchronously.
  *
  * <p>A typical example of readers conforming to this mode of operation are Android-based NFC
  * readers.
  *
- * @since 2.0.0
- * @deprecated Implement {@link CardInsertionWaiterAsynchronousSpi} instead (will be removed in a future
- *     version of this API).
+ * @since 2.2.0
  */
-@Deprecated
-public interface WaitForCardInsertionAutonomousSpi {
+public interface CardInsertionWaiterAsynchronousSpi {
 
   /**
    * Connects the associated Keyple Core {@link WaitForCardInsertionAutonomousReaderApi} API.
    *
-   * @param waitForCardInsertionAutonomousReaderApi The API to connect.
-   * @since 2.0.0
-   * @deprecated
+   * @param callback API of the callback to call when a card is inserted.
+   * @since 2.2.0
    */
-  @Deprecated
-  void connect(WaitForCardInsertionAutonomousReaderApi waitForCardInsertionAutonomousReaderApi);
+  void setCallback(CardInsertionWaiterAsynchronousApi callback);
 }

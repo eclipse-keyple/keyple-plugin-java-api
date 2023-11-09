@@ -9,18 +9,15 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  ************************************************************************************** */
-package org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion;
+package org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal;
 
 /**
- * Reader that require an external active stimulation to detect card insertion without implementing
- * a waiting mechanism.
+ * Reader that require an external active stimulation to detect card removal without implementing a
+ * waiting mechanism.
  *
  * <p>A typical example of readers conforming to this mode of operation are terminals embedding a
  * slave RF communication module.
  *
- * @since 2.0.0
- * @deprecated Implement {@link CardInsertionWaiterNonBlockingSpi} instead (will be removed in a future
- *     version of this API).
+ * @since 2.2.0
  */
-@Deprecated
-public interface WaitForCardInsertionNonBlockingSpi {}
+public interface CardRemovalWaiterNonBlockingSpi {}
