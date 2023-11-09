@@ -163,11 +163,11 @@ package "org.eclipse.keyple.core.plugin" as api {
                 }
                 package state {
                     package processing {
-                        +interface "<color:red><s>WaitForCardRemovalBlockingDuringProcessingSpi" as WaitForCardRemovalBlockingDuringProcessingSpi {
+                        +interface "<color:red><s>WaitForCardRemovalBlockingDuringProcessingSpi" as WaitForCardRemovalBlockingDuringProcessingSpi <<red>> {
                             +<color:red><s>void waitForCardRemovalDuringProcessing ()
                             +<color:red><s>void stopWaitForCardRemovalDuringProcessing ()
                         }
-                        +interface "<color:red><s>DontWaitForCardRemovalDuringProcessingSpi" as DontWaitForCardRemovalDuringProcessingSpi {
+                        +interface "<color:red><s>DontWaitForCardRemovalDuringProcessingSpi" as DontWaitForCardRemovalDuringProcessingSpi <<red>> {
                         }
                     }
                     package insertion {
