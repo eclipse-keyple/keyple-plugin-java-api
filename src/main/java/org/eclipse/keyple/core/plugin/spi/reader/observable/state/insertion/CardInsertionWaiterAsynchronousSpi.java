@@ -12,7 +12,6 @@
 package org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion;
 
 import org.eclipse.keyple.core.plugin.CardInsertionWaiterAsynchronousApi;
-import org.eclipse.keyple.core.plugin.WaitForCardInsertionAutonomousReaderApi;
 
 /**
  * This SPI is specifically designed for plugins that handle card insertion asynchronously.
@@ -25,9 +24,9 @@ import org.eclipse.keyple.core.plugin.WaitForCardInsertionAutonomousReaderApi;
 public interface CardInsertionWaiterAsynchronousSpi {
 
   /**
-   * Connects the associated Keyple Core {@link WaitForCardInsertionAutonomousReaderApi} API.
+   * Sets the asynchronous callback that will be called when a card is inserted.
    *
-   * @param callback API of the callback to call when a card is inserted.
+   * @param callback The asynchronous callback to be called.
    * @since 2.2.0
    */
   void setCallback(CardInsertionWaiterAsynchronousApi callback);
