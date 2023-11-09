@@ -20,8 +20,8 @@ package org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal;
  * periodically by the service when a card removal is expected. The card is considered removed when
  * the transmission fails.
  *
- * <p>The value returned by the {@link #getCardInsertionMonitoringSleepDuration()} will be used as
- * an argument to {@link Thread#sleep(long)} between two calls to {@link
+ * <p>The value returned by the {@link #getCardRemovalMonitoringSleepDuration()} will be used as an
+ * argument to {@link Thread#sleep(long)} between two calls to {@link
  * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#transmitApdu}.
  *
  * <p>A typical example of readers conforming to this mode of operation are terminals embedding a
@@ -38,5 +38,5 @@ public interface CardRemovalWaiterNonBlockingSpi {
    * @return A positive value (0 is allowed).
    * @since 2.2.0
    */
-  int getCardInsertionMonitoringSleepDuration();
+  int getCardRemovalMonitoringSleepDuration();
 }
