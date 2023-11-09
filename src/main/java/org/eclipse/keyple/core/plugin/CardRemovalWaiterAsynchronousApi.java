@@ -15,14 +15,14 @@ package org.eclipse.keyple.core.plugin;
  * API associated to a {@link
  * org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.WaitForCardRemovalAutonomousSpi}
  *
- * @since 2.0.0
+ * @since 2.2.0
  */
 public interface CardRemovalWaiterAsynchronousApi {
 
   /**
    * Must be invoked when a card is removed.
    *
-   * @since 2.0.0
+   * @since 2.2.0
    */
   void onCardRemoved();
 }
