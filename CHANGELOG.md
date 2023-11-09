@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI: code coverage report when releasing.
 ### Added
 - CI: added project status badges on `README.md` file.
+- Added precisions to Javadoc of `openPhysicalChannel()`, `closePhysicalChannel()` and `checkCardPresence()` methods of 
+  the `ReaderSpi` interface.
 - `CardInsertionWaiterAsynchronousApi` (renaming)
 - `CardRemovalWaiterAsynchronousApi` (renaming)
 - `CardInsertionWaiterAsynchronousSpi` (renaming)

@@ -40,7 +40,10 @@ public interface ReaderSpi {
   String getName();
 
   /**
-   * Attempts to open the physical channel (to establish a communication with the card).
+   * Validates the opening of the physical channel. Performs the actual opening if this has not been
+   * done by the {@link #checkCardPresence()} method. In all cases, memorizes the new state for the
+   * operation of the {@link #isPhysicalChannelOpen()} method. After executing this method, the
+   * reader is able to send APDUs to the card.
    *
    * @throws ReaderIOException If the communication with the reader has failed.
    * @throws CardIOException If the communication with the card has failed.
@@ -49,9 +52,13 @@ public interface ReaderSpi {
   void openPhysicalChannel() throws ReaderIOException, CardIOException;
 
   /**
-   * Attempts to close the current physical channel.
+   * Tells the reader that card processing is complete and that the next step is to remove the card
+   * from the reader.
    *
-   * <p>The physical channel may have been implicitly closed previously by a card withdrawal.
+   * <p>If the reader has the ability to sense the presence of the card without communicating with
+   * it, then this method must proceed to the actual closing of the physical channel (e.g. power
+   * down in the case of a contact reader). Otherwise, this method is limited to changing the
+   * logical opening state of the physical channel and letting the removal procedure do the closing.
    *
    * @throws ReaderIOException If the communication with the reader has failed.
    * @since 2.0.0
@@ -67,6 +74,13 @@ public interface ReaderSpi {
 
   /**
    * Verifies the presence of a card.
+   *
+   * <p>Depending on the reader's capabilities, this method will either use a card presence
+   * indicator without necessarily communicating with the card (for example, in the case of a
+   * contact reader equipped with a physical insertion detector using a switch), or will communicate
+   * with the card (in the case of contactless hunting). In the latter case, we can consider that
+   * the physical channel has been opened (and therefore no longer needs to be opened in the {@link
+   * #openPhysicalChannel()} method).
    *
    * @return True if a card is present
    * @throws ReaderIOException If the communication with the reader has failed.
