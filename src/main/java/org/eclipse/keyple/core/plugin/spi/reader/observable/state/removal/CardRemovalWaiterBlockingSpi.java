@@ -15,8 +15,9 @@ import org.eclipse.keyple.core.plugin.ReaderIOException;
 import org.eclipse.keyple.core.plugin.TaskCanceledException;
 
 /**
- * Reader able to wait autonomously and indefinitely for the removal of a card by implementing a
- * waiting mechanism.
+ * This SPI is specifically designed for plugins that handle card removal synchronously. The plugin
+ * waits autonomously and indefinitely for the removal of a card by implementing a waiting
+ * mechanism.
  *
  * <p>A typical example of readers conforming to this mode of operation are PC/SC type readers
  * capable of performing RF polling without waiting for a command from the application.
