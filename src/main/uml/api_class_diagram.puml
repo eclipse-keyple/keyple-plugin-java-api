@@ -1,6 +1,6 @@
 @startuml
 title
-    Keyple - keyple-plugin-java-api - 2.1.+ (2023-04-12)
+    Keyple - keyple-plugin-java-api - 2.2.+ (2023-11-08)
 end title
 
 ' == THEME ==
@@ -52,77 +52,85 @@ hide <<grey>> stereotype
 ' == CONTENT ==
 
 package "org.eclipse.keyple.core.plugin" as api {
-    +class "**final** PluginApiProperties" as ApiProperties {
+    +class "**final** PluginApiProperties" as ApiProperties <<green>> {
         +{static} **final** String VERSION
     }
     +interface AutonomousObservablePluginApi {
         +void onReaderConnected (Set<ReaderSpi> readers)
         +void onReaderDisconnected (Set<String> readerNames)
     }
-    +interface WaitForCardInsertionAutonomousReaderApi {
-        +void onCardInserted ()
+    +interface "<color:red><s>WaitForCardInsertionAutonomousReaderApi" as WaitForCardInsertionAutonomousReaderApi {
+        +<color:red><s>void onCardInserted ()
     }
-    +interface WaitForCardRemovalAutonomousReaderApi {
-        +void onCardRemoved ()
+    +interface "<color:red><s>WaitForCardRemovalAutonomousReaderApi" as WaitForCardRemovalAutonomousReaderApi {
+        +<color:red><s>void onCardRemoved ()
     }
-    +class "<<Exception>>\n**final** PluginIOException" as PluginIOException {
+    +interface "<color:blue>CardInsertionWaiterAsynchronousApi" as CardInsertionWaiterAsynchronousApi {
+        +<color:blue>void onCardInserted ()
+    }
+    +interface "<color:blue>CardRemovalWaiterAsynchronousApi" as CardRemovalWaiterAsynchronousApi {
+        +<color:blue>void onCardRemoved ()
+    }
+    +class "<<Exception>>\n**final** PluginIOException" as PluginIOException <<green>> {
         +PluginIOException (String message)
         +PluginIOException (String message,
             \tThrowable cause)
     }
-    +class "<<Exception>>\n**final** ReaderIOException" as ReaderIOException {
+    +class "<<Exception>>\n**final** ReaderIOException" as ReaderIOException <<green>> {
         +ReaderIOException (String message)
         +ReaderIOException (String message,
             \tThrowable cause)
     }
-    +class "<<Exception>>\n**final** CardIOException" as CardIOException {
+    +class "<<Exception>>\n**final** CardIOException" as CardIOException <<green>> {
         +CardIOException (String message)
         +CardIOException (String message,
             \tThrowable cause)
     }
-    +class "<<Exception>>\n**final** TaskCanceledException" as TaskCanceledException {
+    +class "<<Exception>>\n**final** TaskCanceledException" as TaskCanceledException <<green>> {
         +TaskCanceledException (String message)
     }
     package spi {
         together {
-            +interface PoolPluginFactorySpi {
+            +interface PoolPluginFactorySpi <<red>> {
                 +String getPluginApiVersion ()
                 +String getCommonApiVersion ()
                 +String getPoolPluginName ()
                 +PoolPluginSpi getPoolPlugin ()
             }
-            +interface PluginFactorySpi {
+            +interface PluginFactorySpi <<red>> {
                 +String getPluginApiVersion ()
                 +String getCommonApiVersion ()
                 +String getPluginName ()
                 +PluginSpi getPlugin ()
             }
-            +interface PoolPluginSpi {
+            +interface PoolPluginSpi <<red>> {
                 +String getName ()
                 +SortedSet<String> getReaderGroupReferences ()
-                +<color:blue>PoolReaderSpi</color> allocateReader (String readerGroupReference)
+                +PoolReaderSpi</color> allocateReader (String readerGroupReference)
                 +void releaseReader (ReaderSpi readerSpi)
                 +void onUnregister ()
             }
-            +interface PluginSpi {
+            +interface PluginSpi <<red>> {
                 +String getName ()
                 +Set<ReaderSpi> searchAvailableReaders ()
                 +void onUnregister ()
             }
         }
-        +interface ObservablePluginSpi extends PluginSpi {
+        +interface ObservablePluginSpi <<red>> extends PluginSpi {
             +int getMonitoringCycleDuration ()
             +Set<String> searchAvailableReaderNames ()
             +ReaderSpi searchReader (String readerName)
         }
-        +interface AutonomousObservablePluginSpi extends PluginSpi {
+        +interface AutonomousObservablePluginSpi <<red>> extends PluginSpi {
             --
-            +void connect (
-                \tAutonomousObservablePluginApi
-                \t\tautonomousObservablePluginApi)
+            +<color:red><s>void connect (
+                \t<color:red><s>AutonomousObservablePluginApi
+                \t\t<color:red><s>autonomousObservablePluginApi)
+            +<color:blue>void setCallback (
+                \t<color:blue>AutonomousObservablePluginApi callback)
         }
         package reader {
-            +interface ReaderSpi {
+            +interface ReaderSpi <<red>> {
                 +String getName ()
 
                 +void openPhysicalChannel ()
@@ -135,59 +143,83 @@ package "org.eclipse.keyple.core.plugin" as api {
                 +boolean isContactless ()
                 +void onUnregister ()
             }
-            +interface "<color:blue>PoolReaderSpi" as PoolReaderSpi extends ReaderSpi {
-                +<color:blue>Object getSelectedSmartCard ()
+            +interface "PoolReaderSpi" as PoolReaderSpi <<red>> extends ReaderSpi {
+                +Object getSelectedSmartCard ()
             }
-            +interface ConfigurableReaderSpi extends ReaderSpi {
+            +interface ConfigurableReaderSpi <<red>> extends ReaderSpi {
                 +boolean isProtocolSupported (String readerProtocol)
                 +void activateProtocol (String readerProtocol)
                 +void deactivateProtocol (String readerProtocol)
                 +boolean isCurrentProtocol (String readerProtocol)
             }
-            +interface AutonomousSelectionReaderSpi extends ReaderSpi {
+            +interface AutonomousSelectionReaderSpi <<red>> extends ReaderSpi {
                 +byte[] openChannelForAid (byte[] dfName, byte isoControlMask)
                 +void closeLogicalChannel ()
             }
             package observable {
-                +interface ObservableReaderSpi extends api.spi.reader.ReaderSpi {
+                +interface ObservableReaderSpi <<red>> extends api.spi.reader.ReaderSpi {
                     +void onStartDetection ()
                     +void onStopDetection ()
                 }
                 package state {
                     package processing {
-                        +interface WaitForCardRemovalBlockingDuringProcessingSpi {
-                            +void waitForCardRemovalDuringProcessing ()
-                            +void stopWaitForCardRemovalDuringProcessing ()
+                        +interface "<color:red><s>WaitForCardRemovalBlockingDuringProcessingSpi" as WaitForCardRemovalBlockingDuringProcessingSpi <<red>> {
+                            +<color:red><s>void waitForCardRemovalDuringProcessing ()
+                            +<color:red><s>void stopWaitForCardRemovalDuringProcessing ()
                         }
-                        +interface DontWaitForCardRemovalDuringProcessingSpi {
+                        +interface "<color:red><s>DontWaitForCardRemovalDuringProcessingSpi" as DontWaitForCardRemovalDuringProcessingSpi <<red>> {
                         }
                     }
                     package insertion {
-                        +interface WaitForCardInsertionAutonomousSpi {
+                        +interface "<color:red><s>WaitForCardInsertionBlockingSpi" as WaitForCardInsertionBlockingSpi <<red>> {
+                            +<color:red><s>void waitForCardInsertion ()
+                            +<color:red><s>void stopWaitForCardInsertion ()
+                        }
+                        +interface "<color:blue>CardInsertionWaiterBlockingSpi" as CardInsertionWaiterBlockingSpi <<red>> {
+                            +<color:blue>void waitForCardInsertion ()
+                            +<color:blue>void stopWaitForCardInsertion ()
+                        }
+                        +interface "<color:red><s>WaitForCardInsertionNonBlockingSpi" as WaitForCardInsertionNonBlockingSpi <<red>> {
+                        }
+                        +interface "<color:blue>CardInsertionWaiterNonBlockingSpi" as CardInsertionWaiterNonBlockingSpi <<red>> {
+                            +<color:blue>int getCardInsertionMonitoringSleepDuration ()
+                        }
+                        +interface "<color:red><s>WaitForCardInsertionAutonomousSpi" as WaitForCardInsertionAutonomousSpi <<red>> {
                             --
-                            +void connect (
-                                \tWaitForCardInsertionAutonomousReaderApi
-                                \t\twaitForCardInsertionAutonomousReaderApi)
+                            +<color:red><s>void connect (
+                                \t<color:red><s>WaitForCardInsertionAutonomousReaderApi
+                                \t\t<color:red><s>waitForCardInsertionAutonomousReaderApi)
                         }
-                        +interface WaitForCardInsertionBlockingSpi {
-                            +void waitForCardInsertion ()
-                            +void stopWaitForCardInsertion ()
-                        }
-                        +interface WaitForCardInsertionNonBlockingSpi {
+                        +interface "<color:blue>CardInsertionWaiterAsynchronousSpi" as CardInsertionWaiterAsynchronousSpi <<red>> {
+                            --
+                            +<color:blue>void setCallback (
+                                \t<color:blue>CardInsertionWaiterAsynchronousApi callback)
                         }
                     }
                     package removal {
-                        +interface WaitForCardRemovalAutonomousSpi {
+                        +interface "<color:red><s>WaitForCardRemovalBlockingSpi" as WaitForCardRemovalBlockingSpi <<red>> {
+                            +<color:red><s>void waitForCardRemoval ()
+                            +<color:red><s>void stopWaitForCardRemoval ()
+                        }
+                        +interface "<color:blue>CardRemovalWaiterBlockingSpi" as CardRemovalWaiterBlockingSpi <<red>> {
+                            +<color:blue>void waitForCardRemoval ()
+                            +<color:blue>void stopWaitForCardRemoval ()
+                        }
+                        +interface "<color:red><s>WaitForCardRemovalNonBlockingSpi" as WaitForCardRemovalNonBlockingSpi <<red>> {
+                        }
+                        +interface "<color:blue>CardRemovalWaiterNonBlockingSpi" as CardRemovalWaiterNonBlockingSpi <<red>> {
+                            +<color:blue>int getCardRemovalMonitoringSleepDuration ()
+                        }
+                        +interface "<color:red><s>WaitForCardRemovalAutonomousSpi" as WaitForCardRemovalAutonomousSpi <<red>> {
                             --
-                            +void connect (
-                                \tWaitForCardRemovalAutonomousReaderApi
-                                \t\twaitForCardRemovalAutonomousReaderApi)
+                            +<color:red><s>void connect (
+                                \t<color:red><s>WaitForCardRemovalAutonomousReaderApi
+                                \t\t<color:red><s>waitForCardRemovalAutonomousReaderApi)
                         }
-                        +interface WaitForCardRemovalBlockingSpi {
-                            +void waitForCardRemoval ()
-                            +void stopWaitForCardRemoval ()
-                        }
-                        +interface WaitForCardRemovalNonBlockingSpi {
+                        +interface "<color:blue>CardRemovalWaiterAsynchronousSpi" as CardRemovalWaiterAsynchronousSpi <<red>> {
+                            --
+                            +<color:blue>void setCallback (
+                                \t<color:blue>CardRemovalWaiterAsynchronousApi callback)
                         }
                     }
                 }
@@ -211,8 +243,10 @@ PoolPluginSpi ..> PoolReaderSpi #C_LINK : provide >
 AutonomousObservablePluginSpi .up.> AutonomousObservablePluginApi #C_USE : use >
 
 WaitForCardInsertionAutonomousSpi ..> WaitForCardInsertionAutonomousReaderApi #C_USE : use >
+CardInsertionWaiterAsynchronousSpi ..> CardInsertionWaiterAsynchronousApi #C_USE : use >
 
 WaitForCardRemovalAutonomousSpi ..> WaitForCardRemovalAutonomousReaderApi #C_USE : use >
+CardRemovalWaiterAsynchronousSpi ..> CardRemovalWaiterAsynchronousApi #C_USE : use >
 
 ' == LAYOUT ==
 
@@ -225,10 +259,16 @@ ObservableReaderSpi -[hidden]- state
 WaitForCardInsertionBlockingSpi -[hidden]- WaitForCardInsertionNonBlockingSpi
 WaitForCardInsertionNonBlockingSpi -[hidden]- WaitForCardInsertionAutonomousSpi
 
+CardInsertionWaiterBlockingSpi -[hidden]- CardInsertionWaiterNonBlockingSpi
+CardInsertionWaiterNonBlockingSpi -[hidden]- CardInsertionWaiterAsynchronousSpi
+
 WaitForCardRemovalBlockingDuringProcessingSpi -[hidden]- DontWaitForCardRemovalDuringProcessingSpi
 
 WaitForCardRemovalBlockingSpi -[hidden]- WaitForCardRemovalNonBlockingSpi
 WaitForCardRemovalNonBlockingSpi -[hidden]- WaitForCardRemovalAutonomousSpi
+
+CardRemovalWaiterBlockingSpi -[hidden]- CardRemovalWaiterNonBlockingSpi
+CardRemovalWaiterNonBlockingSpi -[hidden]- CardRemovalWaiterAsynchronousSpi
 
 ' == STYLE ==
 
@@ -238,7 +278,6 @@ package api.spi.reader #C_GREY3 {}
 package api.spi.reader.observable #C_GREY4 {}
 package api.spi.reader.observable.state #C_GREY5 {}
 package api.spi.reader.observable.state.insertion #C_GREY6 {}
-package api.spi.reader.observable.state.processing #C_GREY6 {}
 package api.spi.reader.observable.state.removal #C_GREY6 {}
 
 @enduml

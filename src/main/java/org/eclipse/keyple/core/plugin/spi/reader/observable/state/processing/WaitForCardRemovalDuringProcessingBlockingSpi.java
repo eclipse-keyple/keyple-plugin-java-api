@@ -20,7 +20,9 @@ import org.eclipse.keyple.core.plugin.TaskCanceledException;
  * <p>A typical example of readers conforming to this mode of operation are PC/SC type readers.
  *
  * @since 2.0.0
+ * @deprecated Useless SPI, don't implement it. Will be removed in a future version of this API.
  */
+@Deprecated
 public interface WaitForCardRemovalDuringProcessingBlockingSpi {
 
   /**
@@ -33,13 +35,17 @@ public interface WaitForCardRemovalDuringProcessingBlockingSpi {
    * @throws ReaderIOException If the communication with the reader
    * @throws TaskCanceledException If the task has been canceled and is no longer active
    * @since 2.0.0
+   * @deprecated
    */
+  @Deprecated
   void waitForCardRemovalDuringProcessing() throws ReaderIOException, TaskCanceledException;
 
   /**
    * Interrupts the waiting of the removal of the card
    *
    * @since 2.0.0
+   * @deprecated
    */
+  @Deprecated
   void stopWaitForCardRemovalDuringProcessing();
 }

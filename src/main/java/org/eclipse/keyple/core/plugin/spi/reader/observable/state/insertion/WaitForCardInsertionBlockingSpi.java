@@ -22,7 +22,10 @@ import org.eclipse.keyple.core.plugin.TaskCanceledException;
  * capable of performing RF polling without waiting for a command from the application.
  *
  * @since 2.0.0
+ * @deprecated Implement {@link CardInsertionWaiterBlockingSpi} instead (will be removed in a future
+ *     version of this API).
  */
+@Deprecated
 public interface WaitForCardInsertionBlockingSpi {
 
   /**
@@ -35,13 +38,17 @@ public interface WaitForCardInsertionBlockingSpi {
    * @throws ReaderIOException If the communication with the reader has failed.
    * @throws TaskCanceledException If the task has been canceled and is no longer active
    * @since 2.0.0
+   * @deprecated
    */
+  @Deprecated
   void waitForCardInsertion() throws ReaderIOException, TaskCanceledException;
 
   /**
    * Interrupts the waiting of a card insertion.
    *
    * @since 2.0.0
+   * @deprecated
    */
+  @Deprecated
   void stopWaitForCardInsertion();
 }

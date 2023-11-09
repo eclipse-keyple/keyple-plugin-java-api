@@ -12,42 +12,29 @@
 package org.eclipse.keyple.core.plugin.spi.reader.observable;
 
 import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
-import org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion.WaitForCardInsertionAutonomousSpi;
-import org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion.WaitForCardInsertionBlockingSpi;
-import org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion.WaitForCardInsertionNonBlockingSpi;
-import org.eclipse.keyple.core.plugin.spi.reader.observable.state.processing.DontWaitForCardRemovalDuringProcessingSpi;
-import org.eclipse.keyple.core.plugin.spi.reader.observable.state.processing.WaitForCardRemovalDuringProcessingBlockingSpi;
-import org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.WaitForCardRemovalAutonomousSpi;
-import org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.WaitForCardRemovalBlockingSpi;
-import org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.WaitForCardRemovalNonBlockingSpi;
+import org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion.*;
+import org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.*;
 
 /**
  * Reader able to detect the insertion and removal of cards.
  *
  * <p>In addition, an observable reader must also define its observation capabilities for the card
- * insertion, processing and removal steps.
+ * insertion and removal steps.
  *
  * <p>For the card insertion state, it must implement one of the following interfaces:
  *
  * <ul>
- *   <li>{@link WaitForCardInsertionBlockingSpi}
- *   <li>{@link WaitForCardInsertionNonBlockingSpi}
- *   <li>{@link WaitForCardInsertionAutonomousSpi}
- * </ul>
- *
- * <p>For the card processing state, it must implement one of the following interfaces:
- *
- * <ul>
- *   <li>{@link WaitForCardRemovalDuringProcessingBlockingSpi}
- *   <li>{@link DontWaitForCardRemovalDuringProcessingSpi}
+ *   <li>{@link CardInsertionWaiterAsynchronousSpi}
+ *   <li>{@link CardInsertionWaiterBlockingSpi}
+ *   <li>{@link CardInsertionWaiterNonBlockingSpi}
  * </ul>
  *
  * <p>For the card removal state, it must implement one of the following interfaces:
  *
  * <ul>
- *   <li>{@link WaitForCardRemovalBlockingSpi}
- *   <li>{@link WaitForCardRemovalNonBlockingSpi}
- *   <li>{@link WaitForCardRemovalAutonomousSpi}
+ *   <li>{@link CardRemovalWaiterAsynchronousSpi}
+ *   <li>{@link CardRemovalWaiterBlockingSpi}
+ *   <li>{@link CardRemovalWaiterNonBlockingSpi}
  * </ul>
  *
  * @since 2.0.0

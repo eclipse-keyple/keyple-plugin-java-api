@@ -5,10 +5,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Added
-- Added project status badges on `README.md` file.
 ### Fixed
 - CI: code coverage report when releasing.
+### Added
+- CI: added project status badges on `README.md` file.
+- Added precisions to Javadoc of `openPhysicalChannel()`, `closePhysicalChannel()` and `checkCardPresence()` methods of 
+  the `ReaderSpi` interface.
+- `CardInsertionWaiterAsynchronousApi` (renaming)
+- `CardRemovalWaiterAsynchronousApi` (renaming)
+- `CardInsertionWaiterAsynchronousSpi` (renaming)
+- `CardInsertionWaiterBlockingSpi` (renaming)
+- `CardInsertionWaiterNonBlockingSpi` (renaming and adds the capability to customize the polling cycle duration)
+- `CardRemovalWaiterAsynchronousSpi` (renaming)
+- `CardRemovalWaiterBlockingSpi` (renaming)
+- `CardRemovalWaiterNonBlockingSpi` (renaming and adds the capability to customize the polling cycle duration)
+- `AutonomousObservablePluginSpi.setCallback(...)` (renaming)
+### Deprecated
+- `WaitForCardInsertionAutonomousReaderApi` (replaced by `CardInsertionWaiterAsynchronousApi`)
+- `WaitForCardRemovalAutonomousReaderApi` (replaced by `CardRemovalWaiterAsynchronousApi`)
+- `WaitForCardInsertionAutonomousSpi` (replaced by `CardInsertionWaiterAsynchronousSpi`)
+- `WaitForCardInsertionBlockingSpi` (replaced by `CardInsertionWaiterBlockingSpi`)
+- `WaitForCardInsertionNonBlockingSpi` (replaced by `CardInsertionWaiterNonBlockingSpi`)
+- `DontWaitForCardRemovalDuringProcessingSpi` (no more used)
+- `WaitForCardRemovalDuringProcessingBlockingSpi` (no more used)
+- `WaitForCardRemovalAutonomousSpi` (replaced by `CardRemovalWaiterAsynchronousSpi`)
+- `WaitForCardRemovalBlockingSpi` (replaced by `CardRemovalWaiterBlockingSpi`)
+- `WaitForCardRemovalNonBlockingSpi` (replaced by `CardRemovalWaiterNonBlockingSpi`)
+- `AutonomousObservablePluginSpi.connect(...)` (replaced by `setCallback(...)`)
 
 ## [2.1.0] - 2023-04-25
 ### Added

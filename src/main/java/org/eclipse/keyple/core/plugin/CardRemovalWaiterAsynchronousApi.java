@@ -1,5 +1,5 @@
 /* **************************************************************************************
- * Copyright (c) 2021 Calypso Networks Association https://calypsonet.org/
+ * Copyright (c) 2023 Calypso Networks Association https://calypsonet.org/
  *
  * See the NOTICE file(s) distributed with this work for additional information
  * regarding copyright ownership.
@@ -12,18 +12,17 @@
 package org.eclipse.keyple.core.plugin;
 
 /**
- * API properties.
+ * API associated to a {@link
+ * org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.WaitForCardRemovalAutonomousSpi}
  *
- * @since 2.0.0
+ * @since 2.2.0
  */
-public final class PluginApiProperties {
-  /**
-   * API version: {@value}
-   *
-   * @since 2.0.0
-   */
-  public static final String VERSION = "2.2";
+public interface CardRemovalWaiterAsynchronousApi {
 
-  /** Private constructor */
-  private PluginApiProperties() {}
+  /**
+   * Must be invoked when a card is removed.
+   *
+   * @since 2.2.0
+   */
+  void onCardRemoved();
 }

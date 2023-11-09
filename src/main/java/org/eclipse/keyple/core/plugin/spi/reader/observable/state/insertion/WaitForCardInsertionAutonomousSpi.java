@@ -21,7 +21,10 @@ import org.eclipse.keyple.core.plugin.WaitForCardInsertionAutonomousReaderApi;
  * readers.
  *
  * @since 2.0.0
+ * @deprecated Implement {@link CardInsertionWaiterAsynchronousSpi} instead (will be removed in a
+ *     future version of this API).
  */
+@Deprecated
 public interface WaitForCardInsertionAutonomousSpi {
 
   /**
@@ -29,6 +32,8 @@ public interface WaitForCardInsertionAutonomousSpi {
    *
    * @param waitForCardInsertionAutonomousReaderApi The API to connect.
    * @since 2.0.0
+   * @deprecated
    */
+  @Deprecated
   void connect(WaitForCardInsertionAutonomousReaderApi waitForCardInsertionAutonomousReaderApi);
 }

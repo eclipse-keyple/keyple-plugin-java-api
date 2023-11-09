@@ -28,6 +28,16 @@ public interface AutonomousObservablePluginSpi extends PluginSpi {
    *
    * @param autonomousObservablePluginApi The API to connect.
    * @since 2.0.0
+   * @deprecated Use {@link #setCallback(AutonomousObservablePluginApi)} instead.
    */
+  @Deprecated
   void connect(AutonomousObservablePluginApi autonomousObservablePluginApi);
+
+  /**
+   * Sets the asynchronous callback that will be called when a reader is connected or disconnected.
+   *
+   * @param callback The asynchronous callback to be called.
+   * @since 2.2.0
+   */
+  void setCallback(AutonomousObservablePluginApi callback);
 }

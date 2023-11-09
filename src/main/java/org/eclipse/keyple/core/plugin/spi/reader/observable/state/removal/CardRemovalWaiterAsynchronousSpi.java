@@ -1,5 +1,5 @@
 /* **************************************************************************************
- * Copyright (c) 2019 Calypso Networks Association https://calypsonet.org/
+ * Copyright (c) 2023 Calypso Networks Association https://calypsonet.org/
  *
  * See the NOTICE file(s) distributed with this work for additional information
  * regarding copyright ownership.
@@ -11,16 +11,20 @@
  ************************************************************************************** */
 package org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal;
 
+import org.eclipse.keyple.core.plugin.CardRemovalWaiterAsynchronousApi;
+
 /**
- * Reader that require an external active stimulation to detect card removal without implementing a
- * waiting mechanism.
+ * This SPI is specifically designed for plugins that handle card removal asynchronously.
  *
- * <p>A typical example of readers conforming to this mode of operation are terminals embedding a
- * slave RF communication module.
- *
- * @since 2.0.0
- * @deprecated Implement {@link CardRemovalWaiterNonBlockingSpi} instead (will be removed in a
- *     future version of this API).
+ * @since 2.2.0
  */
-@Deprecated
-public interface WaitForCardRemovalNonBlockingSpi {}
+public interface CardRemovalWaiterAsynchronousSpi {
+
+  /**
+   * Sets the asynchronous callback that will be called when the card removal is complete.
+   *
+   * @param callback The asynchronous callback to be called.
+   * @since 2.2.0
+   */
+  void setCallback(CardRemovalWaiterAsynchronousApi callback);
+}
