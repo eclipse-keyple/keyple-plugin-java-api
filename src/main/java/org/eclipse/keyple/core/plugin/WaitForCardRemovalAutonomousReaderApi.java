@@ -19,6 +19,7 @@ package org.eclipse.keyple.core.plugin;
  * @deprecated Use {@link CardRemovalWaiterAsynchronousApi} instead (will be removed in a future
  *     version of this API).
  */
+@Deprecated
 public interface WaitForCardRemovalAutonomousReaderApi {
 
   /**
@@ -27,5 +28,6 @@ public interface WaitForCardRemovalAutonomousReaderApi {
    * @since 2.0.0
    * @deprecated Use {@link CardRemovalWaiterAsynchronousApi#onCardRemoved()} instead.
    */
+  @Deprecated
   void onCardRemoved();
 }

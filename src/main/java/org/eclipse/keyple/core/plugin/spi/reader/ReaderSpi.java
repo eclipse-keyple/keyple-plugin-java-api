@@ -40,7 +40,7 @@ public interface ReaderSpi {
   String getName();
 
   /**
-   * Attempts to open the physical channel (to established a communication with the card).
+   * Attempts to open the physical channel (to establish a communication with the card).
    *
    * @throws ReaderIOException If the communication with the reader has failed.
    * @throws CardIOException If the communication with the card has failed.
