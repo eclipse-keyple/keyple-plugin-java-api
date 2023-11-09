@@ -132,8 +132,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  periodically by the service when a card removal is expected. The card is considered removed when
  the transmission fails.
 
- <p>The value returned by the <a href="#getCardInsertionMonitoringSleepDuration()"><code>getCardInsertionMonitoringSleepDuration()</code></a> will be used as
- an argument to <code>Thread.sleep(long)</code> between two calls to <a href="../../../ReaderSpi.html#transmitApdu(byte%5B%5D)"><code>ReaderSpi.transmitApdu(byte[])</code></a>.
+ <p>The value returned by the <a href="#getCardRemovalMonitoringSleepDuration()"><code>getCardRemovalMonitoringSleepDuration()</code></a> will be used as an
+ argument to <code>Thread.sleep(long)</code> between two calls to <a href="../../../ReaderSpi.html#transmitApdu(byte%5B%5D)"><code>ReaderSpi.transmitApdu(byte[])</code></a>.
 
  <p>A typical example of readers conforming to this mode of operation are terminals embedding a
  slave RF communication module without card presence feature.</div>
@@ -163,7 +163,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCardInsertionMonitoringSleepDuration()">getCardInsertionMonitoringSleepDuration</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCardRemovalMonitoringSleepDuration()">getCardRemovalMonitoringSleepDuration</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Provides the value of the sleep duration (in milliseconds) inserted between two calls to <a href="../../../ReaderSpi.html#transmitApdu(byte%5B%5D)"><code>ReaderSpi.transmitApdu(byte[])</code></a>.</div>
 </td>
@@ -185,13 +185,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="getCardInsertionMonitoringSleepDuration()">
+<a id="getCardRemovalMonitoringSleepDuration()">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>getCardInsertionMonitoringSleepDuration</h4>
-<pre class="methodSignature">int&nbsp;getCardInsertionMonitoringSleepDuration()</pre>
+<h4>getCardRemovalMonitoringSleepDuration</h4>
+<pre class="methodSignature">int&nbsp;getCardRemovalMonitoringSleepDuration()</pre>
 <div class="block">Provides the value of the sleep duration (in milliseconds) inserted between two calls to <a href="../../../ReaderSpi.html#transmitApdu(byte%5B%5D)"><code>ReaderSpi.transmitApdu(byte[])</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
