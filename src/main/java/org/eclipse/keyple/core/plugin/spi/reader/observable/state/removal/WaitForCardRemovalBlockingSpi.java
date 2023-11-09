@@ -22,8 +22,8 @@ import org.eclipse.keyple.core.plugin.TaskCanceledException;
  * capable of performing RF polling without waiting for a command from the application.
  *
  * @since 2.0.0
- * @deprecated Implement {@link CardRemovalWaiterBlockingSpi} instead (will be removed in a future version
- *     of this API).
+ * @deprecated Implement {@link CardRemovalWaiterBlockingSpi} instead (will be removed in a future
+ *     version of this API).
  */
 @Deprecated
 public interface WaitForCardRemovalBlockingSpi {

@@ -11,7 +11,6 @@
  ************************************************************************************** */
 package org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion;
 
-import org.eclipse.keyple.core.plugin.CardInsertionWaiterAsynchronousApi;
 import org.eclipse.keyple.core.plugin.WaitForCardInsertionAutonomousReaderApi;
 
 /**
@@ -22,8 +21,8 @@ import org.eclipse.keyple.core.plugin.WaitForCardInsertionAutonomousReaderApi;
  * readers.
  *
  * @since 2.0.0
- * @deprecated Implement {@link CardInsertionWaiterAsynchronousSpi} instead (will be removed in a future
- *     version of this API).
+ * @deprecated Implement {@link CardInsertionWaiterAsynchronousSpi} instead (will be removed in a
+ *     future version of this API).
  */
 @Deprecated
 public interface WaitForCardInsertionAutonomousSpi {
