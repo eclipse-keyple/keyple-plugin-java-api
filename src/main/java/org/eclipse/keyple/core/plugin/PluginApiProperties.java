@@ -22,7 +22,7 @@ public final class PluginApiProperties {
    *
    * @since 2.0.0
    */
-  public static final String VERSION = "2.2";
+  public static final String VERSION = "2.3";
 
   /** Private constructor */
   private PluginApiProperties() {}

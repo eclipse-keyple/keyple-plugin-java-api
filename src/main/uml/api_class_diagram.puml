@@ -1,6 +1,6 @@
 @startuml
 title
-    Keyple - keyple-plugin-java-api - 2.2.+ (2023-11-08)
+    Keyple - keyple-plugin-java-api - 2.3.+ (2024-03-26)
 end title
 
 ' == THEME ==
@@ -59,17 +59,17 @@ package "org.eclipse.keyple.core.plugin" as api {
         +void onReaderConnected (Set<ReaderSpi> readers)
         +void onReaderDisconnected (Set<String> readerNames)
     }
-    +interface "<color:red><s>WaitForCardInsertionAutonomousReaderApi" as WaitForCardInsertionAutonomousReaderApi {
-        +<color:red><s>void onCardInserted ()
+    +interface "<s>WaitForCardInsertionAutonomousReaderApi" as WaitForCardInsertionAutonomousReaderApi {
+        +<s>void onCardInserted ()
     }
-    +interface "<color:red><s>WaitForCardRemovalAutonomousReaderApi" as WaitForCardRemovalAutonomousReaderApi {
-        +<color:red><s>void onCardRemoved ()
+    +interface "<s>WaitForCardRemovalAutonomousReaderApi" as WaitForCardRemovalAutonomousReaderApi {
+        +<s>void onCardRemoved ()
     }
-    +interface "<color:blue>CardInsertionWaiterAsynchronousApi" as CardInsertionWaiterAsynchronousApi {
-        +<color:blue>void onCardInserted ()
+    +interface "CardInsertionWaiterAsynchronousApi" as CardInsertionWaiterAsynchronousApi {
+        +void onCardInserted ()
     }
-    +interface "<color:blue>CardRemovalWaiterAsynchronousApi" as CardRemovalWaiterAsynchronousApi {
-        +<color:blue>void onCardRemoved ()
+    +interface "CardRemovalWaiterAsynchronousApi" as CardRemovalWaiterAsynchronousApi {
+        +void onCardRemoved ()
     }
     +class "<<Exception>>\n**final** PluginIOException" as PluginIOException <<green>> {
         +PluginIOException (String message)
@@ -123,11 +123,11 @@ package "org.eclipse.keyple.core.plugin" as api {
         }
         +interface AutonomousObservablePluginSpi <<red>> extends PluginSpi {
             --
-            +<color:red><s>void connect (
-                \t<color:red><s>AutonomousObservablePluginApi
-                \t\t<color:red><s>autonomousObservablePluginApi)
-            +<color:blue>void setCallback (
-                \t<color:blue>AutonomousObservablePluginApi callback)
+            +<s>void connect (
+                \t<s>AutonomousObservablePluginApi
+                \t\t<s>autonomousObservablePluginApi)
+            +void setCallback (
+                \tAutonomousObservablePluginApi callback)
         }
         package reader {
             +interface ReaderSpi <<red>> {
@@ -163,63 +163,67 @@ package "org.eclipse.keyple.core.plugin" as api {
                 }
                 package state {
                     package processing {
-                        +interface "<color:red><s>WaitForCardRemovalBlockingDuringProcessingSpi" as WaitForCardRemovalBlockingDuringProcessingSpi <<red>> {
-                            +<color:red><s>void waitForCardRemovalDuringProcessing ()
-                            +<color:red><s>void stopWaitForCardRemovalDuringProcessing ()
+                        +interface "<s>WaitForCardRemovalBlockingDuringProcessingSpi" as WaitForCardRemovalBlockingDuringProcessingSpi <<red>> {
+                            +<s>void waitForCardRemovalDuringProcessing ()
+                            +<s>void stopWaitForCardRemovalDuringProcessing ()
                         }
-                        +interface "<color:red><s>DontWaitForCardRemovalDuringProcessingSpi" as DontWaitForCardRemovalDuringProcessingSpi <<red>> {
+                        +interface "<s>DontWaitForCardRemovalDuringProcessingSpi" as DontWaitForCardRemovalDuringProcessingSpi <<red>> {
+                        }
+                        +interface "<color:blue>CardPresenceMonitorBlockingSpi" as CardPresenceMonitorBlockingSpi <<red>> {
+                            +<color:blue>void monitorCardPresenceDuringProcessing ()
+                            +<color:blue>void stopCardPresenceMonitoringDuringProcessing ()
                         }
                     }
                     package insertion {
-                        +interface "<color:red><s>WaitForCardInsertionBlockingSpi" as WaitForCardInsertionBlockingSpi <<red>> {
-                            +<color:red><s>void waitForCardInsertion ()
-                            +<color:red><s>void stopWaitForCardInsertion ()
+                        +interface "<s>WaitForCardInsertionBlockingSpi" as WaitForCardInsertionBlockingSpi <<red>> {
+                            +<s>void waitForCardInsertion ()
+                            +<s>void stopWaitForCardInsertion ()
                         }
-                        +interface "<color:blue>CardInsertionWaiterBlockingSpi" as CardInsertionWaiterBlockingSpi <<red>> {
-                            +<color:blue>void waitForCardInsertion ()
-                            +<color:blue>void stopWaitForCardInsertion ()
+                        +interface "CardInsertionWaiterBlockingSpi" as CardInsertionWaiterBlockingSpi <<red>> {
+                            +void waitForCardInsertion ()
+                            +void stopWaitForCardInsertion ()
                         }
-                        +interface "<color:red><s>WaitForCardInsertionNonBlockingSpi" as WaitForCardInsertionNonBlockingSpi <<red>> {
+                        +interface "<s>WaitForCardInsertionNonBlockingSpi" as WaitForCardInsertionNonBlockingSpi <<red>> {
                         }
-                        +interface "<color:blue>CardInsertionWaiterNonBlockingSpi" as CardInsertionWaiterNonBlockingSpi <<red>> {
-                            +<color:blue>int getCardInsertionMonitoringSleepDuration ()
+                        +interface "CardInsertionWaiterNonBlockingSpi" as CardInsertionWaiterNonBlockingSpi <<red>> {
+                            +int getCardInsertionMonitoringSleepDuration ()
                         }
-                        +interface "<color:red><s>WaitForCardInsertionAutonomousSpi" as WaitForCardInsertionAutonomousSpi <<red>> {
+                        +interface "<s>WaitForCardInsertionAutonomousSpi" as WaitForCardInsertionAutonomousSpi <<red>> {
                             --
-                            +<color:red><s>void connect (
-                                \t<color:red><s>WaitForCardInsertionAutonomousReaderApi
-                                \t\t<color:red><s>waitForCardInsertionAutonomousReaderApi)
+                            +<s>void connect (
+                                \t<s>WaitForCardInsertionAutonomousReaderApi
+                                \t\t<s>waitForCardInsertionAutonomousReaderApi)
                         }
-                        +interface "<color:blue>CardInsertionWaiterAsynchronousSpi" as CardInsertionWaiterAsynchronousSpi <<red>> {
+                        +interface "CardInsertionWaiterAsynchronousSpi" as CardInsertionWaiterAsynchronousSpi <<red>> {
                             --
-                            +<color:blue>void setCallback (
-                                \t<color:blue>CardInsertionWaiterAsynchronousApi callback)
+                            +void setCallback (
+                                \tCardInsertionWaiterAsynchronousApi callback)
                         }
                     }
                     package removal {
-                        +interface "<color:red><s>WaitForCardRemovalBlockingSpi" as WaitForCardRemovalBlockingSpi <<red>> {
-                            +<color:red><s>void waitForCardRemoval ()
-                            +<color:red><s>void stopWaitForCardRemoval ()
+                        +interface "<s>WaitForCardRemovalBlockingSpi" as WaitForCardRemovalBlockingSpi <<red>> {
+                            +<s>void waitForCardRemoval ()
+                            +<s>void stopWaitForCardRemoval ()
                         }
-                        +interface "<color:blue>CardRemovalWaiterBlockingSpi" as CardRemovalWaiterBlockingSpi <<red>> {
-                            +<color:blue>void waitForCardRemoval ()
-                            +<color:blue>void stopWaitForCardRemoval ()
+                        +interface "CardRemovalWaiterBlockingSpi" as CardRemovalWaiterBlockingSpi <<red>> {
+                            +void waitForCardRemoval ()
+                            +void stopWaitForCardRemoval ()
                         }
-                        +interface "<color:red><s>WaitForCardRemovalNonBlockingSpi" as WaitForCardRemovalNonBlockingSpi <<red>> {
+                        +interface "<s>WaitForCardRemovalNonBlockingSpi" as WaitForCardRemovalNonBlockingSpi <<red>> {
                         }
-                        +interface "<color:blue>CardRemovalWaiterNonBlockingSpi" as CardRemovalWaiterNonBlockingSpi <<red>> {
-                            +<color:blue>int getCardRemovalMonitoringSleepDuration ()
+                        +interface "CardRemovalWaiterNonBlockingSpi" as CardRemovalWaiterNonBlockingSpi <<red>> {
+                            +int getCardRemovalMonitoringSleepDuration ()
                         }
-                        +interface "<color:red><s>WaitForCardRemovalAutonomousSpi" as WaitForCardRemovalAutonomousSpi <<red>> {
+                        +interface "<s>WaitForCardRemovalAutonomousSpi" as WaitForCardRemovalAutonomousSpi <<red>> {
                             --
-                            +<color:red><s>void connect (
-                                \t<color:red><s>WaitForCardRemovalAutonomousReaderApi
-                                \t\t<color:red><s>waitForCardRemovalAutonomousReaderApi)
+                            +<s>void connect (
+                                \t<s>WaitForCardRemovalAutonomousReaderApi
+                                \t\t<s>waitForCardRemovalAutonomousReaderApi)
                         }
-                        +interface "<color:blue>CardRemovalWaiterAsynchronousSpi" as CardRemovalWaiterAsynchronousSpi <<red>> {
+                        +interface "CardRemovalWaiterAsynchronousSpi" as CardRemovalWaiterAsynchronousSpi <<red>> {
                             --
-                            +<color:blue>void setCallback (
-                                \t<color:blue>CardRemovalWaiterAsynchronousApi callback)
+                            +void setCallback (
+                                \tCardRemovalWaiterAsynchronousApi callback)
                         }
                     }
                 }
