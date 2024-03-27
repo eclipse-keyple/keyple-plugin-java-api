@@ -15,7 +15,7 @@ import org.eclipse.keyple.core.plugin.ReaderIOException;
 import org.eclipse.keyple.core.plugin.TaskCanceledException;
 
 /**
- * Reader able to detect a card removal during processing, between two APDU commands.
+ * Reader able to detect and notify a card removal during processing, between two APDU commands.
  *
  * <p>A typical example of readers conforming to this mode of operation are PC/SC type readers.
  *
@@ -24,7 +24,8 @@ import org.eclipse.keyple.core.plugin.TaskCanceledException;
 public interface CardPresenceMonitorBlockingSpi {
 
   /**
-   * Monitors the card presence indefinitely.
+   * Monitors the card presence indefinitely (the method is blocking as long as the card is
+   * present).
    *
    * <p>This monitoring can be cancelled for an internal (for example timeout) or external reason
    * (for example invocation of {@link #stopCardPresenceMonitoringDuringProcessing()}), in this case
