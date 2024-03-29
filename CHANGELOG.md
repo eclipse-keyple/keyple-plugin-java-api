@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.0] - 2024-03-29
+### Added
+- `CardPresenceMonitorBlockingSpi` as a replacement of the deprecated `WaitForCardRemovalDuringProcessingBlockingSpi` 
+  interface.
+
 ## [2.2.0] - 2023-11-13
 ### Fixed
 - CI: code coverage report when releasing.
@@ -47,7 +52,8 @@ This is the initial release.
 It follows the extraction of Keyple 1.0 components contained in the `eclipse-keyple/keyple-java` repository to dedicated repositories.
 It also brings many major API changes.
 
-[unreleased]: https://github.com/eclipse-keyple/keyple-plugin-java-api/compare/2.2.0...HEAD
+[unreleased]: https://github.com/eclipse-keyple/keyple-plugin-java-api/compare/2.3.0...HEAD
+[2.3.0]: https://github.com/eclipse-keyple/keyple-plugin-java-api/compare/2.2.0...2.3.0
 [2.2.0]: https://github.com/eclipse-keyple/keyple-plugin-java-api/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/eclipse-keyple/keyple-plugin-java-api/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/eclipse-keyple/keyple-plugin-java-api/releases/tag/2.0.0
