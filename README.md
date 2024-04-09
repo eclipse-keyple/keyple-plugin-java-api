@@ -17,8 +17,8 @@ The full documentation, including the **user guide**, **download information** a
 
 ## API documentation
 
-API documentation & class diagram is available online: [eclipse.github.io/keyple-plugin-java-api](https://eclipse.github.io/keyple-plugin-java-api)
+API documentation & class diagram is available online: [eclipse-keyple.github.io/keyple-plugin-java-api](https://eclipse-keyple.github.io/keyple-plugin-java-api)
 
 ## About the source code
 
-The code is built with **Gradle** and is compliant with **Java 1.6** in order to address a wide range of applications.
+The code is built with **Gradle** and is compliant with **Java 1.8** in order to address a wide range of applications.
