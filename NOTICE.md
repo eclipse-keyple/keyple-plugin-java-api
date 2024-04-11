@@ -4,10 +4,10 @@ This content is produced and maintained by the Eclipse Keyple project.
 
 * Project home: https://projects.eclipse.org/projects/iot.keyple
  
-## Supported platform
+## Supported platforms
 
-* Java SE 1.6 compact2
-* Android 4.4 KitKat API level 19
+* Java 1.8
+* Android 7.0 Nougat API Level 
 
 ## Trademarks
  
