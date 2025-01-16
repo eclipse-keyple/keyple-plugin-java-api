@@ -17,7 +17,7 @@ The full documentation, including the **user guide**, **download information** a
 
 ## API documentation
 
-API documentation & class diagram is available online: [eclipse-keyple.github.io/keyple-plugin-java-api](https://eclipse-keyple.github.io/keyple-plugin-java-api)
+API documentation & class diagram is available online: [docs.keyple.org/keyple-plugin-java-api](https://docs.keyple.org/keyple-plugin-java-api)
 
 ## About the source code
 
