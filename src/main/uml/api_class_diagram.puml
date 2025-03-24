@@ -106,7 +106,7 @@ package "org.eclipse.keyple.core.plugin" as api {
             +interface PoolPluginSpi <<red>> {
                 +String getName ()
                 +SortedSet<String> getReaderGroupReferences ()
-                +PoolReaderSpi</color> allocateReader (String readerGroupReference)
+                +PoolReaderSpi allocateReader (String readerGroupReference)
                 +void releaseReader (ReaderSpi readerSpi)
                 +void onUnregister ()
             }
