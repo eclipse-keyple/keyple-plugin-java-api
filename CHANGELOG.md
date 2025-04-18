@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Switched license from `EPL 2.0` to `MIT` (issue [#16]).
+  The license switch has been authorized through a restructuring review supervised by the « Eclipse Management
+  Organization » team https://gitlab.eclipse.org/eclipsefdn/emo-team/emo/-/issues/908#note_3394156.
 
 ## [2.3.1] - 2024-04-12
 ### Changed
@@ -65,6 +69,7 @@ It also brings many major API changes.
 [2.1.0]: https://github.com/eclipse-keyple/keyple-plugin-java-api/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/eclipse-keyple/keyple-plugin-java-api/releases/tag/2.0.0
 
+[#16]: https://github.com/eclipse-keyple/keyple-plugin-java-api/issues/16
 [#7]: https://github.com/eclipse-keyple/keyple-plugin-java-api/issues/7
 
 [eclipse-keyple/keyple#6]: https://github.com/eclipse-keyple/keyple/issues/6
