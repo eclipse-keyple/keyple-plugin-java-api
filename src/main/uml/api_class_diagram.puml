@@ -1,6 +1,6 @@
 @startuml
 title
-    Keyple - keyple-plugin-java-api - 2.3.+ (2024-03-26)
+    Keyple - keyple-plugin-java-api - 2.4.+ (2025-12-09)
 end title
 
 ' == THEME ==
@@ -55,6 +55,14 @@ package "org.eclipse.keyple.core.plugin" as api {
     +class "**final** PluginApiProperties" as ApiProperties <<green>> {
         +{static} **final** String VERSION
     }
+    +interface "<color:blue>CardRequestApi" as CardRequestApi {
+        +<color:blue>List<ApduRequestApi> getApduRequests ()
+        +<color:blue>boolean stopOnUnsuccessfulStatusWord ()
+    }
+    +interface "<color:blue>ApduRequestApi" as ApduRequestApi {
+        +<color:blue>byte[] getApdu ()
+        +<color:blue>Set<Integer> getSuccessfulStatusWords ()
+    }
     +interface AutonomousObservablePluginApi {
         +void onReaderConnected (Set<ReaderSpi> readers)
         +void onReaderDisconnected (Set<String> readerNames)
@@ -71,23 +79,34 @@ package "org.eclipse.keyple.core.plugin" as api {
     +interface "CardRemovalWaiterAsynchronousApi" as CardRemovalWaiterAsynchronousApi {
         +void onCardRemoved ()
     }
-    +class "<<Exception>>\n**final** PluginIOException" as PluginIOException <<green>> {
-        +PluginIOException (String message)
-        +PluginIOException (String message,
-            \tThrowable cause)
-    }
-    +class "<<Exception>>\n**final** ReaderIOException" as ReaderIOException <<green>> {
-        +ReaderIOException (String message)
-        +ReaderIOException (String message,
-            \tThrowable cause)
-    }
-    +class "<<Exception>>\n**final** CardIOException" as CardIOException <<green>> {
-        +CardIOException (String message)
-        +CardIOException (String message,
-            \tThrowable cause)
-    }
-    +class "<<Exception>>\n**final** TaskCanceledException" as TaskCanceledException <<green>> {
-        +TaskCanceledException (String message)
+    together {
+        +class "<<Exception>>\n**final** TaskCanceledException" as TaskCanceledException <<green>> {
+            +TaskCanceledException (String message)
+        }
+        +interface "<color:blue>ApduExchangeException" as ApduExchangeException <<red>> {
+            +<color:blue>CardResponseSpi getCardResponse ()
+            +<color:blue>Boolean isCardResponseComplete ()
+        }
+        +class "<<Exception>>\n**final** PluginIOException" as PluginIOException <<green>> {
+            +PluginIOException (String message)
+            +PluginIOException (String message, Throwable cause)
+        }
+        +class "<<Exception>>\n**final** ReaderIOException" as ReaderIOException <<green>> implements ApduExchangeException {
+            +ReaderIOException (String message)
+            +ReaderIOException (String message, Throwable cause)
+            +<color:blue>ReaderIOException (\n\t<color:blue>CardResponseSpi cardResponse, boolean isCardResponseComplete,\n\t<color:blue>String message\n<color:blue>)
+            +<color:blue>ReaderIOException (\n\t<color:blue>CardResponseSpi cardResponse, boolean isCardResponseComplete,\n\t<color:blue>String message, Throwable cause\n<color:blue>)
+        }
+        +class "<<Exception>>\n**final** CardIOException" as CardIOException <<green>> implements ApduExchangeException {
+            +CardIOException (String message)
+            +CardIOException (String message, Throwable cause)
+            +<color:blue>CardIOException (\n\t<color:blue>CardResponseSpi cardResponse, boolean isCardResponseComplete,\n\t<color:blue>String message\n<color:blue>)
+            +<color:blue>CardIOException (\n\t<color:blue>CardResponseSpi cardResponse, boolean isCardResponseComplete,\n\t<color:blue>String message, Throwable cause\n<color:blue>)
+        }
+        +class "<color:blue><<Exception>>\n<color:blue>**final** UnexpectedStatusWordException" as UnexpectedStatusWordException <<green>> implements ApduExchangeException {
+            +<color:blue>UnexpectedStatusWordException (\n\t<color:blue>CardResponseSpi cardResponse, boolean isCardResponseComplete,\n\t<color:blue>String message\n<color:blue>)
+            +<color:blue>UnexpectedStatusWordException (\n\t<color:blue>CardResponseSpi cardResponse, boolean isCardResponseComplete,\n\t<color:blue>String message, Throwable cause\n<color:blue>)
+        }
     }
     package spi {
         together {
@@ -156,6 +175,15 @@ package "org.eclipse.keyple.core.plugin" as api {
                 +byte[] openChannelForAid (byte[] dfName, byte isoControlMask)
                 +void closeLogicalChannel ()
             }
+            +interface "<color:blue>RemoteReaderSpi" as RemoteReaderSpi <<red>> extends ReaderSpi {
+                +<color:blue>CardResponseSpi transmitCardRequest (CardRequestApi cardRequest)
+            }
+            +interface "<color:blue><<Serializable>>\n<color:blue>CardResponseSpi" as CardResponseSpi <<red>> {
+                +<color:blue>List<ApduResponseSpi> getApduResponses ()
+            }
+            +interface "<color:blue><<Serializable>>\n<color:blue>ApduResponseSpi" as ApduResponseSpi <<red>> {
+                +<color:blue>byte[] getApdu ()
+            }
             package observable {
                 +interface ObservableReaderSpi <<red>> extends api.spi.reader.ReaderSpi {
                     +void onStartDetection ()
@@ -169,9 +197,9 @@ package "org.eclipse.keyple.core.plugin" as api {
                         }
                         +interface "<s>DontWaitForCardRemovalDuringProcessingSpi" as DontWaitForCardRemovalDuringProcessingSpi <<red>> {
                         }
-                        +interface "<color:blue>CardPresenceMonitorBlockingSpi" as CardPresenceMonitorBlockingSpi <<red>> {
-                            +<color:blue>void monitorCardPresenceDuringProcessing ()
-                            +<color:blue>void stopCardPresenceMonitoringDuringProcessing ()
+                        +interface "CardPresenceMonitorBlockingSpi" as CardPresenceMonitorBlockingSpi <<red>> {
+                            +void monitorCardPresenceDuringProcessing ()
+                            +void stopCardPresenceMonitoringDuringProcessing ()
                         }
                     }
                     package insertion {
@@ -234,15 +262,22 @@ package "org.eclipse.keyple.core.plugin" as api {
 
 ' Associations
 
-PluginFactorySpi .up.> ApiProperties #C_LINK : provide\nAPI version <
+PluginFactorySpi .up..> ApiProperties #C_LINK : provide\nAPI version <
 PluginFactorySpi ..> PluginSpi #C_LINK : provide >
 
 PluginSpi ..> ReaderSpi #C_LINK : provide >
 
-PoolPluginFactorySpi .up.> ApiProperties #C_LINK : provide\nAPI version <
+PoolPluginFactorySpi .up..> ApiProperties #C_LINK : provide\nAPI version <
 PoolPluginFactorySpi ..> PoolPluginSpi #C_LINK : provide >
 
 PoolPluginSpi ..> PoolReaderSpi #C_LINK : provide >
+
+RemoteReaderSpi ..> CardRequestApi #C_USE : use >
+RemoteReaderSpi ..> CardResponseSpi #C_LINK : provide >
+
+CardRequestApi ..> ApduRequestApi #C_LINK : provide >
+
+CardResponseSpi ..> ApduResponseSpi #C_LINK : provide >
 
 AutonomousObservablePluginSpi .up.> AutonomousObservablePluginApi #C_USE : use >
 
@@ -257,6 +292,8 @@ CardRemovalWaiterAsynchronousSpi ..> CardRemovalWaiterAsynchronousApi #C_USE : u
 ObservablePluginSpi -[hidden]- reader
 
 AutonomousSelectionReaderSpi -[hidden]- ObservableReaderSpi
+
+ApduResponseSpi -[hidden]- observable
 
 ObservableReaderSpi -[hidden]- state
 
@@ -273,6 +310,8 @@ WaitForCardRemovalNonBlockingSpi -[hidden]- WaitForCardRemovalAutonomousSpi
 
 CardRemovalWaiterBlockingSpi -[hidden]- CardRemovalWaiterNonBlockingSpi
 CardRemovalWaiterNonBlockingSpi -[hidden]- CardRemovalWaiterAsynchronousSpi
+
+CardRemovalWaiterAsynchronousApi -[hidden]-- ApduExchangeException
 
 ' == STYLE ==
 
