@@ -1,6 +1,6 @@
 @startuml
 title
-    Keyple - keyple-plugin-java-api - 2.4.+ (2025-12-09)
+    Keyple - keyple-plugin-java-api - 2.4.+ (2026-01-21)
 end title
 
 ' == THEME ==
@@ -175,7 +175,7 @@ package "org.eclipse.keyple.core.plugin" as api {
                 +byte[] openChannelForAid (byte[] dfName, byte isoControlMask)
                 +void closeLogicalChannel ()
             }
-            +interface "<color:blue>RemoteReaderSpi" as RemoteReaderSpi <<red>> extends ReaderSpi {
+            +interface "<color:blue>BatchReaderSpi" as BatchReaderSpi <<red>> extends ReaderSpi {
                 +<color:blue>CardResponseSpi transmitCardRequest (CardRequestApi cardRequest)
             }
             +interface "<color:blue><<Serializable>>\n<color:blue>CardResponseSpi" as CardResponseSpi <<red>> {
@@ -272,8 +272,8 @@ PoolPluginFactorySpi ..> PoolPluginSpi #C_LINK : provide >
 
 PoolPluginSpi ..> PoolReaderSpi #C_LINK : provide >
 
-RemoteReaderSpi ..> CardRequestApi #C_USE : use >
-RemoteReaderSpi ..> CardResponseSpi #C_LINK : provide >
+BatchReaderSpi ..> CardRequestApi #C_USE : use >
+BatchReaderSpi ..> CardResponseSpi #C_LINK : provide >
 
 CardRequestApi ..> ApduRequestApi #C_LINK : provide >
 
