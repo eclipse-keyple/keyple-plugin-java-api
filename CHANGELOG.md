@@ -15,7 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `ReaderSpi.getPowerOnData()`: documented lifecycle (meaningful only after a successful
   `openPhysicalChannel()`) and allowed empty return value.
 - `CardRemovalWaiterNonBlockingSpi`: the service now uses `checkCardPresence()` instead of
-  `transmitApdu()` for card removal polling.
+  `transmitApdu()` for card removal polling. This change is conditioned by the plugin API version:
+  the new behaviour applies only when the plugin declares API version `2.4` or higher.
 - Various Javadoc corrections and minor clarifications.
 ### Fixed
 - `CardRemovalWaiterAsynchronousApi`: corrected `@link` pointing to a deprecated SPI.
