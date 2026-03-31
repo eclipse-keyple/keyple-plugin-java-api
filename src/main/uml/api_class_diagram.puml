@@ -1,6 +1,6 @@
 @startuml
 title
-    Keyple - keyple-plugin-java-api - 2.3.+ (2026-03-31)
+    Keyple - keyple-plugin-java-api - 2.4.+ (2026-03-31)
 end title
 
 ' == THEME ==
@@ -171,9 +171,9 @@ package "org.eclipse.keyple.core.plugin" as api {
                         }
                         +interface "<s>DontWaitForCardRemovalDuringProcessingSpi" as DontWaitForCardRemovalDuringProcessingSpi <<red>> {
                         }
-                        +interface "<color:blue>CardPresenceMonitorBlockingSpi" as CardPresenceMonitorBlockingSpi <<red>> {
-                            +<color:blue>void monitorCardPresenceDuringProcessing ()
-                            +<color:blue>void stopCardPresenceMonitoringDuringProcessing ()
+                        +interface "CardPresenceMonitorBlockingSpi" as CardPresenceMonitorBlockingSpi <<red>> {
+                            +void monitorCardPresenceDuringProcessing ()
+                            +void stopCardPresenceMonitoringDuringProcessing ()
                         }
                     }
                     package insertion {
