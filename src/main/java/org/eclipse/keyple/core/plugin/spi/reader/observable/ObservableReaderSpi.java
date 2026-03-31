@@ -13,13 +13,14 @@ package org.eclipse.keyple.core.plugin.spi.reader.observable;
 
 import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
 import org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion.*;
+import org.eclipse.keyple.core.plugin.spi.reader.observable.state.processing.*;
 import org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.*;
 
 /**
  * Reader able to detect the insertion and removal of cards.
  *
  * <p>In addition, an observable reader must also define its observation capabilities for the card
- * insertion and removal steps.
+ * insertion, removal, and optionally processing steps.
  *
  * <p>For the card insertion state, it must implement one of the following interfaces:
  *
@@ -36,6 +37,18 @@ import org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.*;
  *   <li>{@link CardRemovalWaiterBlockingSpi}
  *   <li>{@link CardRemovalWaiterNonBlockingSpi}
  * </ul>
+ *
+ * <p>For the card processing state (monitoring card presence between APDU commands), it may
+ * optionally implement:
+ *
+ * <ul>
+ *   <li>{@link CardPresenceMonitorBlockingSpi} for readers capable of blocking card presence
+ *       monitoring (e.g. PC/SC readers).
+ * </ul>
+ *
+ * <p>Readers implementing {@link CardRemovalWaiterAsynchronousSpi} (e.g. Android NFC readers) do
+ * not need to implement {@link CardPresenceMonitorBlockingSpi}: the asynchronous removal callback
+ * covers all phases, including processing.
  *
  * @since 2.0.0
  */

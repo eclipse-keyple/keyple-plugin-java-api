@@ -24,12 +24,12 @@ import org.eclipse.keyple.core.plugin.TaskCanceledException;
 public interface CardPresenceMonitorBlockingSpi {
 
   /**
-   * Monitors the card presence indefinitely (the method is blocking as long as the card is
-   * present).
+   * Monitors the card presence indefinitely (the method is blocking as long as the card is present)
+   * and returns normally when the card is removed.
    *
    * <p>This monitoring can be cancelled for an internal (for example timeout) or external reason
-   * (for example invocation of {@link #stopCardPresenceMonitoringDuringProcessing()}), in this case
-   * an exception is raised.
+   * (for example invocation of {@link #stopCardPresenceMonitoringDuringProcessing()}), in which
+   * case an exception is raised.
    *
    * @throws ReaderIOException If the communication with the reader has failed.
    * @throws TaskCanceledException If the task has been canceled and is no longer active.

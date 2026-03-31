@@ -12,20 +12,20 @@
 package org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal;
 
 /**
- * This SPI is specifically designed for plugins that don't handle card removal autonomously but
- * requires the sending of an APDU to detect the card removal.
+ * This SPI is specifically designed for plugins that don't handle card removal autonomously.
  *
  * <p>When a plugin implements this SPI, the {@link
- * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#transmitApdu(byte[])} method will be called
+ * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#checkCardPresence()} method will be called
  * periodically by the service when a card removal is expected. The card is considered removed when
- * the transmission fails.
+ * {@code checkCardPresence()} returns {@code false} (which also triggers the internal closure of
+ * the physical channel).
  *
- * <p>The value returned by the {@link #getCardRemovalMonitoringSleepDuration()} will be used as an
+ * <p>The value returned by {@link #getCardRemovalMonitoringSleepDuration()} will be used as an
  * argument to {@link Thread#sleep(long)} between two calls to {@link
- * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#transmitApdu}.
+ * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#checkCardPresence()}.
  *
  * <p>A typical example of readers conforming to this mode of operation are terminals embedding a
- * slave RF communication module without card presence feature.
+ * slave RF communication module without autonomous card presence detection.
  *
  * @since 2.2.0
  */
@@ -33,7 +33,7 @@ public interface CardRemovalWaiterNonBlockingSpi {
 
   /**
    * Provides the value of the sleep duration (in milliseconds) inserted between two calls to {@link
-   * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#transmitApdu}.
+   * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#checkCardPresence()}.
    *
    * @return A positive value (0 is allowed).
    * @since 2.2.0
