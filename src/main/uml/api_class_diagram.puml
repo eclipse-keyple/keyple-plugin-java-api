@@ -88,8 +88,8 @@ package "org.eclipse.keyple.core.plugin" as api {
     }
     +class "<<Exception>>\n**final** TaskCanceledException" as TaskCanceledException <<green>> {
         +TaskCanceledException (String message)
-        +TaskCanceledException (String message,
-            \tThrowable cause)
+        +<color:blue>TaskCanceledException (String message,
+         <color:blue>   \tThrowable cause)
     }
     package spi {
         together {
