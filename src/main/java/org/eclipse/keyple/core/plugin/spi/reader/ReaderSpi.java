@@ -15,8 +15,10 @@ import org.eclipse.keyple.core.plugin.CardIOException;
 import org.eclipse.keyple.core.plugin.ReaderIOException;
 
 /**
- * Reader able to communicate with smart cards whose purpose is to remain present in the reader (for
- * example a SAM reader).
+ * Reader able to communicate with smart cards.
+ *
+ * <p>This is the base interface for all reader types, including readers with permanently present
+ * cards (e.g. SAM readers) and observable readers detecting card insertion and removal.
  *
  * <p>The target devices must comply with the following Calypsonet Terminal requirements:
  *
@@ -40,27 +42,36 @@ public interface ReaderSpi {
   String getName();
 
   /**
-   * Validates the opening of the physical channel. Performs the actual opening if this has not been
-   * done by the {@link #checkCardPresence()} method. In all cases, memorizes the new state for the
-   * operation of the {@link #isPhysicalChannelOpen()} method. After executing this method, the
-   * reader is able to send APDUs to the card.
+   * Ensures that the physical channel is open and that the card is ready to receive APDU commands.
+   *
+   * <p>On successful return:
+   *
+   * <ul>
+   *   <li>the power-on data are available via {@link #getPowerOnData()};
+   *   <li>the card is ready to receive APDU commands via {@link #transmitApdu(byte[])}.
+   * </ul>
+   *
+   * <p>If {@link #checkCardPresence()} has already opened the physical channel (e.g. for
+   * contactless readers performing anti-collision during presence detection), this method is a
+   * no-op.
    *
    * @throws ReaderIOException If the communication with the reader has failed.
-   * @throws CardIOException If the communication with the card has failed.
+   * @throws CardIOException If no card is present or if the communication with the card has failed.
    * @since 2.0.0
    */
   void openPhysicalChannel() throws ReaderIOException, CardIOException;
 
   /**
-   * Tells the reader that card processing is complete and that the next step is to remove the card
-   * from the reader.
+   * Closes the physical channel.
    *
-   * <p>If the reader has the ability to sense the presence of the card without communicating with
-   * it, then this method must proceed to the actual closing of the physical channel (e.g. power
-   * down in the case of a contact reader). Otherwise, this method is limited to changing the
-   * logical opening state of the physical channel and letting the removal procedure do the closing.
+   * <ul>
+   *   <li><b>Card present:</b> physically closes the channel (e.g. cuts the RF field, powers down
+   *       the card, or performs a PC/SC reset).
+   *   <li><b>Card absent:</b> no-op.
+   * </ul>
    *
-   * @throws ReaderIOException If the communication with the reader has failed.
+   * @throws ReaderIOException If the card is present and the close operation fails (reader
+   *     problem).
    * @since 2.0.0
    */
   void closePhysicalChannel() throws ReaderIOException;
@@ -69,20 +80,26 @@ public interface ReaderSpi {
    * Tells if the physical channel is open or not.
    *
    * @return True is the physical channel is open, false if not.
+   * @since 2.0.0
    */
   boolean isPhysicalChannelOpen();
 
   /**
    * Verifies the presence of a card.
    *
-   * <p>Depending on the reader's capabilities, this method will either use a card presence
-   * indicator without necessarily communicating with the card (for example, in the case of a
-   * contact reader equipped with a physical insertion detector using a switch), or will communicate
-   * with the card (in the case of contactless hunting). In the latter case, we can consider that
-   * the physical channel has been opened (and therefore no longer needs to be opened in the {@link
-   * #openPhysicalChannel()} method).
+   * <p>The behavior of this method depends on the state of the physical channel:
    *
-   * @return True if a card is present
+   * <ul>
+   *   <li><b>Physical channel closed:</b> performs a best-effort one-shot detection, starting the
+   *       RF field or powering up the card if necessary. If this detection also opens the physical
+   *       channel (e.g. for contactless readers performing anti-collision), a subsequent call to
+   *       {@link #openPhysicalChannel()} is a no-op.
+   *   <li><b>Physical channel open:</b> verifies that the card is still present using the
+   *       underlying SDK capabilities (e.g. ping APDU). If the card is no longer present, {@link
+   *       #closePhysicalChannel()} is called internally before returning {@code false}.
+   * </ul>
+   *
+   * @return {@code true} if a card is present, {@code false} otherwise.
    * @throws ReaderIOException If the communication with the reader has failed.
    * @since 2.0.0
    */
@@ -92,6 +109,7 @@ public interface ReaderSpi {
    * Gets the power-on data.
    *
    * <p>The power-on data is defined as the data retrieved by the reader when the card is inserted.
+   * This method is only meaningful after {@link #openPhysicalChannel()} has returned successfully.
    *
    * <p>In the case of a contact reader, this is the Answer To Reset data (ATR) defined by ISO7816.
    *
@@ -101,9 +119,11 @@ public interface ReaderSpi {
    * the ISO14443 protocol (ATQA, ATQB, ATS, SAK, etc).
    *
    * <p>These data being variable from one reader to another, they are defined here in string format
-   * which can be either a hexadecimal string or any other relevant information.
+   * which can be either a hexadecimal string or any other relevant information. An empty string may
+   * be returned if no power-on data is available (e.g. for a reader with a permanently powered
+   * card).
    *
-   * @return A not empty String.
+   * @return A non-null String, possibly empty.
    * @since 2.0.0
    */
   String getPowerOnData();
@@ -111,9 +131,11 @@ public interface ReaderSpi {
   /**
    * Transmits an APDU and returns its response.
    *
-   * <p><b>Caution: the implementation must handle the case where the card response is 61xy and
-   * execute the appropriate get response command (Calypsonet Terminal requirement
-   * "RL-SW-61XX.1").</b>
+   * <p><b>Caution: the implementation must handle the ISO 7816-3 T=0 protocol specificity at the
+   * transport level: status word {@code 61xx} (response bytes available) requires automatically
+   * issuing a {@code GET RESPONSE} command (Calypsonet Terminal requirement "RL-SW-61XX.1"). This
+   * is handled at the SPI level because its behavior depends on the underlying reader
+   * implementation (T=0, T=1, PC/SC).</b>
    *
    * @param apduIn The data to be sent to the card.
    * @return A buffer of at least 2 bytes.

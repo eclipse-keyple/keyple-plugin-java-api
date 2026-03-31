@@ -32,7 +32,7 @@ public interface CardRemovalWaiterBlockingSpi {
    * <p>This wait can be cancelled for an internal (for example timeout) or external reason (for
    * example invocation of {@link #stopWaitForCardRemoval()}), in this case an exception is raised.
    *
-   * @throws ReaderIOException If the communication with the reader
+   * @throws ReaderIOException If the communication with the reader has failed.
    * @throws TaskCanceledException If the task has been canceled and is no longer active
    * @since 2.2.0
    */

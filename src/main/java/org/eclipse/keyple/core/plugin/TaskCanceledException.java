@@ -26,4 +26,13 @@ public class TaskCanceledException extends Exception {
   public TaskCanceledException(String message) {
     super(message);
   }
+
+  /**
+   * @param message the message to identify the exception context
+   * @param cause the cause
+   * @since 2.3.3
+   */
+  public TaskCanceledException(String message, Throwable cause) {
+    super(message, cause);
+  }
 }

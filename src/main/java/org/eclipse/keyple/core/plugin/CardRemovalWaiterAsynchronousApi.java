@@ -13,7 +13,7 @@ package org.eclipse.keyple.core.plugin;
 
 /**
  * API associated to a {@link
- * org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.WaitForCardRemovalAutonomousSpi}
+ * org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal.CardRemovalWaiterAsynchronousSpi}
  *
  * @since 2.2.0
  */
