@@ -155,8 +155,14 @@ package "org.eclipse.keyple.core.plugin" as api {
                 +boolean isCurrentProtocol (String readerProtocol)
             }
             +interface AutonomousSelectionReaderSpi <<red>> extends ReaderSpi {
-                +byte[] openChannelForAid (byte[] dfName, byte isoControlMask)
-                +void closeLogicalChannel ()
+                +<color:red><s>byte[] openChannelForAid (byte[] dfName, byte isoControlMask)
+                +<color:blue>ChannelDataSpi openChannel (byte[] aid, byte isoControlMask)
+                +<color:red><s>void closeLogicalChannel ()
+                +<color:blue>void closeChannel (int channel)
+            }
+            +interface "<color:blue>ChannelDataSpi" as ChannelDataSpi <<red>> {
+                +<color:blue>int getChannel ()
+                +<color:blue>byte[] getSelectResponse ()
             }
             package observable {
                 +interface ObservableReaderSpi <<red>> extends api.spi.reader.ReaderSpi {
@@ -248,6 +254,8 @@ PoolPluginSpi ..> PoolReaderSpi #C_LINK : provide >
 
 AutonomousObservablePluginSpi .up.> AutonomousObservablePluginApi #C_USE : use >
 
+AutonomousSelectionReaderSpi ..> ChannelDataSpi #C_LINK : provide >
+
 WaitForCardInsertionAutonomousSpi ..> WaitForCardInsertionAutonomousReaderApi #C_USE : use >
 CardInsertionWaiterAsynchronousSpi ..> CardInsertionWaiterAsynchronousApi #C_USE : use >
 
@@ -258,7 +266,7 @@ CardRemovalWaiterAsynchronousSpi ..> CardRemovalWaiterAsynchronousApi #C_USE : u
 
 ObservablePluginSpi -[hidden]- reader
 
-AutonomousSelectionReaderSpi -[hidden]- ObservableReaderSpi
+AutonomousSelectionReaderSpi -[hidden]-- ObservableReaderSpi
 
 ObservableReaderSpi -[hidden]- state
 
