@@ -134,6 +134,7 @@ package "org.eclipse.keyple.core.plugin" as api {
         package reader {
             +interface ReaderSpi <<red>> {
                 +String getName ()
+                +boolean isContactless ()
 
                 +void openPhysicalChannel ()
                 +void closePhysicalChannel ()
@@ -142,7 +143,6 @@ package "org.eclipse.keyple.core.plugin" as api {
                 +boolean checkCardPresence ()
                 +String getPowerOnData ()
                 +byte[] transmitApdu (byte[] apduIn)
-                +boolean isContactless ()
                 +void onUnregister ()
             }
             +interface "PoolReaderSpi" as PoolReaderSpi <<red>> extends ReaderSpi {
@@ -168,6 +168,8 @@ package "org.eclipse.keyple.core.plugin" as api {
                 +interface ObservableReaderSpi <<red>> extends api.spi.reader.ReaderSpi {
                     +void onStartDetection ()
                     +void onStopDetection ()
+
+                    +<color:blue>void deselectCard ()
                 }
                 package state {
                     package processing {
