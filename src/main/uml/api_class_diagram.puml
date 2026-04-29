@@ -1,6 +1,6 @@
 @startuml
 title
-    Keyple - keyple-plugin-java-api - 2.4.+ (2026-03-31)
+    Keyple - keyple-plugin-java-api - 2.4.+ (2026-04-29)
 end title
 
 ' == THEME ==
@@ -154,11 +154,14 @@ package "org.eclipse.keyple.core.plugin" as api {
                 +void deactivateProtocol (String readerProtocol)
                 +boolean isCurrentProtocol (String readerProtocol)
             }
-            +interface AutonomousSelectionReaderSpi <<red>> extends ReaderSpi {
-                +<color:red><s>byte[] openChannelForAid (byte[] dfName, byte isoControlMask)
-                +<color:blue>ChannelDataSpi openChannel (byte[] aid, byte isoControlMask)
-                +<color:red><s>void closeLogicalChannel ()
+            +interface "<color:blue>MultichannelReaderSpi" as MultichannelReaderSpi <<red>> extends ReaderSpi {
+                +<color:blue>ChannelDataSpi openBasicChannel (byte[] aid, byte isoControlMask)
+                +<color:blue>ChannelDataSpi openLogicalChannel (byte[] aid, byte isoControlMask)
                 +<color:blue>void closeChannel (int channel)
+            }
+            +interface "<color:red><s>AutonomousSelectionReaderSpi" as AutonomousSelectionReaderSpi <<red>> extends ReaderSpi {
+                +<color:red><s>byte[] openChannelForAid (byte[] dfName, byte isoControlMask)
+                +<color:red><s>void closeLogicalChannel ()
             }
             +interface "<color:blue>ChannelDataSpi" as ChannelDataSpi <<red>> {
                 +<color:blue>int getChannel ()
@@ -256,7 +259,7 @@ PoolPluginSpi ..> PoolReaderSpi #C_LINK : provide >
 
 AutonomousObservablePluginSpi .up.> AutonomousObservablePluginApi #C_USE : use >
 
-AutonomousSelectionReaderSpi ..> ChannelDataSpi #C_LINK : provide >
+MultichannelReaderSpi ..> ChannelDataSpi #C_LINK : provide >
 
 WaitForCardInsertionAutonomousSpi ..> WaitForCardInsertionAutonomousReaderApi #C_USE : use >
 CardInsertionWaiterAsynchronousSpi ..> CardInsertionWaiterAsynchronousApi #C_USE : use >
@@ -268,7 +271,7 @@ CardRemovalWaiterAsynchronousSpi ..> CardRemovalWaiterAsynchronousApi #C_USE : u
 
 ObservablePluginSpi -[hidden]- reader
 
-AutonomousSelectionReaderSpi -[hidden]-- ObservableReaderSpi
+MultichannelReaderSpi -[hidden]-- ObservableReaderSpi
 
 ObservableReaderSpi -[hidden]- state
 
