@@ -11,6 +11,7 @@
  ************************************************************************************** */
 package org.eclipse.keyple.core.plugin.spi.reader.observable;
 
+import org.eclipse.keyple.core.plugin.ReaderIOException;
 import org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi;
 import org.eclipse.keyple.core.plugin.spi.reader.observable.state.insertion.*;
 import org.eclipse.keyple.core.plugin.spi.reader.observable.state.processing.*;
@@ -108,7 +109,8 @@ public interface ObservableReaderSpi extends ReaderSpi {
    * readers), this method may be a no-op if deselection is handled by the driver or not required
    * before removal notification.
    *
+   * @throws ReaderIOException If the communication with the reader has failed.
    * @since 3.0.0
    */
-  void deselectCard();
+  void deselectCard() throws ReaderIOException;
 }

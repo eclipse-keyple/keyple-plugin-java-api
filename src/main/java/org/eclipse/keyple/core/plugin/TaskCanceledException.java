@@ -30,7 +30,7 @@ public class TaskCanceledException extends Exception {
   /**
    * @param message the message to identify the exception context
    * @param cause the cause
-   * @since 2.3.3
+   * @since 3.0.0
    */
   public TaskCanceledException(String message, Throwable cause) {
     super(message, cause);
