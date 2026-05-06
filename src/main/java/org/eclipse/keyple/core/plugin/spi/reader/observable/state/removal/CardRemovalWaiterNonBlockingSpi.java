@@ -15,14 +15,13 @@ package org.eclipse.keyple.core.plugin.spi.reader.observable.state.removal;
  * This SPI is specifically designed for plugins that don't handle card removal autonomously.
  *
  * <p>When a plugin implements this SPI, the {@link
- * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#checkCardPresence()} method will be called
+ * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#isCardPresent()} method will be called
  * periodically by the service when a card removal is expected. The card is considered removed when
- * {@code checkCardPresence()} returns {@code false} (which also triggers the internal closure of
- * the physical channel).
+ * {@code isCardPresent()} returns {@code false}.
  *
  * <p>The value returned by {@link #getCardRemovalMonitoringSleepDuration()} will be used as an
  * argument to {@link Thread#sleep(long)} between two calls to {@link
- * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#checkCardPresence()}.
+ * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#isCardPresent()}.
  *
  * <p>A typical example of readers conforming to this mode of operation are terminals embedding a
  * slave RF communication module without autonomous card presence detection.
@@ -33,7 +32,7 @@ public interface CardRemovalWaiterNonBlockingSpi {
 
   /**
    * Provides the value of the sleep duration (in milliseconds) inserted between two calls to {@link
-   * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#checkCardPresence()}.
+   * org.eclipse.keyple.core.plugin.spi.reader.ReaderSpi#isCardPresent()}.
    *
    * @return A positive value (0 is allowed).
    * @since 2.2.0
