@@ -1,6 +1,6 @@
 @startuml
 title
-    Keyple - keyple-plugin-java-api - 2.4.+ (2026-04-29)
+    Keyple - keyple-plugin-java-api - 2.4.+ (2026-05-05)
 end title
 
 ' == THEME ==
@@ -136,11 +136,12 @@ package "org.eclipse.keyple.core.plugin" as api {
                 +String getName ()
                 +boolean isContactless ()
 
-                +void openPhysicalChannel ()
-                +void closePhysicalChannel ()
-                +boolean isPhysicalChannelOpen ()
+                +<color:red><s>void openPhysicalChannel ()
+                +<color:red><s>void closePhysicalChannel ()
+                +<color:red><s>boolean isPhysicalChannelOpen ()
 
-                +boolean checkCardPresence ()
+                +<color:red><s>boolean checkCardPresence ()
+                +<color:blue>boolean isCardPresent ()
                 +String getPowerOnData ()
                 +byte[] transmitApdu (byte[] apduIn)
                 +void onUnregister ()
