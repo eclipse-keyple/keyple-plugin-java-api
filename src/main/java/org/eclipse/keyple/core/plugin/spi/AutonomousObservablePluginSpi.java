@@ -24,20 +24,6 @@ import org.eclipse.keyple.core.plugin.AutonomousObservablePluginApi;
 public interface AutonomousObservablePluginSpi extends PluginSpi {
 
   /**
-   * Connects the associated Keyple Core {@link AutonomousObservablePluginApi} API.
-   *
-   * <p>This method is no longer called by the framework since version 2.2.0. Implementations
-   * migrating to {@link #setCallback(AutonomousObservablePluginApi)} may provide an empty body for
-   * this method.
-   *
-   * @param autonomousObservablePluginApi The API to connect.
-   * @since 2.0.0
-   * @deprecated Use {@link #setCallback(AutonomousObservablePluginApi)} instead.
-   */
-  @Deprecated
-  void connect(AutonomousObservablePluginApi autonomousObservablePluginApi);
-
-  /**
    * Sets the asynchronous callback that will be called when a reader is connected or disconnected.
    *
    * @param callback The asynchronous callback to be called.

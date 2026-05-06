@@ -42,74 +42,42 @@ public interface ReaderSpi {
   String getName();
 
   /**
-   * Ensures that the physical channel is open and that the card is ready to receive APDU commands.
+   * Tells if the reader is a contactless type.
    *
-   * <p>On successful return:
+   * @return True if the reader a contactless type, false if not.
+   * @since 2.0.0
+   */
+  boolean isContactless();
+
+  /**
+   * Checks whether a card is currently present in the reader and, if so, activates communication
+   * with it.
+   *
+   * <p>When this method returns {@code true}, the card is powered and ready for communication:
    *
    * <ul>
    *   <li>the power-on data are available via {@link #getPowerOnData()};
-   *   <li>the card is ready to receive APDU commands via {@link #transmitApdu(byte[])}.
+   *   <li>APDU commands can be sent via {@link #transmitApdu(byte[])}.
    * </ul>
    *
-   * <p>If {@link #checkCardPresence()} has already opened the physical channel (e.g. for
-   * contactless readers performing anti-collision during presence detection), this method is a
-   * no-op.
+   * <p>When this method returns {@code false}, no card is present and the above methods are not
+   * meaningful. All previously retrieved data are invalidated.
    *
+   * <p>If a {@link ReaderIOException} is thrown, the implementation must have released any
+   * resources associated with the card communication before returning, leaving the reader in a
+   * clean state ready for a new detection cycle.
+   *
+   * @return {@code true} if a card is present and communication is active, {@code false} otherwise.
    * @throws ReaderIOException If the communication with the reader has failed.
-   * @throws CardIOException If no card is present or if the communication with the card has failed.
-   * @since 2.0.0
+   * @since 3.0.0
    */
-  void openPhysicalChannel() throws ReaderIOException, CardIOException;
-
-  /**
-   * Closes the physical channel.
-   *
-   * <ul>
-   *   <li><b>Card present:</b> physically closes the channel (e.g. cuts the RF field, powers down
-   *       the card, or performs a PC/SC reset).
-   *   <li><b>Card absent:</b> no-op.
-   * </ul>
-   *
-   * @throws ReaderIOException If the card is present and the close operation fails (reader
-   *     problem).
-   * @since 2.0.0
-   */
-  void closePhysicalChannel() throws ReaderIOException;
-
-  /**
-   * Tells if the physical channel is open or not.
-   *
-   * @return True is the physical channel is open, false if not.
-   * @since 2.0.0
-   */
-  boolean isPhysicalChannelOpen();
-
-  /**
-   * Verifies the presence of a card.
-   *
-   * <p>The behavior of this method depends on the state of the physical channel:
-   *
-   * <ul>
-   *   <li><b>Physical channel closed:</b> performs a best-effort one-shot detection, starting the
-   *       RF field or powering up the card if necessary. If this detection also opens the physical
-   *       channel (e.g. for contactless readers performing anti-collision), a subsequent call to
-   *       {@link #openPhysicalChannel()} is a no-op.
-   *   <li><b>Physical channel open:</b> verifies that the card is still present using the
-   *       underlying SDK capabilities (e.g. ping APDU). If the card is no longer present, {@link
-   *       #closePhysicalChannel()} is called internally before returning {@code false}.
-   * </ul>
-   *
-   * @return {@code true} if a card is present, {@code false} otherwise.
-   * @throws ReaderIOException If the communication with the reader has failed.
-   * @since 2.0.0
-   */
-  boolean checkCardPresence() throws ReaderIOException;
+  boolean isCardPresent() throws ReaderIOException;
 
   /**
    * Gets the power-on data.
    *
    * <p>The power-on data is defined as the data retrieved by the reader when the card is inserted.
-   * This method is only meaningful after {@link #openPhysicalChannel()} has returned successfully.
+   * This method is only meaningful after {@link #isCardPresent()} has returned {@code true}.
    *
    * <p>In the case of a contact reader, this is the Answer To Reset data (ATR) defined by ISO7816.
    *
@@ -137,6 +105,10 @@ public interface ReaderSpi {
    * is handled at the SPI level because its behavior depends on the underlying reader
    * implementation (T=0, T=1, PC/SC).</b>
    *
+   * <p>If a {@link ReaderIOException} or {@link CardIOException} is thrown, the implementation must
+   * have released any resources associated with the card communication before returning, leaving
+   * the reader in a clean state ready for a new detection cycle.
+   *
    * @param apduIn The data to be sent to the card.
    * @return A buffer of at least 2 bytes.
    * @throws ReaderIOException If the communication with the reader has failed.
@@ -144,14 +116,6 @@ public interface ReaderSpi {
    * @since 2.0.0
    */
   byte[] transmitApdu(byte[] apduIn) throws ReaderIOException, CardIOException;
-
-  /**
-   * Tells if the reader is a contactless type.
-   *
-   * @return True if the reader a contactless type, false if not
-   * @since 2.0.0
-   */
-  boolean isContactless();
 
   /**
    * Invoked when unregistering the associated plugin.
